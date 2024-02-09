@@ -1,6 +1,6 @@
-<img src="kha-banner.jpg" width="1200"/>
-
 # kha
+
+<img src="kha-banner.jpg" width="800"/>
 
 # License
 
