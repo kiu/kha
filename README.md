@@ -8,19 +8,17 @@ Overengineered Modular RS-485 Multi-Master 19" Subrack Home Control
 
 <sup>Hint: "bgt" is German for [Baugruppenträger](https://de.wikipedia.org/wiki/Baugruppentr%C3%A4ger) translating to subrack assembly</sup>
 
-[datasheets](datasheets/): Datasheets of used components and rack dimensions / layouts
-
-[kha-bgt-misc](kha-bgt-misc/): ...
-[kha-bgt-rack](kha-bgt-rack/): ...
-[kha-bgt-subrack](kha-bgt-subrack/): ...
-[kha-boot.X](kha-boot.X/): Bootloader used by all devices
-[kha-common.X](kha-common.X/): Protocol stack used by all devices
-[kha-nodes](kha-nodes/): ...
-[superseded](superseded/): Superseded ideas and failed hardware revisions
-[tools](tools/): Helper scripts to e.g. generate userrow data
-
-[kha-bom-collection.pdf](kha-bom-collection.pdf): Not exactly a Bill-of-Materials rather a collection of most components used
-[kha-protocol.pdf](kha-protocol.pdf): Protocol stack definitions
+- [datasheets](datasheets/): Datasheets of used components and rack dimensions / layouts
+- [kha-bgt-misc](kha-bgt-misc/): ...
+- [kha-bgt-rack](kha-bgt-rack/): ...
+- [kha-bgt-subrack](kha-bgt-subrack/): ...
+- [kha-boot.X](kha-boot.X/): Bootloader used by all devices
+- [kha-common.X](kha-common.X/): Protocol stack used by all devices
+- [kha-nodes](kha-nodes/): ...
+- [superseded](superseded/): Superseded ideas and failed hardware revisions
+- [tools](tools/): Helper scripts to e.g. generate userrow data
+- [kha-bom-collection.pdf](kha-bom-collection.pdf): Not exactly a Bill-of-Materials rather a collection of most components used
+- [kha-protocol.pdf](kha-protocol.pdf): Protocol stack definitions
 
 ## Misc
 
@@ -31,7 +29,7 @@ Overengineered Modular RS-485 Multi-Master 19" Subrack Home Control
 - Node: Infra-red and 433Mhz remote control node
 - Node: LED Strip node
 - Node: LED marquee node
-- Node: Infra-red bridge (bridging the bus through a window)
+- Node: IrDA bridge (bridging the bus through a window)
 - Stack: Combine queued TX commands into single burst?
 - Stack: Merge similiar queued TX commands into single command?
 - Stack: Process TX commands as incoming RX commands?
