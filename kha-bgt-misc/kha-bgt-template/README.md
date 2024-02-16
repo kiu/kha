@@ -1,6 +1,6 @@
 # kha-bgt-template
 
-Template to be used for creating custom front panels and base pcbs
+Templates to be used for creating custom front panels and base pcbs
 
 ## Render
 

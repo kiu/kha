@@ -20,6 +20,11 @@ Overengineered Modular RS-485 Multi-Master 19" Subrack Home Control
 - [kha-bom-collection.pdf](kha-bom-collection.pdf): Not exactly a Bill-of-Materials rather a collection of most components used
 - [kha-protocol.pdf](kha-protocol.pdf): Protocol stack definitions
 
+## Photos
+
+<img src="kha-banner2.jpg" width="800"/>
+
+
 ## Misc
 
 - All PCBs use [eAVR](https://github.com/kiu/eAVR/) as connector for AVR flashing

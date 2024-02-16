@@ -1,6 +1,6 @@
 # kha-bgt-nop8
 
-Dummy 8HP front panel
+Dummy 8HP Front Panel
 
 ## Render
 

@@ -1,6 +1,6 @@
 # kha-bgt-nop4
 
-Dummy 4HP front panel
+Dummy 4HP Front Panel
 
 ## Render
 
