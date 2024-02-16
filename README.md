@@ -24,6 +24,9 @@ Overengineered Modular RS-485 Multi-Master 19" Subrack Home Control
 
 <img src="kha-banner2.jpg" width="800"/>
 
+<img src="kha-led-ikea-kallax-photo.jpg" width="800"/>
+
+<img src="kha-relay-2x3-box-photo.jpg" width="800"/>
 
 ## Misc
 
