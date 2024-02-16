@@ -17,8 +17,8 @@ Overengineered Modular RS-485 Multi-Master 19" Subrack Home Control
 - [kha-nodes](kha-nodes/): ...
 - [superseded](superseded/): Superseded ideas and failed hardware revisions
 - [tools](tools/): Helper scripts to e.g. generate userrow data
-- [kha-bom-collection.pdf](kha-bom-collection.pdf): Not exactly a Bill-of-Materials rather a collection of most components used
-- [kha-protocol.pdf](kha-protocol.pdf): Protocol stack definitions
+- [kha-bom-collection.pdf](kha-bom-collection.pdf)/[kha-bom-collection.ods](ods): Not exactly a Bill-of-Materials rather a collection of most components used
+- [kha-protocol.pdf](kha-protocol.pdf)/[kha-protocol.ods](ods): Protocol stack definitions
 
 ## Photos
 
