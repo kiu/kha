@@ -2,16 +2,15 @@
 
 Rack backplane
 
+## Photos
+
+<img src="kha-bgt-backplane-photo.jpg" width="800"/>
+
 ## Render
 
 <img src="kha-bgt-backplane-render-front.png" width="800"/>
 
 <img src="kha-bgt-backplane-render-back.png" width="800"/>
-
-## Photos
-
-<img src="kha-bgt-backplane-photo.jpg" width="800"/>
-
 
 ## Todo
 
