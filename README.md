@@ -31,6 +31,7 @@ Overengineered Modular RS-485 Multi-Master 19" Subrack Home Control
 ## Misc
 
 - All PCBs use [eAVR](https://github.com/kiu/eAVR/) as connector for AVR flashing
+- It all started simple with [lightdesk](https://github.com/kiu/lightdesk/)
 
 ## Todo
 

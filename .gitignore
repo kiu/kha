@@ -41,3 +41,5 @@ fp-info-cache
 *.ko
 *.obj
 #*.elf
+
+**/notreleased/
