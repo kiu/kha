@@ -9,12 +9,12 @@ Overengineered Modular RS-485 Multi-Master 19" Subrack Home Control
 <sup>Hint: "bgt" is German for [Baugruppenträger](https://de.wikipedia.org/wiki/Baugruppentr%C3%A4ger) translating to subrack assembly</sup>
 
 - [datasheets](datasheets/): Datasheets of used components and rack dimensions / layouts
-- [kha-bgt-misc](kha-bgt-misc/): ...
-- [kha-bgt-rack](kha-bgt-rack/): ...
-- [kha-bgt-subrack](kha-bgt-subrack/): ...
+- [kha-bgt-misc](kha-bgt-misc/): Generic subrack modules
+- [kha-bgt-rack](kha-bgt-rack/): 19" rack assembly
+- [kha-bgt-subrack](kha-bgt-subrack/): Subrack modules
 - [kha-boot.X](kha-boot.X/): Bootloader used by all devices
 - [kha-common.X](kha-common.X/): Protocol stack used by all devices
-- [kha-nodes](kha-nodes/): ...
+- [kha-nodes](kha-nodes/): Bus nodes
 - [superseded](superseded/): Superseded ideas and failed hardware revisions
 - [tools](tools/): Helper scripts to e.g. generate userrow data
 - [kha-bom-collection.pdf](kha-bom-collection.pdf)/[.ods](kha-bom-collection.ods): Not exactly a Bill-of-Materials rather a collection of most components used

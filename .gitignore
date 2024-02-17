@@ -4,6 +4,7 @@
 # Temporary files
 *.000
 *.bak
+*.bak?
 *.bck
 *.kicad_pcb-bak
 *.sch-bak
@@ -32,6 +33,7 @@ fp-info-cache
 **/*.X/nbproject/*.mk
 **/*.X/nbproject/*.bash
 **/*.X/nbproject/Makefile-genesis.properties
+**/*.X/queuelogs/
 
 # Object files
 *.o
@@ -39,17 +41,3 @@ fp-info-cache
 *.ko
 *.obj
 #*.elf
-
-# Executables
-*.exe
-
-
-# KDE specific
-.directory
-
-# Misc
-.svn
-*.bak
-*.bak?
-fp-info-cache
-
