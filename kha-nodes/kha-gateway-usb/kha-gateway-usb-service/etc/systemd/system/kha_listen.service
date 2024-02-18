@@ -1,0 +1,13 @@
+[Unit]
+Description=KHA Listen Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/kha/kha_listen.py
+TimeoutStopSec=5
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target

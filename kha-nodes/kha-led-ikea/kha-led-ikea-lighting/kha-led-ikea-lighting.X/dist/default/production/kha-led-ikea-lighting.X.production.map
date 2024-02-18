@@ -1,0 +1,886 @@
+Archive member included to satisfy reference by file (symbol)
+
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3.o)
+                              build/default/production/main.o (__subsf3)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3x.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3.o) (__addsf3x)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(cmpsf2.o)
+                              build/default/production/main.o (__ltsf2)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(cos.o)
+                              build/default/production/main.o (cos)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(divsf3.o)
+                              build/default/production/main.o (__divsf3)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(divsf3x.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(divsf3.o) (__divsf3x)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fixunssfsi.o)
+                              build/default/production/main.o (__fixunssfsi)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(floatsisf.o)
+                              build/default/production/main.o (__floatunsisf)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_cmp.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(cmpsf2.o) (__fp_cmp)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_inf.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3x.o) (__fp_inf)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_nan.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3x.o) (__fp_nan)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_pscA.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3x.o) (__fp_pscA)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_pscB.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3x.o) (__fp_pscB)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_rempio2.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(cos.o) (__fp_rempio2)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_round.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3.o) (__fp_round)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_sinus.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(cos.o) (__fp_sinus)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_split3.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3x.o) (__fp_split3)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_zero.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3x.o) (__fp_zero)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(mulsf3.o)
+                              build/default/production/main.o (__mulsf3)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(mulsf3x.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(mulsf3.o) (__mulsf3x)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_mpack.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_rempio2.o) (__fp_mpack_finite)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_powsodd.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_sinus.o) (__fp_powsodd)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_powser.o)
+                              c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_powsodd.o) (__fp_powser)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_exit.o)
+                              C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/ATtiny_DFP/3.1.260/gcc/dev/attiny402/avrxmega3/short-calls/crtattiny402.o (exit)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_clear_bss.o)
+                              build/default/production/mcc_generated_files/system/src/pins.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+USART0_RxInterruptHandler
+                    0x2               build/default/production/mcc_generated_files/uart/src/usart0.o
+USART0_TxInterruptHandler
+                    0x2               build/default/production/mcc_generated_files/uart/src/usart0.o
+USART0_OverrunErrorHandler
+                    0x2               build/default/production/mcc_generated_files/uart/src/usart0.o
+usart0TxBufferRemaining
+                    0x1               build/default/production/mcc_generated_files/uart/src/usart0.o
+usart0RxCount       0x1               build/default/production/mcc_generated_files/uart/src/usart0.o
+USART0_FramingErrorHandler
+                    0x2               build/default/production/mcc_generated_files/uart/src/usart0.o
+USART0_ParityErrorHandler
+                    0x2               build/default/production/mcc_generated_files/uart/src/usart0.o
+
+Discarded input sections
+
+ .data          0x0000000000000000        0x0 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/ATtiny_DFP/3.1.260/gcc/dev/attiny402/avrxmega3/short-calls/crtattiny402.o
+ .bss           0x0000000000000000        0x0 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/ATtiny_DFP/3.1.260/gcc/dev/attiny402/avrxmega3/short-calls/crtattiny402.o
+ .debug_abbrev  0x0000000000000000     0x13c0 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/ATtiny_DFP/3.1.260/gcc/dev/attiny402/avrxmega3/short-calls/crtattiny402.o
+ .debug_info    0x0000000000000000     0x14e1 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/ATtiny_DFP/3.1.260/gcc/dev/attiny402/avrxmega3/short-calls/crtattiny402.o
+ .debug_line    0x0000000000000000      0x136 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/ATtiny_DFP/3.1.260/gcc/dev/attiny402/avrxmega3/short-calls/crtattiny402.o
+ .debug_str     0x0000000000000000      0x8bb C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/ATtiny_DFP/3.1.260/gcc/dev/attiny402/avrxmega3/short-calls/crtattiny402.o
+ .text          0x0000000000000000        0x0 build/default/production/mcc_generated_files/nvm/src/nvm.o
+ .data          0x0000000000000000        0x0 build/default/production/mcc_generated_files/nvm/src/nvm.o
+ .bss           0x0000000000000000        0x0 build/default/production/mcc_generated_files/nvm/src/nvm.o
+ .text.SIGROW_DeviceIDRead
+                0x0000000000000000       0x12 build/default/production/mcc_generated_files/nvm/src/nvm.o
+ .text.SIGROW_SerialNumberRead
+                0x0000000000000000       0x20 build/default/production/mcc_generated_files/nvm/src/nvm.o
+ .text          0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/protected_io.o
+ .data          0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/protected_io.o
+ .bss           0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/protected_io.o
+ .text          0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/pins.o
+ .data          0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/pins.o
+ .bss           0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/pins.o
+ .text.IO_PA7_SetInterruptHandler
+                0x0000000000000000        0xa build/default/production/mcc_generated_files/system/src/pins.o
+ .text.IO_LED_SetInterruptHandler
+                0x0000000000000000        0xa build/default/production/mcc_generated_files/system/src/pins.o
+ .text          0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/interrupt.o
+ .data          0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/interrupt.o
+ .bss           0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/interrupt.o
+ .text          0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/system.o
+ .data          0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/system.o
+ .bss           0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/system.o
+ .text          0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/clock.o
+ .data          0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/clock.o
+ .bss           0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/clock.o
+ .text          0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/config_bits.o
+ .data          0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/config_bits.o
+ .bss           0x0000000000000000        0x0 build/default/production/mcc_generated_files/system/src/config_bits.o
+ .text          0x0000000000000000        0x0 build/default/production/mcc_generated_files/timer/src/delay.o
+ .data          0x0000000000000000        0x0 build/default/production/mcc_generated_files/timer/src/delay.o
+ .bss           0x0000000000000000        0x0 build/default/production/mcc_generated_files/timer/src/delay.o
+ .text          0x0000000000000000        0x0 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .data          0x0000000000000000        0x0 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .bss           0x0000000000000000        0x0 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_Deinitialize
+                0x0000000000000000       0x24 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_TransmitEnable
+                0x0000000000000000        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_TransmitDisable
+                0x0000000000000000        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_AutoBaudQuery
+                0x0000000000000000        0xa build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_IsTxReady
+                0x0000000000000000        0xe build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_IsTxDone
+                0x0000000000000000        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_ErrorGet
+                0x0000000000000000       0x2a build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_Write
+                0x0000000000000000       0x40 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_FramingErrorCallbackRegister
+                0x0000000000000000        0xe build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_OverrunErrorCallbackRegister
+                0x0000000000000000        0xe build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_ParityErrorCallbackRegister
+                0x0000000000000000        0xe build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_RxCompleteCallbackRegister
+                0x0000000000000000        0xe build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_TxCompleteCallbackRegister
+                0x0000000000000000        0xe build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_AutoBaudSet.part.0
+                0x0000000000000000       0x12 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_AutoBaudSet
+                0x0000000000000000       0x1c build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_Enable
+                0x0000000000000000        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_Disable
+                0x0000000000000000        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_ReceiveEnable
+                0x0000000000000000        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_ReceiveDisable
+                0x0000000000000000        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_IsAutoBaudDetectError
+                0x0000000000000000        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_AutoBaudDetectErrorReset
+                0x0000000000000000       0x2c build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_TransmitInterruptEnable
+                0x0000000000000000        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_TransmitInterruptDisable
+                0x0000000000000000        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_ReceiveInterruptEnable
+                0x0000000000000000        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_ReceiveInterruptDisable
+                0x0000000000000000        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
+ .rodata.UART0  0x0000000000000000       0x30 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text          0x0000000000000000        0x0 build/default/production/main.o
+ .data          0x0000000000000000        0x0 build/default/production/main.o
+ .bss           0x0000000000000000        0x0 build/default/production/main.o
+ .text.calculate_crc8
+                0x0000000000000000       0x3c build/default/production/main.o
+ .text.led_send_reset
+                0x0000000000000000        0xc build/default/production/main.o
+ .text.d1000    0x0000000000000000        0x6 build/default/production/main.o
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3x.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3x.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3x.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(cmpsf2.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(cmpsf2.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(cmpsf2.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(cos.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(cos.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(cos.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(divsf3.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(divsf3.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(divsf3.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(divsf3x.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(divsf3x.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(divsf3x.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fixunssfsi.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fixunssfsi.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fixunssfsi.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(floatsisf.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(floatsisf.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(floatsisf.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_cmp.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_cmp.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_cmp.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_inf.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_inf.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_inf.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_nan.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_nan.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_nan.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_pscA.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_pscA.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_pscA.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_pscB.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_pscB.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_pscB.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_rempio2.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_rempio2.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_rempio2.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_round.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_round.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_round.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_sinus.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_sinus.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_sinus.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_split3.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_split3.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_split3.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_zero.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_zero.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_zero.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(mulsf3.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(mulsf3.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(mulsf3.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(mulsf3x.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(mulsf3x.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(mulsf3x.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_mpack.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_mpack.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_mpack.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_powsodd.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_powsodd.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_powsodd.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_powser.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_powser.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_powser.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_exit.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_exit.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_exit.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_exit.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_exit.o)
+ .text.libgcc   0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_exit.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_exit.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_exit.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_exit.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_exit.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_clear_bss.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_clear_bss.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_clear_bss.o)
+ .text.libgcc.mul
+                0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_clear_bss.o)
+ .text.libgcc.div
+                0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_clear_bss.o)
+ .text.libgcc.prologue
+                0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_clear_bss.o)
+ .text.libgcc.builtins
+                0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_clear_bss.o)
+ .text.libgcc.fmul
+                0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_clear_bss.o)
+ .text.libgcc.fixed
+                0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_clear_bss.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x0000000000000000 0x0000000000001000 xr
+data             0x0000000000803f00 0x0000000000000100 rw !x
+eeprom           0x0000000000810000 0x0000000000000080 rw !x
+fuse             0x0000000000820000 0x000000000000000a rw !x
+lock             0x0000000000830000 0x0000000000000400 rw !x
+signature        0x0000000000840000 0x0000000000000400 rw !x
+user_signatures  0x0000000000850000 0x0000000000000400 rw !x
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+Address of section .data set to 0x803f00
+                0x0000000000008000                __RODATA_PM_OFFSET__ = 0x8000
+LOAD C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/ATtiny_DFP/3.1.260/gcc/dev/attiny402/avrxmega3/short-calls/crtattiny402.o
+LOAD build/default/production/mcc_generated_files/nvm/src/nvm.o
+LOAD build/default/production/mcc_generated_files/system/src/protected_io.o
+LOAD build/default/production/mcc_generated_files/system/src/pins.o
+LOAD build/default/production/mcc_generated_files/system/src/interrupt.o
+LOAD build/default/production/mcc_generated_files/system/src/system.o
+LOAD build/default/production/mcc_generated_files/system/src/clock.o
+LOAD build/default/production/mcc_generated_files/system/src/config_bits.o
+LOAD build/default/production/mcc_generated_files/timer/src/delay.o
+LOAD build/default/production/mcc_generated_files/uart/src/usart0.o
+LOAD build/default/production/main.o
+                0x0000000000000001                __MPLAB_BUILD = 0x1
+START GROUP
+LOAD c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a
+END GROUP
+START GROUP
+LOAD c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a
+LOAD c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a
+LOAD c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libc.a
+LOAD C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/ATtiny_DFP/3.1.260/gcc/dev/attiny402/avrxmega3/short-calls\libattiny402.a
+END GROUP
+                [0x0000000000000000]                __TEXT_REGION_ORIGIN__ = DEFINED (__TEXT_REGION_ORIGIN__)?__TEXT_REGION_ORIGIN__:0x0
+                [0x0000000000803f00]                __DATA_REGION_ORIGIN__ = DEFINED (__DATA_REGION_ORIGIN__)?__DATA_REGION_ORIGIN__:0x802000
+                [0x0000000000001000]                __TEXT_REGION_LENGTH__ = DEFINED (__TEXT_REGION_LENGTH__)?__TEXT_REGION_LENGTH__:0x100000
+                [0x0000000000000100]                __DATA_REGION_LENGTH__ = DEFINED (__DATA_REGION_LENGTH__)?__DATA_REGION_LENGTH__:0xffa0
+                [0x0000000000000080]                __EEPROM_REGION_LENGTH__ = DEFINED (__EEPROM_REGION_LENGTH__)?__EEPROM_REGION_LENGTH__:0x10000
+                [0x000000000000000a]                __FUSE_REGION_LENGTH__ = DEFINED (__FUSE_REGION_LENGTH__)?__FUSE_REGION_LENGTH__:0x400
+                0x0000000000000400                __LOCK_REGION_LENGTH__ = DEFINED (__LOCK_REGION_LENGTH__)?__LOCK_REGION_LENGTH__:0x400
+                0x0000000000000400                __SIGNATURE_REGION_LENGTH__ = DEFINED (__SIGNATURE_REGION_LENGTH__)?__SIGNATURE_REGION_LENGTH__:0x400
+                0x0000000000000400                __USER_SIGNATURE_REGION_LENGTH__ = DEFINED (__USER_SIGNATURE_REGION_LENGTH__)?__USER_SIGNATURE_REGION_LENGTH__:0x400
+                0x0000000000008000                __RODATA_PM_OFFSET__ = DEFINED (__RODATA_PM_OFFSET__)?__RODATA_PM_OFFSET__:0x8000
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x0000000000000000      0xf58
+ *(.vectors)
+ .vectors       0x0000000000000000       0x34 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/ATtiny_DFP/3.1.260/gcc/dev/attiny402/avrxmega3/short-calls/crtattiny402.o
+                0x0000000000000000                __vector_default
+                0x0000000000000000                __vectors
+ *(.vectors)
+ *(.progmem.gcc*)
+ .progmem.gcc_fplib
+                0x0000000000000034       0x1e c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_sinus.o)
+                0x0000000000000052                . = ALIGN (0x2)
+                0x0000000000000052                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x0000000000000052        0x0 linker stubs
+ *(.trampolines*)
+                0x0000000000000052                __trampolines_end = .
+ *libprintf_flt.a:*(.progmem.data)
+ *libc.a:*(.progmem.data)
+ *(.progmem*)
+                0x0000000000000052                . = ALIGN (0x2)
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x0000000000000052                __ctors_start = .
+ *(.ctors)
+                0x0000000000000052                __ctors_end = .
+                0x0000000000000052                __dtors_start = .
+ *(.dtors)
+                0x0000000000000052                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x0000000000000052        0x0 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/ATtiny_DFP/3.1.260/gcc/dev/attiny402/avrxmega3/short-calls/crtattiny402.o
+                0x0000000000000052                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x0000000000000052        0xc C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/ATtiny_DFP/3.1.260/gcc/dev/attiny402/avrxmega3/short-calls/crtattiny402.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x000000000000005e       0x10 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_clear_bss.o)
+                0x000000000000005e                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x000000000000006e        0x4 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/ATtiny_DFP/3.1.260/gcc/dev/attiny402/avrxmega3/short-calls/crtattiny402.o
+ *(.init9)
+ *(.text)
+ .text          0x0000000000000072        0x2 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/ATtiny_DFP/3.1.260/gcc/dev/attiny402/avrxmega3/short-calls/crtattiny402.o
+                0x0000000000000072                __vector_1
+                0x0000000000000072                __vector_12
+                0x0000000000000072                __bad_interrupt
+                0x0000000000000072                __vector_6
+                0x0000000000000072                __vector_25
+                0x0000000000000072                __vector_11
+                0x0000000000000072                __vector_13
+                0x0000000000000072                __vector_17
+                0x0000000000000072                __vector_19
+                0x0000000000000072                __vector_7
+                0x0000000000000072                __vector_5
+                0x0000000000000072                __vector_4
+                0x0000000000000072                __vector_9
+                0x0000000000000072                __vector_2
+                0x0000000000000072                __vector_21
+                0x0000000000000072                __vector_15
+                0x0000000000000072                __vector_8
+                0x0000000000000072                __vector_14
+                0x0000000000000072                __vector_10
+                0x0000000000000072                __vector_16
+                0x0000000000000072                __vector_18
+                0x0000000000000072                __vector_20
+                0x0000000000000074                . = ALIGN (0x2)
+ *(.text.*)
+ .text.NVM_Initialize
+                0x0000000000000074        0x2 build/default/production/mcc_generated_files/nvm/src/nvm.o
+                0x0000000000000074                NVM_Initialize
+ .text.SIGROW_Read
+                0x0000000000000076        0x6 build/default/production/mcc_generated_files/nvm/src/nvm.o
+                0x0000000000000076                SIGROW_Read
+ .text.protected_write_io
+                0x000000000000007c        0x8 build/default/production/mcc_generated_files/system/src/protected_io.o
+                0x000000000000007c                protected_write_io
+ .text.IO_PA7_DefaultInterruptHandler
+                0x0000000000000084        0x2 build/default/production/mcc_generated_files/system/src/pins.o
+                0x0000000000000084                IO_PA7_DefaultInterruptHandler
+ .text.IO_LED_DefaultInterruptHandler
+                0x0000000000000086        0x2 build/default/production/mcc_generated_files/system/src/pins.o
+                0x0000000000000086                IO_LED_DefaultInterruptHandler
+ .text.PIN_MANAGER_Initialize
+                0x0000000000000088       0x42 build/default/production/mcc_generated_files/system/src/pins.o
+                0x0000000000000088                PIN_MANAGER_Initialize
+ .text.__vector_3
+                0x00000000000000ca       0x64 build/default/production/mcc_generated_files/system/src/pins.o
+                0x00000000000000ca                __vector_3
+ .text.CPUINT_Initialize
+                0x000000000000012e       0x16 build/default/production/mcc_generated_files/system/src/interrupt.o
+                0x000000000000012e                CPUINT_Initialize
+ .text.SYSTEM_Initialize
+                0x0000000000000144        0xa build/default/production/mcc_generated_files/system/src/system.o
+                0x0000000000000144                SYSTEM_Initialize
+ .text.CLOCK_Initialize
+                0x000000000000014e       0x3c build/default/production/mcc_generated_files/system/src/clock.o
+                0x000000000000014e                CLOCK_Initialize
+ .text.DELAY_milliseconds
+                0x000000000000018a       0x1e build/default/production/mcc_generated_files/timer/src/delay.o
+                0x000000000000018a                DELAY_milliseconds
+ .text.DELAY_microseconds
+                0x00000000000001a8       0x38 build/default/production/mcc_generated_files/timer/src/delay.o
+                0x00000000000001a8                DELAY_microseconds
+ .text.USART0_Initialize
+                0x00000000000001e0       0x86 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x00000000000001e0                USART0_Initialize
+ .text.USART0_IsRxReady
+                0x0000000000000266        0xe build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000000266                USART0_IsRxReady
+ .text.USART0_Read
+                0x0000000000000274       0x40 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000000274                USART0_Read
+ .text.USART0_ReceiveISR
+                0x00000000000002b4       0xc4 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x00000000000002b4                USART0_ReceiveISR
+ .text.USART0_TransmitISR
+                0x0000000000000378       0x4a build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000000378                USART0_TransmitISR
+ .text.USART0_DefaultFramingErrorCallback
+                0x00000000000003c2        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_DefaultParityErrorCallback
+                0x00000000000003c4        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_DefaultOverrunErrorCallback
+                0x00000000000003c6        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.__vector_22
+                0x00000000000003c8       0x46 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x00000000000003c8                __vector_22
+ .text.__vector_23
+                0x000000000000040e       0x46 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x000000000000040e                __vector_23
+ .text.__vector_24
+                0x0000000000000454       0x2a build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000000454                __vector_24
+ .text.hsi2rgbw
+                0x000000000000047e      0x22a build/default/production/main.o
+                0x000000000000047e                hsi2rgbw
+ .text.led_send_byte
+                0x00000000000006a8       0x54 build/default/production/main.o
+                0x00000000000006a8                led_send_byte
+ .text.led_set  0x00000000000006fc       0x3c build/default/production/main.o
+                0x00000000000006fc                led_set
+ .text.led_ident
+                0x0000000000000738       0xc4 build/default/production/main.o
+                0x0000000000000738                led_ident
+ .text.process_rx
+                0x00000000000007fc      0x132 build/default/production/main.o
+                0x00000000000007fc                process_rx
+ .text.startup.main
+                0x000000000000092e       0xa8 build/default/production/main.o
+                0x000000000000092e                main
+ .text.avr-libc.fplib
+                0x00000000000009d6        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3.o)
+                0x00000000000009d6                __subsf3
+                0x00000000000009d8                __addsf3
+ .text.avr-libc.fplib
+                0x00000000000009e4       0xcc c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(addsf3x.o)
+                0x0000000000000a06                __addsf3x
+ .text.avr-libc.fplib
+                0x0000000000000ab0        0xa c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(cmpsf2.o)
+                0x0000000000000ab0                __nesf2
+                0x0000000000000ab0                __eqsf2
+                0x0000000000000ab0                __cmpsf2
+                0x0000000000000ab0                __ltsf2
+                0x0000000000000ab0                __lesf2
+ .text.avr-libc.fplib
+                0x0000000000000aba        0xa c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(cos.o)
+                0x0000000000000aba                cos
+ .text.avr-libc.fplib
+                0x0000000000000ac4        0x8 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(divsf3.o)
+                0x0000000000000ac4                __divsf3
+ .text.avr-libc.fplib
+                0x0000000000000acc       0xdc c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(divsf3x.o)
+                0x0000000000000aec                __divsf3x
+                0x0000000000000af2                __divsf3_pse
+ .text.avr-libc.fplib
+                0x0000000000000ba8       0x5e c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fixunssfsi.o)
+                0x0000000000000ba8                __fixunssfsi
+ .text.avr-libc.fplib
+                0x0000000000000c06       0x7a c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(floatsisf.o)
+                0x0000000000000c06                __floatunsisf
+                0x0000000000000c0a                __floatsisf
+ .text.avr-libc.fplib
+                0x0000000000000c80       0x48 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_cmp.o)
+                0x0000000000000c80                __fp_cmp
+ .text.avr-libc.fplib
+                0x0000000000000cc8        0xc c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_inf.o)
+                0x0000000000000cc8                __fp_inf
+ .text.avr-libc.fplib
+                0x0000000000000cd4        0x6 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_nan.o)
+                0x0000000000000cd4                __fp_nan
+ .text.avr-libc.fplib
+                0x0000000000000cda        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_pscA.o)
+                0x0000000000000cda                __fp_pscA
+ .text.avr-libc.fplib
+                0x0000000000000ce8        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_pscB.o)
+                0x0000000000000ce8                __fp_pscB
+ .text.avr-libc.fplib
+                0x0000000000000cf6       0x56 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_rempio2.o)
+                0x0000000000000cfa                __fp_rempio2
+ .text.avr-libc.fplib
+                0x0000000000000d4c       0x22 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_round.o)
+                0x0000000000000d4c                __fp_round
+ .text.avr-libc.fplib
+                0x0000000000000d6e       0x28 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_sinus.o)
+                0x0000000000000d6e                __fp_sinus
+ .text.avr-libc.fplib
+                0x0000000000000d96       0x44 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_split3.o)
+                0x0000000000000d96                __fp_split3
+                0x0000000000000da6                __fp_splitA
+ .text.avr-libc.fplib
+                0x0000000000000dda        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_zero.o)
+                0x0000000000000dda                __fp_zero
+                0x0000000000000ddc                __fp_szero
+ .text.avr-libc.fplib
+                0x0000000000000de8        0x8 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(mulsf3.o)
+                0x0000000000000de8                __mulsf3
+ .text.avr-libc.fplib
+                0x0000000000000df0       0xd2 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(mulsf3x.o)
+                0x0000000000000e0e                __mulsf3x
+                0x0000000000000e14                __mulsf3_pse
+ .text.avr-libc.fplib
+                0x0000000000000ec2       0x1c c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_mpack.o)
+                0x0000000000000ec2                __fp_mpack
+                0x0000000000000ec6                __fp_mpack_finite
+ .text.avr-libc.fplib
+                0x0000000000000ede       0x28 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_powsodd.o)
+                0x0000000000000ede                __fp_powsodd
+ .text.avr-libc.fplib
+                0x0000000000000f06       0x4e c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega3/short-calls\libm.a(fp_powser.o)
+                0x0000000000000f06                __fp_powser
+                0x0000000000000f54                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x0000000000000f54        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_exit.o)
+                0x0000000000000f54                _exit
+                0x0000000000000f54                exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x0000000000000f54        0x4 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega3/short-calls\libgcc.a(_exit.o)
+ *(.fini0)
+                0x0000000000000f58                _etext = .
+
+.rodata
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.r*)
+
+.data           0x0000000000803f00        0x0 load address 0x0000000000000f58
+                [!provide]                        PROVIDE (__data_start, .)
+ *(.data)
+ *(.data*)
+ *(.gnu.linkonce.d*)
+                0x0000000000803f00                . = ALIGN (0x2)
+                0x0000000000803f00                _edata = .
+                [!provide]                        PROVIDE (__data_end, .)
+
+.bss            0x0000000000803f00       0x95
+                0x0000000000803f00                PROVIDE (__bss_start, .)
+ *(.bss)
+ *(.bss*)
+ .bss.IO_LED_InterruptHandler
+                0x0000000000803f00        0x2 build/default/production/mcc_generated_files/system/src/pins.o
+ .bss.IO_PA7_InterruptHandler
+                0x0000000000803f02        0x2 build/default/production/mcc_generated_files/system/src/pins.o
+ .bss.USART0_RxCompleteInterruptHandler
+                0x0000000000803f04        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .bss.USART0_TxCompleteInterruptHandler
+                0x0000000000803f06        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .bss.usart0RxLastError
+                0x0000000000803f08        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .bss.usart0RxStatusBuffer
+                0x0000000000803f0a       0x40 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .bss.usart0RxBuffer
+                0x0000000000803f4a       0x20 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .bss.usart0RxTail
+                0x0000000000803f6a        0x1 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .bss.usart0RxHead
+                0x0000000000803f6b        0x1 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .bss.usart0TxBuffer
+                0x0000000000803f6c        0x8 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .bss.usart0TxTail
+                0x0000000000803f74        0x1 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .bss.usart0TxHead
+                0x0000000000803f75        0x1 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .bss.led_w     0x0000000000803f76        0x1 build/default/production/main.o
+ .bss.led_b     0x0000000000803f77        0x1 build/default/production/main.o
+ .bss.led_g     0x0000000000803f78        0x1 build/default/production/main.o
+ .bss.led_r     0x0000000000803f79        0x1 build/default/production/main.o
+ .bss.hsi_i_net
+                0x0000000000803f7a        0x1 build/default/production/main.o
+ .bss.hsi_s_net
+                0x0000000000803f7b        0x1 build/default/production/main.o
+ .bss.hsi_h_net
+                0x0000000000803f7c        0x1 build/default/production/main.o
+ .bss.msgPayloadIdx
+                0x0000000000803f7d        0x1 build/default/production/main.o
+ .bss.msgPayload
+                0x0000000000803f7e        0x8 build/default/production/main.o
+ .bss.msgEscapeDetected
+                0x0000000000803f86        0x1 build/default/production/main.o
+ .bss.msgState  0x0000000000803f87        0x1 build/default/production/main.o
+ .bss.devaddr   0x0000000000803f88        0x1 build/default/production/main.o
+ *(COMMON)
+ COMMON         0x0000000000803f89        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000803f89                USART0_RxInterruptHandler
+                0x0000000000803f8b                USART0_TxInterruptHandler
+                0x0000000000803f8d                USART0_OverrunErrorHandler
+                0x0000000000803f8f                usart0TxBufferRemaining
+                0x0000000000803f90                usart0RxCount
+                0x0000000000803f91                USART0_FramingErrorHandler
+                0x0000000000803f93                USART0_ParityErrorHandler
+                0x0000000000803f95                PROVIDE (__bss_end, .)
+                0x0000000000000f58                __data_load_start = LOADADDR (.data)
+                0x0000000000000f58                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x0000000000803f95        0x0
+                [!provide]                        PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                [!provide]                        PROVIDE (__noinit_end, .)
+                0x0000000000803f95                _end = .
+                [!provide]                        PROVIDE (__heap_start, .)
+
+.eeprom         0x0000000000810000        0x0
+ *(.eeprom*)
+                0x0000000000810000                __eeprom_end = .
+
+.fuse           0x0000000000820000        0x9
+ *(.fuse)
+ .fuse          0x0000000000820000        0x9 build/default/production/mcc_generated_files/system/src/config_bits.o
+                0x0000000000820000                __fuse
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.user_signatures
+ *(.user_signatures*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x0000000000000000       0x30
+ *(.comment)
+ .comment       0x0000000000000000       0x30 build/default/production/mcc_generated_files/nvm/src/nvm.o
+                                         0x31 (size before relaxing)
+ .comment       0x0000000000000030       0x31 build/default/production/mcc_generated_files/system/src/pins.o
+ .comment       0x0000000000000030       0x31 build/default/production/mcc_generated_files/system/src/interrupt.o
+ .comment       0x0000000000000030       0x31 build/default/production/mcc_generated_files/system/src/system.o
+ .comment       0x0000000000000030       0x31 build/default/production/mcc_generated_files/system/src/clock.o
+ .comment       0x0000000000000030       0x31 build/default/production/mcc_generated_files/system/src/config_bits.o
+ .comment       0x0000000000000030       0x31 build/default/production/mcc_generated_files/timer/src/delay.o
+ .comment       0x0000000000000030       0x31 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .comment       0x0000000000000030       0x31 build/default/production/main.o
+
+.note.gnu.avr.deviceinfo
+                0x0000000000000000       0x3c
+ .note.gnu.avr.deviceinfo
+                0x0000000000000000       0x3c C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/ATtiny_DFP/3.1.260/gcc/dev/attiny402/avrxmega3/short-calls/crtattiny402.o
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info .gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line .debug_line.* .debug_line_end)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges
+ *(.debug_ranges)
+
+.debug_macro
+ *(.debug_macro)
+OUTPUT(dist/default/production/kha-led-ikea-lighting.X.production.elf elf32-avr)
+LOAD linker stubs
