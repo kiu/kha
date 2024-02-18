@@ -83,8 +83,10 @@ bool change(uint8_t btn, uint8_t state, bool notify) {
     if (notify && state != BTN_STATE_OFF) {
         uint8_t dev_id = kha_stack_register_get(btn * 2);
         uint8_t reg_addr = kha_stack_register_get(btn * 2 + 1);
-        uint8_t buf2[2] = {reg_addr, btn_state[btn]};
-        kha_stack_tx_create(dev_id, KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
+        if (dev_id != 0x00 && dev_id != 0xFF && reg_addr != 0xFF) {
+            uint8_t buf2[2] = {reg_addr, btn_state[btn]};
+            kha_stack_tx_create(dev_id, KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
+        }
     }
 
     return true;
@@ -156,11 +158,15 @@ void update_ui() {
 
 void preset_change(uint8_t preset, bool enabled, uint8_t addr) {
     if (enabled) {
+        bool changed = false;
         for (uint8_t btn = 0; btn < KEY_AMOUNT; btn++) {
             uint8_t val = kha_stack_register_get(addr + btn);
             if (val < 2) {
-                change(btn, val, true);
+                changed |= change(btn, val, true);
             }
+        }
+        if (changed) {
+            update_ui();
         }
     }
 }
