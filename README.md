@@ -13,12 +13,12 @@ Overengineered Modular RS-485 Multi-Master 19" Subrack Home Control
 - [kha-bgt-rack](kha-bgt-rack/): 19" rack assembly
 - [kha-bgt-subrack](kha-bgt-subrack/): Subrack modules
 - [kha-boot.X](kha-boot.X/): Bootloader used by all devices ([main.c](kha-boot.X/main.c))
-- [kha-common.X](kha-common.X/): Protocol stack used by all devices ([kha-stack.c](kha-common.X/kha-stack.c) [kha-stack.h](kha-common.X/kha-stack.h) [kha-constants.h](kha-common.X/kha-constants.h))
+- [kha-common.X](kha-common.X/): Protocol stack used by all devices ([kha-stack.c](kha-common.X/kha-stack.c) / [kha-stack.h](kha-common.X/kha-stack.h) / [kha-constants.h](kha-common.X/kha-constants.h))
 - [kha-nodes](kha-nodes/): Bus nodes
 - [superseded](superseded/): Superseded ideas and failed hardware revisions
 - [tools](tools/): Helper scripts to e.g. generate userrow data
-- [kha-bom-collection.pdf](kha-bom-collection.pdf)/[.ods](kha-bom-collection.ods): Not exactly a Bill-of-Materials rather a collection of most components used
-- [kha-protocol.pdf](kha-protocol.pdf)/[.ods](kha-protocol.ods): Protocol stack definitions
+- [kha-bom-collection.pdf](kha-bom-collection.pdf) / [.ods](kha-bom-collection.ods): Not exactly a Bill-of-Materials rather a collection of most components used
+- [kha-protocol.pdf](kha-protocol.pdf) / [.ods](kha-protocol.ods): Protocol stack definitions
 
 ## Photos
 

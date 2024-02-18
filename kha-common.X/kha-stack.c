@@ -305,20 +305,20 @@ void kha_stack_register_cbr_change(uint8_t(* cb)(uint8_t addr, uint8_t value)) {
 uint8_t kha_stack_register_get(uint8_t addr) {
     if (addr >= kha_stack_register_len) {
         kha_stack_log(KHA_STACK_LOG_REGISTER_ADDR_ERROR, addr, kha_stack_register_len, 0x00);
-        return 0;
+        return 0x00;
     }
     uint8_t val = kha_stack_register_buf[addr];
     kha_stack_log(KHA_STACK_LOG_REGISTER_READ_SINGLE, addr, val, 0x00);
     return val;
 }
 
-bool kha_stack_register_set(uint8_t addr, uint8_t val) {
+bool kha_stack_register_set(uint8_t addr, uint8_t val, bool force_callback) {
     if (addr >= kha_stack_register_len) {
         kha_stack_log(KHA_STACK_LOG_REGISTER_ADDR_ERROR, addr, kha_stack_register_len, 0x00);
         return false;
     }
 
-    if (val == kha_stack_register_buf[addr]) {
+    if (!force_callback && val == kha_stack_register_buf[addr]) {
         return true;
     }
 
@@ -339,7 +339,7 @@ void kha_stack_register_wipe() {
     kha_stack_log(KHA_STACK_LOG_REGISTER_WIPE, kha_stack_register_len, 0x00, 0x00);
 
     for (uint8_t i = 0; i < kha_stack_register_len; i++) {
-        kha_stack_register_set(i, 0x00);
+        kha_stack_register_set(i, 0x00, true);
     }
 }
 
@@ -369,7 +369,7 @@ void kha_stack_register_load() {
     for (uint8_t i = 0; i < kha_stack_register_len; i++) {
         while (EEPROM_IsBusy()) {
         }
-        kha_stack_register_set(i, EEPROM_Read(KHA_STACK_EEPROM_ADDR_START + i));
+        kha_stack_register_set(i, EEPROM_Read(KHA_STACK_EEPROM_ADDR_START + i), true);
     }
 }
 
@@ -643,7 +643,7 @@ bool kha_stack_process_cmd(uint8_t msg[KHA_MSG_LEN_MAX]) {
 
         bool error = false;
         for (uint8_t i = 0; i < reg_len; i++) {
-            error = error | !kha_stack_register_set(reg_addr + i, opt[i + 1]);
+            error = error | !kha_stack_register_set(reg_addr + i, opt[i + 1], false);
         }
 
         if (send_reply) {

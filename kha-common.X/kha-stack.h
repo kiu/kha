@@ -127,7 +127,7 @@ extern "C" {
 
     void kha_stack_register_cbr_change(uint8_t(* cb)(uint8_t addr, uint8_t value));
     uint8_t kha_stack_register_get(uint8_t addr);
-    bool kha_stack_register_set(uint8_t addr, uint8_t val);
+    bool kha_stack_register_set(uint8_t addr, uint8_t val, bool force_callback);
 
     void kha_stack_preset_cbr_change(void(* cb)(uint8_t preset, bool enabled, uint8_t addr));
     uint8_t kha_stack_preset();
