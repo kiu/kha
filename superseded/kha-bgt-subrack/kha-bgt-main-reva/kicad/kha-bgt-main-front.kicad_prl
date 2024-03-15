@@ -74,15 +74,27 @@
   "project": {
     "files": [
       {
-        "name": "kha-bgt-main-front.kicad_pcb",
+        "name": "kha-bgt-main-front.kicad_sch",
         "open": false,
         "window": {
           "display": 0,
           "maximized": false,
-          "pos_x": -7,
+          "pos_x": 1717,
           "pos_y": 0,
           "size_x": 1734,
           "size_y": 1399
+        }
+      },
+      {
+        "name": "kha-bgt-main-front.kicad_pcb",
+        "open": false,
+        "window": {
+          "display": 0,
+          "maximized": true,
+          "pos_x": -7,
+          "pos_y": 0,
+          "size_x": 1702,
+          "size_y": 1235
         }
       }
     ]
