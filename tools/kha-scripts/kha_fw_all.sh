@@ -4,6 +4,7 @@ if [ -z ${KHA_HOME+x} ]; then KHA_HOME="../.."; fi
 ${KHA_HOME}/tools/kha-scripts/kha_fw_gateway-usb.sh
 ${KHA_HOME}/tools/kha-scripts/kha_fw_led-ikea-node.sh
 ${KHA_HOME}/tools/kha-scripts/kha_fw_relay-2x3-node.sh
+${KHA_HOME}/tools/kha-scripts/kha_fw_main-node.sh
 
 ${KHA_HOME}/tools/kha-scripts/kha_fw_bgt-audio.sh
 ${KHA_HOME}/tools/kha-scripts/kha_fw_bgt-dark.sh

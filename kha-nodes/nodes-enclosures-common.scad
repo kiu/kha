@@ -110,10 +110,18 @@ module jumper3(offset_x, offset_y) {
     }
 }
 
-module idc (x) {
+module idc(x) {
     translate([outer_w / 2, outer_l/2, 0]) { 
         translate([-22/2 + x, -12/2 - 20, outer_h - t]) cube([22, 12, t]);
     }
+}
+module terminal(x, y, w, l) {       
+    translate([outer_w / 2 -w/2 + x, outer_l/2 -l/2 + y, t + pcb_standoff + 1.6]) cube([w, l, outer_h]);    
+}
+
+module terminal_front(x, y, w, l) {
+    l2 = outer_l / 2 - y + l/2;    
+    translate([outer_w / 2 -w/2 + x, 0, t + pcb_standoff + 1.6]) cube([w, l2, outer_h]);    
 }
 
 module slice_bottom() {
