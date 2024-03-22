@@ -26,7 +26,7 @@ fp-info-cache
 **/*.X/~*.*
 **/*.X/build/
 **/*.X/debug/
-#**/*.X/dist/
+**/*.X/dist/default/debug/
 **/*.X/disassembly/
 **/*.X/.generated_files/
 **/*.X/nbproject/private/
