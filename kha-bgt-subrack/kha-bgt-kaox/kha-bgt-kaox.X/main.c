@@ -3,8 +3,9 @@
 #include "mcc_generated_files/timer/tca0.h"
 #include "../../../kha-common.X/kha-constants.h"
 #include "../../../kha-common.X/kha-stack.h"
-#include "kha-version.h"
+#include "../../../kha-nodes/kha-led-strip/kha-led-strip.X/led-generic.h"
 #include "../../../kha-nodes/kha-led-ikea/kha-led-ikea-node/kha-led-ikea-node.X/main.h"
+#include "kha-version.h"
 
 // ---
 
@@ -139,7 +140,7 @@ void mode_do(uint8_t value, bool notify) {
 
     if (mode == KAOX_MODE_FULL) {
         if (notify) {
-            uint8_t buf2[6] = {IKEA_ADDR_SELECTION, IKEA_SELECTION_FULL};
+            uint8_t buf2[6] = {LED_ADDR_SELECTION, IKEA_SELECTION_FULL};
             kha_stack_tx_create(kha_stack_register_get(KAOX_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
         }
         btn_state[3] = BTN_STATE_RD_OG;
@@ -148,7 +149,7 @@ void mode_do(uint8_t value, bool notify) {
 
     if (mode == KAOX_MODE_GRADIENT) {
         if (notify) {
-            uint8_t buf2[6] = {IKEA_ADDR_SELECTION, IKEA_SELECTION_GRADIENT};
+            uint8_t buf2[6] = {LED_ADDR_SELECTION, IKEA_SELECTION_GRADIENT};
             kha_stack_tx_create(kha_stack_register_get(KAOX_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
         }
         btn_state[2] = BTN_STATE_RD_OG;
@@ -157,7 +158,7 @@ void mode_do(uint8_t value, bool notify) {
 
     if (mode == KAOX_MODE_LOW) {
         if (notify) {
-            uint8_t buf2[6] = {IKEA_ADDR_SELECTION, IKEA_SELECTION_LOW};
+            uint8_t buf2[6] = {LED_ADDR_SELECTION, IKEA_SELECTION_LOW};
             kha_stack_tx_create(kha_stack_register_get(KAOX_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
         }
         btn_state[1] = BTN_STATE_RD_OG;
@@ -166,7 +167,7 @@ void mode_do(uint8_t value, bool notify) {
 
     if (mode == KAOX_MODE_OFF) {
         if (notify) {
-            uint8_t buf2[2] = {IKEA_ADDR_SELECTION, IKEA_SELECTION_OFF};
+            uint8_t buf2[2] = {LED_ADDR_SELECTION, IKEA_SELECTION_OFF};
             kha_stack_tx_create(kha_stack_register_get(KAOX_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
         }
         btn_state[0] = BTN_STATE_RD_OG;

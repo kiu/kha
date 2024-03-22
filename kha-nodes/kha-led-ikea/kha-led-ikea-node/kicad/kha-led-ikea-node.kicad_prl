@@ -75,15 +75,15 @@
   "project": {
     "files": [
       {
-        "name": "kha-led-ikea-node.kicad_pcb",
+        "name": "kha-led-ikea-node.kicad_sch",
         "open": false,
         "window": {
           "display": 0,
-          "maximized": true,
-          "pos_x": 1713,
+          "maximized": false,
+          "pos_x": -7,
           "pos_y": 0,
-          "size_x": 1718,
-          "size_y": 1317
+          "size_x": 1734,
+          "size_y": 1399
         }
       }
     ]

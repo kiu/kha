@@ -3,9 +3,9 @@
 #include "mcc_generated_files/timer/tca0.h"
 #include "../../../kha-common.X/kha-constants.h"
 #include "../../../kha-common.X/kha-stack.h"
-#include "kha-version.h"
-#include "../../../kha-nodes/kha-led-ikea/kha-led-ikea-node/kha-led-ikea-node.X/main.h"
+#include "../../../kha-nodes/kha-led-strip/kha-led-strip.X/led-generic.h"
 #include "../../../kha-nodes/kha-led-ikea/kha-led-const.h"
+#include "kha-version.h"
 
 // ---
 
@@ -174,7 +174,7 @@ void mode_change(bool notify) {
         speed = speed_next;
         enabled_next = true;
         if (notify) {
-            uint8_t buf2[2] = {IKEA_ADDR_ANIM_SPEED, speed};
+            uint8_t buf2[2] = {LED_ADDR_ANIM_SPEED, speed};
             kha_stack_tx_create(kha_stack_register_get(RAINBOW_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
         }
     }
@@ -182,7 +182,7 @@ void mode_change(bool notify) {
         width = width_next;
         enabled_next = true;
         if (notify) {
-            uint8_t buf2[2] = {IKEA_ADDR_ANIM_WIDTH, width};
+            uint8_t buf2[2] = {LED_ADDR_ANIM_WIDTH, width};
             kha_stack_tx_create(kha_stack_register_get(RAINBOW_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
         }
     }
@@ -195,7 +195,7 @@ void mode_change(bool notify) {
         }
         update_ui();
         if (notify) {
-            uint8_t buf2[2] = {IKEA_ADDR_ANIM_ENABLED, enabled};
+            uint8_t buf2[2] = {LED_ADDR_ANIM_ENABLED, enabled};
             kha_stack_tx_create(kha_stack_register_get(RAINBOW_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
         }
     }
@@ -242,15 +242,15 @@ uint8_t register_change(uint8_t addr, uint8_t value) {
 }
 
 void rx_all_register_slice(uint8_t addr, uint8_t value) {
-    if (addr == IKEA_ADDR_ANIM_ENABLED) {
+    if (addr == LED_ADDR_ANIM_ENABLED) {
         enabled_next = value;
         mode_change(false);
     }
-    if (addr == IKEA_ADDR_ANIM_SPEED) {
+    if (addr == LED_ADDR_ANIM_SPEED) {
         speed_next = encoder_verify(1, value);
         mode_change(false);
     }
-    if (addr == IKEA_ADDR_ANIM_WIDTH) {
+    if (addr == LED_ADDR_ANIM_WIDTH) {
         width_next = encoder_verify(0, value);
         mode_change(false);
     }

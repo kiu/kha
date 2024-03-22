@@ -3,9 +3,8 @@
 #include "mcc_generated_files/timer/tca0.h"
 #include "../../../kha-common.X/kha-constants.h"
 #include "../../../kha-common.X/kha-stack.h"
+#include "../../../kha-nodes/kha-led-strip/kha-led-strip.X/led-generic.h"
 #include "kha-version.h"
-#include "../../../kha-nodes/kha-led-ikea/kha-led-ikea-node/kha-led-ikea-node.X/main.h"
-#include "../../../kha-nodes/kha-led-ikea/kha-led-const.h"
 
 // ---
 
@@ -186,15 +185,15 @@ uint8_t register_change(uint8_t addr, uint8_t value) {
 }
 
 void rx_all_register_slice(uint8_t addr, uint8_t value) {
-    if (addr == IKEA_ADDR_HUE) {
+    if (addr == LED_ADDR_HUE) {
         hue = encoder_verify(2, value);
         hue_next = encoder_verify(2, value);
     }
-    if (addr == IKEA_ADDR_SATURATION) {
+    if (addr == LED_ADDR_SATURATION) {
         sat = encoder_verify(1, value);
         sat_next = encoder_verify(1, value);
     }
-    if (addr == IKEA_ADDR_INTENSE) {
+    if (addr == LED_ADDR_INTENSE) {
         intense = encoder_verify(0, value);
         intense_next = encoder_verify(0, value);
     }
@@ -272,17 +271,17 @@ int main(void) {
 
         if (hue != hue_next) {
             hue = hue_next;
-            uint8_t buf2[2] = {IKEA_ADDR_HUE, hue};
+            uint8_t buf2[2] = {LED_ADDR_HUE, hue};
             kha_stack_tx_create(kha_stack_register_get(HSI_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
         }
         if (sat != sat_next) {
             sat = sat_next;
-            uint8_t buf2[2] = {IKEA_ADDR_SATURATION, sat};
+            uint8_t buf2[2] = {LED_ADDR_SATURATION, sat};
             kha_stack_tx_create(kha_stack_register_get(HSI_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
         }
         if (intense != intense_next) {
             intense = intense_next;
-            uint8_t buf2[2] = {IKEA_ADDR_INTENSE, intense};
+            uint8_t buf2[2] = {LED_ADDR_INTENSE, intense};
             kha_stack_tx_create(kha_stack_register_get(HSI_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
         }
 

@@ -4,6 +4,7 @@
 #include "../../../../kha-common.X/kha-constants.h"
 #include "../../../../kha-common.X/kha-stack.h"
 #include "../../kha-led-const.h"
+#include "../../../kha-led-strip/kha-led-strip.X/led-generic.h"
 #include "kha-version.h"
 #include "main.h"
 
@@ -220,26 +221,26 @@ void led_off() {
 
 uint8_t register_change(uint8_t addr, uint8_t value) {
     if (addr < REGISTER_SIZE) {
-        if (addr == IKEA_ADDR_SELECTION) {
+        if (addr == LED_ADDR_SELECTION) {
             if (value > IKEA_SELECTION_FULL) {
                 value = IKEA_SELECTION_OFF;
             }
             mode_next = value;
         }
 
-        if (addr == IKEA_ADDR_HUE) {
+        if (addr == LED_ADDR_HUE) {
             hsi_set(value, hsi_s_net, hsi_i_net);
         }
 
-        if (addr == IKEA_ADDR_SATURATION) {
+        if (addr == LED_ADDR_SATURATION) {
             hsi_set(hsi_h_net, value, hsi_i_net);
         }
 
-        if (addr == IKEA_ADDR_INTENSE) {
+        if (addr == LED_ADDR_INTENSE) {
             hsi_set(hsi_h_net, hsi_s_net, value);
         }
 
-        if (addr == IKEA_ADDR_ANIM_ENABLED) {
+        if (addr == LED_ADDR_ANIM_ENABLED) {
             if (value > 1) {
                 value = 0;
             }
@@ -251,12 +252,12 @@ uint8_t register_change(uint8_t addr, uint8_t value) {
             }
         }
 
-        if (addr == IKEA_ADDR_ANIM_SPEED) {
+        if (addr == LED_ADDR_ANIM_SPEED) {
             anim_s = 0xFF - value;
             hsi_changed = true;
         }
 
-        if (addr == IKEA_ADDR_ANIM_WIDTH) {
+        if (addr == LED_ADDR_ANIM_WIDTH) {
             anim_w = value;
             hsi_changed = true;
         }
