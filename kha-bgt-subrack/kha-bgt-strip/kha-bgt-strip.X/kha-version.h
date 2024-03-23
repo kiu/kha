@@ -1,1 +1,0 @@
-#define KHA_VERSION 1711138757

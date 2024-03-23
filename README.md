@@ -35,8 +35,6 @@ Overengineered Modular RS-485 Multi-Master 19" Subrack Home Control
 
 ## Todo
 
-- Node: Infra-red and 433Mhz remote control node
-- Node: LED Strip node
 - Node: LED marquee node
 - Node: IrDA bridge (bridging the bus through a window)
 - Stack: Combine queued TX commands into single burst?

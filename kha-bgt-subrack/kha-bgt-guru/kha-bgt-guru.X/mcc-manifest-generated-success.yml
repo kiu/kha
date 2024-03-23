@@ -2,7 +2,7 @@
 
 manifest_file_version: 1.0.0
 project: kha-bgt-guru
-creation_date: 2024-02-17T21:34:21.874+01:00[Europe/Berlin]
+creation_date: 2024-03-23T16:37:40.633+01:00[Europe/Berlin]
 operating_system: Windows 10
 mcc_mode: IDE
 mcc_mode_version: v6.20
@@ -14,7 +14,7 @@ content_manager_version: 5.0.0
 is_mcc_offline: false
 is_using_prerelease_versions: false
 mcc_content_registries: https://registry.npmjs.org/
-device_library: {library_class: com.microchip.mcc.melody.Library, name: Melody, version: 2.6.5}
+device_library: {library_class: com.microchip.mcc.melody.Library, name: Melody, version: 2.7.0}
 packs: {name: AVR-Dx_DFP, version: 2.4.286}
 modules:
 - {name: '@mchp-mcc/avr-8bit', type: MELODY, version: 4.9.0}
@@ -28,8 +28,8 @@ modules:
 - {name: '@mchp-mcc/scf-avr8-memory-v1', type: MELODY, version: 7.0.1}
 - {name: '@mchp-mcc/scf-avr8-rstctrl-v1', type: MELODY, version: 4.0.7}
 - {name: '@mchp-mcc/scf-avr8-rtc-v1', type: MELODY, version: 4.2.5}
-- {name: '@mchp-mcc/scf-avr8-spi-v1', type: MELODY, version: 5.0.1}
-- {name: '@mchp-mcc/scf-avr8-tca-v1', type: MELODY, version: 6.0.10}
+- {name: '@mchp-mcc/scf-avr8-spi-v1', type: MELODY, version: 5.0.2}
+- {name: '@mchp-mcc/scf-avr8-tca-v1', type: MELODY, version: 6.0.11}
 - {name: '@mchp-mcc/scf-avr8-usart-v1', type: MELODY, version: 10.2.0}
 - {name: '@mchp-mcc/scf-avr8-wwdt-v1', type: MELODY, version: 4.2.5}
 - {name: '@mchp-mcc/spi-host-driver', type: MELODY, version: 1.2.0}

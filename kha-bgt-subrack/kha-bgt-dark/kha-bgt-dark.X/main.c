@@ -97,7 +97,7 @@ int main(void) {
     while (1) {
         if (manual_interaction) {
             manual_interaction = false;
-            manual_interaction_occured(false, true);
+            kha_stack_manual_interaction_occured(false, true);
         }
 
         if (sendOn) {

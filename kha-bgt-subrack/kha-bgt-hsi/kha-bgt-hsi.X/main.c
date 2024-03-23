@@ -87,7 +87,7 @@ uint8_t encoder_flip(uint8_t key, uint8_t current) {
 void key_pressed(uint8_t key) {
     manual_interaction = true;
     if (key == 2) {
-        hue_next = encoder_range(key, hue_next, -64);
+        hue_next = encoder_range(key, hue_next, -32);
     }
     if (key == 1) {
         sat_next = encoder_flip(key, sat_next);
@@ -158,11 +158,9 @@ void preset_change(uint8_t preset, bool enabled, uint8_t addr) {
 uint8_t register_change(uint8_t addr, uint8_t value) {
     if (addr < REGISTER_SIZE) {
         if (addr == HSI_ADDR_DEST) {
-            if (value == 0xFF) {
-                value = 0x00;
-            }
         }
     }
+
     if (addr >= REGISTER_SIZE && REGISTER_PRESET_WIDTH > 0) {
         uint8_t index = addr - REGISTER_SIZE - ((addr - REGISTER_SIZE) / (REGISTER_PRESET_WIDTH + 1) * (REGISTER_PRESET_WIDTH + 1));
         if (index == 0) {
@@ -184,19 +182,10 @@ uint8_t register_change(uint8_t addr, uint8_t value) {
     return value;
 }
 
-void rx_all_register_slice(uint8_t addr, uint8_t value) {
-    if (addr == LED_ADDR_HUE) {
-        hue = encoder_verify(2, value);
-        hue_next = encoder_verify(2, value);
-    }
-    if (addr == LED_ADDR_SATURATION) {
-        sat = encoder_verify(1, value);
-        sat_next = encoder_verify(1, value);
-    }
-    if (addr == LED_ADDR_INTENSE) {
-        intense = encoder_verify(0, value);
-        intense_next = encoder_verify(0, value);
-    }
+void led_hsi(uint8_t hsi[3]) {
+    hue = hue_next = encoder_verify(2, hsi[0]);
+    sat = sat_next = encoder_verify(1, hsi[1]);
+    intense = intense_next = encoder_verify(0, hsi[2]);
 }
 
 bool rx_all(uint8_t msg[KHA_MSG_LEN_MAX]) {
@@ -210,26 +199,14 @@ bool rx_all(uint8_t msg[KHA_MSG_LEN_MAX]) {
     for (uint8_t i = 0; i < optlen; i++) {
         opt[i] = msg[4 + i];
     }
-
-    if (cmd == KHA_CMD_REGISTER_WRITE_REQUEST || cmd == KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY) {
-        uint16_t reg_addr = opt[0];
-        uint8_t reg_len = optlen - 1;
-
-        if (reg_addr >= KHA_STACK_EEPROM_REGISTER_LEN) {
+    if (cmd == KHA_CMD_APP_LED_HSI) {
+        if (optlen != 3) {
             return false;
         }
-        if (reg_len > KHA_STACK_EEPROM_REGISTER_LEN) {
+        if (to != kha_stack_register_get(HSI_ADDR_DEST)) {
             return false;
         }
-        if (reg_addr + reg_len > KHA_STACK_EEPROM_REGISTER_LEN) {
-            return false;
-        }
-
-        if (to == kha_stack_register_get(HSI_ADDR_DEST)) {
-            for (uint8_t i = 0; i < reg_len; i++) {
-                rx_all_register_slice(reg_addr + i, opt[i + 1]);
-            }
-        }
+        led_hsi(opt);
     }
 
     return false;
@@ -242,6 +219,7 @@ int main(void) {
 
     kha_stack_register_cbr_change(register_change);
     kha_stack_preset_cbr_change(preset_change);
+    kha_stack_app_led_hsi_cbr(led_hsi);
     kha_stack_rx_cbr_msg_all_post(rx_all);
     kha_stack_init(false, REGISTER_SIZE, REGISTER_PRESET_WIDTH, KHA_VERSION);
 
@@ -254,6 +232,7 @@ int main(void) {
             if (diff != 0) {
                 enc_delta[key] = enc_delta[key] & 3;
                 manual_interaction = true;
+                diff = diff * 4;
                 if (key == 2) {
                     hue_next = encoder_range(key, hue_next, diff);
                 } else if (key == 1) {
@@ -266,23 +245,15 @@ int main(void) {
 
         if (manual_interaction) {
             manual_interaction = false;
-            manual_interaction_occured(true, true);
+            kha_stack_manual_interaction_occured(true, true);
         }
 
-        if (hue != hue_next) {
+        if (hue != hue_next || sat != sat_next || intense != intense_next) {
             hue = hue_next;
-            uint8_t buf2[2] = {LED_ADDR_HUE, hue};
-            kha_stack_tx_create(kha_stack_register_get(HSI_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
-        }
-        if (sat != sat_next) {
             sat = sat_next;
-            uint8_t buf2[2] = {LED_ADDR_SATURATION, sat};
-            kha_stack_tx_create(kha_stack_register_get(HSI_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
-        }
-        if (intense != intense_next) {
             intense = intense_next;
-            uint8_t buf2[2] = {LED_ADDR_INTENSE, intense};
-            kha_stack_tx_create(kha_stack_register_get(HSI_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
+            uint8_t buf3[3] = {hue, sat, intense};
+            kha_stack_tx_create(kha_stack_register_get(HSI_ADDR_DEST), KHA_CMD_APP_LED_HSI, 3, buf3);
         }
 
         kha_stack_process_rx_tx();

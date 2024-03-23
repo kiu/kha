@@ -16,4 +16,3 @@ ${KHA_HOME}/tools/kha-scripts/kha_fw_bgt-main.sh
 ${KHA_HOME}/tools/kha-scripts/kha_fw_bgt-power.sh
 ${KHA_HOME}/tools/kha-scripts/kha_fw_bgt-preset.sh
 ${KHA_HOME}/tools/kha-scripts/kha_fw_bgt-rainbow.sh
-${KHA_HOME}/tools/kha-scripts/kha_fw_bgt-strip.sh

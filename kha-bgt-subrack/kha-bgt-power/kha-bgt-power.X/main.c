@@ -14,10 +14,6 @@
 
 // ---
 
-static const uint32_t tick_interval_10ms = 100UL * 60UL * 5UL;
-static uint32_t tick = (100UL * 60UL * 5UL) - (100UL * 3UL);
-static volatile bool tick_exec = false;
-
 enum BTN_STATE {
     BTN_STATE_RD_OG, BTN_STATE_GN, BTN_STATE_OFF
 };
@@ -29,6 +25,8 @@ static volatile bool manual_interaction = false;
 static const uint8_t key_mask = 0b00001111;
 static uint8_t key_state[KEY_AMOUNT];
 static bool key_down[KEY_AMOUNT];
+
+static uint8_t register_changed = false;
 
 // ---
 
@@ -43,12 +41,6 @@ void key_pressed(uint8_t key) {
 }
 
 void key_tick() {
-    tick++;
-    if (tick > tick_interval_10ms) {
-        tick = 0;
-        tick_exec = true;
-    }
-
     key_state[3] = (key_state[3] << 1) | !IO_BTN03_GetValue();
     key_state[2] = (key_state[2] << 1) | !IO_BTN02_GetValue();
     key_state[1] = (key_state[1] << 1) | !IO_BTN01_GetValue();
@@ -69,7 +61,7 @@ void key_tick() {
 // ---
 
 bool change(uint8_t btn, uint8_t state, bool notify) {
-    if (notify && btn_state[btn] == BTN_STATE_OFF) {
+    if (btn_state[btn] == BTN_STATE_OFF) {
         btn_state_next[btn] = BTN_STATE_OFF;
         return false;
     }
@@ -80,13 +72,11 @@ bool change(uint8_t btn, uint8_t state, bool notify) {
     }
     btn_state[btn] = state;
 
-    if (notify && state != BTN_STATE_OFF) {
+    if (notify) {
         uint8_t dev_id = kha_stack_register_get(btn * 2);
         uint8_t reg_addr = kha_stack_register_get(btn * 2 + 1);
-        if (dev_id != 0x00 && dev_id != 0xFF && reg_addr != 0xFF) {
-            uint8_t buf2[2] = {reg_addr, btn_state[btn]};
-            kha_stack_tx_create(dev_id, KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
-        }
+        uint8_t buf2[2] = {reg_addr, btn_state[btn]};
+        kha_stack_tx_create(dev_id, KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
     }
 
     return true;
@@ -182,7 +172,7 @@ uint8_t register_change(uint8_t addr, uint8_t value) {
                 value = 0xFF;
             }
         }
-        btn_state_next[addr / 2] = BTN_STATE_OFF;
+        register_changed = true;
     }
 
     if (addr >= REGISTER_SIZE && REGISTER_PRESET_WIDTH > 0) {
@@ -203,16 +193,10 @@ uint8_t register_change(uint8_t addr, uint8_t value) {
 }
 
 bool rx_all_register_slice(uint8_t id, uint8_t addr, uint8_t value) {
-    if (id == KHA_ADDR_NONE) {
-        return false;
-    }
-    if (id == KHA_ADDR_BROADCAST) {
-        return false;
-    }
-
     if (value > 1) {
         value = 0;
     }
+
     bool changed = false;
     for (uint8_t btn = 0; btn < KEY_AMOUNT; btn++) {
         if (id == kha_stack_register_get(btn * 2) && addr == kha_stack_register_get(btn * 2 + 1)) {
@@ -275,22 +259,19 @@ int main(void) {
     while (1) {
         if (manual_interaction) {
             manual_interaction = false;
-            manual_interaction_occured(true, true);
+            kha_stack_manual_interaction_occured(true, true);
         }
 
-        if (tick_exec) {
-            tick_exec = false;
+        if (register_changed) {
+            register_changed = false;
             for (uint8_t btn = 0; btn < KEY_AMOUNT; btn++) {
-                if (btn_state[btn] != BTN_STATE_OFF) {
-                    continue;
-                }
-                uint8_t dev_id = kha_stack_register_get(btn * 2);
-                uint8_t reg_addr = kha_stack_register_get(btn * 2 + 1);
-                if (dev_id != 0xFF && dev_id != 0x00 && reg_addr != 0xFF) {
-                    uint8_t buf2[2] = {reg_addr, 0x01};
-                    kha_stack_tx_create(dev_id, KHA_CMD_REGISTER_READ_REQUEST, 2, buf2);
+                if (kha_stack_register_get(btn * 2) == 0xFF || kha_stack_register_get(btn * 2 + 1) == 0xFF) {
+                    btn_state[btn] = btn_state_next[btn] = BTN_STATE_OFF;
+                } else if (btn_state[btn] == BTN_STATE_OFF) {
+                    btn_state[btn] = btn_state_next[btn] = BTN_STATE_RD_OG;
                 }
             }
+            update_ui();
         }
 
         bool changed = false;

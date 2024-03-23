@@ -169,6 +169,9 @@ void mode_switch(opmode om) {
 
     kha_stack_register_set(AUDIO_ADDR_MODE, om, false);
 
+    uint8_t buf2[2] = {AUDIO_ADDR_MODE, om};
+    kha_stack_tx_create(kha_stack_device_address_get(), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
+
     btn_state[3] = BTN_STATE_OFF;
     btn_state[2] = BTN_STATE_OFF;
     btn_state[1] = BTN_STATE_OFF;
@@ -194,7 +197,11 @@ void mode_switch(opmode om) {
         IO_SR01_SetHigh();
         IO_SR02_SetLow();
         IO_SR03_SetLow();
+
+        uint8_t buf2[2] = {0x02, 0x01};
+        kha_stack_tx_create(0xC5, KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
     }
+
     if (om == AUXC) {
         btn_state[2] = BTN_STATE_RD_OG;
         IO_SR01_SetLow();
@@ -212,9 +219,6 @@ void mode_switch(opmode om) {
     }
 
     update_ui();
-
-    //uint8_t buf2[2] = {AUDIO_ADDR_MODE, om};
-    //kha_stack_tx_create(kha_stack_device_address_get(), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
 }
 
 // ---
@@ -239,7 +243,7 @@ int main(void) {
     while (1) {
         if (manual_interaction) {
             manual_interaction = false;
-            manual_interaction_occured(true, true);
+            kha_stack_manual_interaction_occured(true, true);
         }
 
         if (mode != mode_next) {

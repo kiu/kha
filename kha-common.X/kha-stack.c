@@ -45,6 +45,11 @@ static uint8_t kha_stack_dev_group = KHA_ADDR_BROADCAST_GROUP_FALLBACK;
 
 // ----
 
+static void(*kha_stack_app_led_animation_cbh)(uint8_t swe[3]);
+static void(*kha_stack_app_led_hsi_cbh)(uint8_t hsi[3]);
+
+// ----
+
 static uint8_t(*kha_stack_register_cbh_change)(uint8_t addr, uint8_t value);
 static uint8_t kha_stack_register_len = KHA_STACK_EEPROM_REGISTER_LEN;
 static uint8_t kha_stack_register_buf[KHA_STACK_EEPROM_REGISTER_LEN];
@@ -294,6 +299,16 @@ uint8_t kha_stack_userrow_data(uint8_t addr) {
         return 0x00;
     }
     return kha_stack_userrow[addr + KHA_STACK_USERROW_DATA_OFFSET];
+}
+
+// APP -------------------------------------------------------------------------
+
+void kha_stack_app_led_hsi_cbr(void(* cb)(uint8_t hsi[3])) {
+    kha_stack_app_led_hsi_cbh = cb;
+}
+
+void kha_stack_app_led_animation_cbr(void(* cb)(uint8_t swe[3])) {
+    kha_stack_app_led_animation_cbh = cb;
 }
 
 // REGISTER --------------------------------------------------------------------
@@ -705,6 +720,30 @@ bool kha_stack_process_cmd(uint8_t msg[KHA_MSG_LEN_MAX]) {
 
     // ---
 
+    if (cmd == KHA_CMD_APP_LED_ANIMATION) {
+        if (optlen != 3) {
+            kha_stack_log(KHA_STACK_LOG_CMD_PARAMETERS_ERROR, cmd, 0x03, optlen);
+            return true;
+        }
+
+        if (kha_stack_app_led_animation_cbh != NULL) {
+            (*kha_stack_app_led_animation_cbh)(opt);
+        }
+    }
+
+    if (cmd == KHA_CMD_APP_LED_HSI) {
+        if (optlen != 3) {
+            kha_stack_log(KHA_STACK_LOG_CMD_PARAMETERS_ERROR, cmd, 0x03, optlen);
+            return true;
+        }
+
+        if (kha_stack_app_led_hsi_cbh != NULL) {
+            (*kha_stack_app_led_hsi_cbh)(opt);
+        }
+    }
+
+    // ---
+
     if (cmd == KHA_CMD_SYSTEM_NOP) {
         return true;
     }
@@ -943,11 +982,6 @@ bool kha_stack_process_tx() {
         }
     }
 
-    //if (buf[2] == 0x01) { // localhost?
-    //    kha_stack_process_cmd(buf);
-    //    return true;
-    //}
-
     if (!(buf[3] >= KHA_CMD_MANAGEMENT_BOOT_FW_WRITE && buf[3] <= KHA_CMD_MANAGEMENT_BOOT_WIPE_FLASH)) {
         while (kha_stack_tx_block_index != (2 * kha_stack_dev_addr)) {
             asm("wdr");
@@ -1087,7 +1121,7 @@ void kha_stack_init_version_and_crc(uint32_t version) {
     kha_stack_crc32_flash_and_store(KHA_STACK_FLASH_APP_START, KHA_STACK_FLASH_APP_END, KHA_STACK_EEPROM_CRC_APP_OFFSET);
 }
 
-void manual_interaction_occured(bool ui, bool preset) {
+void kha_stack_manual_interaction_occured(bool ui, bool preset) {
     if (ui) {
         kha_stack_ui_enable();
     }

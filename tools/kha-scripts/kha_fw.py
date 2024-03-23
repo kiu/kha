@@ -42,7 +42,7 @@ def go():
   sleep(1)
 
   print("TX: F0 KHA_CMD_MANAGEMENT_TX_DISABLE")
-  msg = "{}F0\n".format(device_addr)
+  msg = "FFF0\n"
   sock.sendto(bytes(msg, 'ascii'), (UDP_IP, UDP_PORT))
   sleep(2)
 
@@ -95,7 +95,7 @@ def go():
   sleep(8)
 
   print("TX: F1 KHA_CMD_MANAGEMENT_TX_ENABLE")
-  msg = "{}F1\n".format(device_addr)
+  msg = "FFF1\n"
   sock.sendto(bytes(msg, 'ascii'), (UDP_IP, UDP_PORT))
   sleep(2)
 

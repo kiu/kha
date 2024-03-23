@@ -181,6 +181,10 @@ Discarded input sections
                 0x0000000000000000        0x6 build/default/production/_ext/1250557427/kha-stack.o
  .text.kha_stack_board_rev_get
                 0x0000000000000000        0x6 build/default/production/_ext/1250557427/kha-stack.o
+ .text.kha_stack_app_led_hsi_cbr
+                0x0000000000000000        0xa build/default/production/_ext/1250557427/kha-stack.o
+ .text.kha_stack_app_led_animation_cbr
+                0x0000000000000000        0xa build/default/production/_ext/1250557427/kha-stack.o
  .text.kha_stack_register_cbr_change
                 0x0000000000000000        0xa build/default/production/_ext/1250557427/kha-stack.o
  .text.kha_stack_preset_cbr_change
@@ -201,7 +205,7 @@ Discarded input sections
                 0x0000000000000000       0x30 build/default/production/_ext/1250557427/kha-stack.o
  .text.kha_stack_ui_disable
                 0x0000000000000000       0x2e build/default/production/_ext/1250557427/kha-stack.o
- .text.manual_interaction_occured
+ .text.kha_stack_manual_interaction_occured
                 0x0000000000000000       0x1c build/default/production/_ext/1250557427/kha-stack.o
  .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
  .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
@@ -397,7 +401,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000     0x1a52
+.text           0x0000000000000000     0x1a96
  *(.vectors)
  .vectors       0x0000000000000000       0x90 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/AVR-Dx_DFP/2.4.286/gcc/dev/avr64dd32/avrxmega2/crtavr64dd32.o
                 0x0000000000000000                __vector_default
@@ -681,46 +685,46 @@ END GROUP
                 0x0000000000000fb2       0xf2 build/default/production/_ext/1250557427/kha-stack.o
                 0x0000000000000fb2                kha_stack_send_ident_or_up
  .text.kha_stack_process_cmd
-                0x00000000000010a4      0x41c build/default/production/_ext/1250557427/kha-stack.o
+                0x00000000000010a4      0x460 build/default/production/_ext/1250557427/kha-stack.o
                 0x00000000000010a4                kha_stack_process_cmd
  .text.kha_process_rx
-                0x00000000000014c0       0x70 build/default/production/_ext/1250557427/kha-stack.o
-                0x00000000000014c0                kha_process_rx
+                0x0000000000001504       0x70 build/default/production/_ext/1250557427/kha-stack.o
+                0x0000000000001504                kha_process_rx
  .text.kha_stack_process_rx
-                0x0000000000001530      0x142 build/default/production/_ext/1250557427/kha-stack.o
-                0x0000000000001530                kha_stack_process_rx
+                0x0000000000001574      0x142 build/default/production/_ext/1250557427/kha-stack.o
+                0x0000000000001574                kha_stack_process_rx
  .text.kha_stack_tx_remove
-                0x0000000000001672       0x3c build/default/production/_ext/1250557427/kha-stack.o
-                0x0000000000001672                kha_stack_tx_remove
+                0x00000000000016b6       0x3c build/default/production/_ext/1250557427/kha-stack.o
+                0x00000000000016b6                kha_stack_tx_remove
  .text.kha_stack_process_tx
-                0x00000000000016ae      0x112 build/default/production/_ext/1250557427/kha-stack.o
-                0x00000000000016ae                kha_stack_process_tx
+                0x00000000000016f2      0x112 build/default/production/_ext/1250557427/kha-stack.o
+                0x00000000000016f2                kha_stack_process_tx
  .text.kha_stack_process_rx_tx
-                0x00000000000017c0        0xe build/default/production/_ext/1250557427/kha-stack.o
-                0x00000000000017c0                kha_stack_process_rx_tx
+                0x0000000000001804        0xe build/default/production/_ext/1250557427/kha-stack.o
+                0x0000000000001804                kha_stack_process_rx_tx
  .text.kha_stack_init_register
-                0x00000000000017ce       0x54 build/default/production/_ext/1250557427/kha-stack.o
-                0x00000000000017ce                kha_stack_init_register
+                0x0000000000001812       0x54 build/default/production/_ext/1250557427/kha-stack.o
+                0x0000000000001812                kha_stack_init_register
  .text.kha_stack_init_userrow
-                0x0000000000001822       0xec build/default/production/_ext/1250557427/kha-stack.o
-                0x0000000000001822                kha_stack_init_userrow
+                0x0000000000001866       0xec build/default/production/_ext/1250557427/kha-stack.o
+                0x0000000000001866                kha_stack_init_userrow
  .text.kha_stack_init_version_and_crc
-                0x000000000000190e       0x82 build/default/production/_ext/1250557427/kha-stack.o
-                0x000000000000190e                kha_stack_init_version_and_crc
+                0x0000000000001952       0x82 build/default/production/_ext/1250557427/kha-stack.o
+                0x0000000000001952                kha_stack_init_version_and_crc
  .text.kha_stack_init
-                0x0000000000001990       0x9e build/default/production/_ext/1250557427/kha-stack.o
-                0x0000000000001990                kha_stack_init
+                0x00000000000019d4       0x9e build/default/production/_ext/1250557427/kha-stack.o
+                0x00000000000019d4                kha_stack_init
  .text.avr-libc
-                0x0000000000001a2e       0x12 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memcpy.o)
-                0x0000000000001a2e                memcpy
+                0x0000000000001a72       0x12 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memcpy.o)
+                0x0000000000001a72                memcpy
  .text.avr-libc
-                0x0000000000001a40        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memset.o)
-                0x0000000000001a40                memset
-                0x0000000000001a4e                . = ALIGN (0x2)
+                0x0000000000001a84        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memset.o)
+                0x0000000000001a84                memset
+                0x0000000000001a92                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000000000001a4e        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
-                0x0000000000001a4e                _exit
-                0x0000000000001a4e                exit
+ .fini9         0x0000000000001a92        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
+                0x0000000000001a92                _exit
+                0x0000000000001a92                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -739,11 +743,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000000000001a4e        0x4 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
+ .fini0         0x0000000000001a92        0x4 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000000000001a52                _etext = .
+                0x0000000000001a96                _etext = .
 
-.data           0x0000000000806000        0xa load address 0x0000000000001a52
+.data           0x0000000000806000        0xa load address 0x0000000000001a96
                 0x0000000000806000                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -774,7 +778,7 @@ END GROUP
                 0x000000000080600a                _edata = .
                 0x000000000080600a                PROVIDE (__data_end, .)
 
-.bss            0x000000000080600a      0xc71
+.bss            0x000000000080600a      0xc75
                 0x000000000080600a                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -838,34 +842,38 @@ END GROUP
                 0x0000000000806b53       0xee build/default/production/_ext/1250557427/kha-stack.o
  .bss.kha_stack_register_cbh_change
                 0x0000000000806c41        0x2 build/default/production/_ext/1250557427/kha-stack.o
+ .bss.kha_stack_app_led_hsi_cbh
+                0x0000000000806c43        0x2 build/default/production/_ext/1250557427/kha-stack.o
+ .bss.kha_stack_app_led_animation_cbh
+                0x0000000000806c45        0x2 build/default/production/_ext/1250557427/kha-stack.o
  .bss.kha_stack_userrow
-                0x0000000000806c43       0x20 build/default/production/_ext/1250557427/kha-stack.o
+                0x0000000000806c47       0x20 build/default/production/_ext/1250557427/kha-stack.o
  .bss.kha_stack_ui_cbh_change
-                0x0000000000806c63        0x2 build/default/production/_ext/1250557427/kha-stack.o
+                0x0000000000806c67        0x2 build/default/production/_ext/1250557427/kha-stack.o
  .bss.kha_stack_debug
-                0x0000000000806c65        0x1 build/default/production/_ext/1250557427/kha-stack.o
+                0x0000000000806c69        0x1 build/default/production/_ext/1250557427/kha-stack.o
  .bss.kha_stack_cbh_log
-                0x0000000000806c66        0x2 build/default/production/_ext/1250557427/kha-stack.o
+                0x0000000000806c6a        0x2 build/default/production/_ext/1250557427/kha-stack.o
  .bss.kha_stack_stats
-                0x0000000000806c68        0x8 build/default/production/_ext/1250557427/kha-stack.o
+                0x0000000000806c6c        0x8 build/default/production/_ext/1250557427/kha-stack.o
  .bss.kha_stack_bootloader
-                0x0000000000806c70        0x1 build/default/production/_ext/1250557427/kha-stack.o
+                0x0000000000806c74        0x1 build/default/production/_ext/1250557427/kha-stack.o
  *(COMMON)
- COMMON         0x0000000000806c71        0xa build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x0000000000806c71                USART0_RxInterruptHandler
-                0x0000000000806c73                USART0_OverrunErrorHandler
-                0x0000000000806c75                usart0RxCount
-                0x0000000000806c77                USART0_FramingErrorHandler
-                0x0000000000806c79                USART0_ParityErrorHandler
-                0x0000000000806c7b                PROVIDE (__bss_end, .)
-                0x0000000000001a52                __data_load_start = LOADADDR (.data)
-                0x0000000000001a5c                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0000000000806c75        0xa build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000806c75                USART0_RxInterruptHandler
+                0x0000000000806c77                USART0_OverrunErrorHandler
+                0x0000000000806c79                usart0RxCount
+                0x0000000000806c7b                USART0_FramingErrorHandler
+                0x0000000000806c7d                USART0_ParityErrorHandler
+                0x0000000000806c7f                PROVIDE (__bss_end, .)
+                0x0000000000001a96                __data_load_start = LOADADDR (.data)
+                0x0000000000001aa0                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0000000000806c7b        0x0
+.noinit         0x0000000000806c7f        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                        PROVIDE (__noinit_end, .)
-                0x0000000000806c7b                _end = .
+                0x0000000000806c7f                _end = .
                 [!provide]                        PROVIDE (__heap_start, .)
 
 .eeprom         0x0000000000810000        0x0

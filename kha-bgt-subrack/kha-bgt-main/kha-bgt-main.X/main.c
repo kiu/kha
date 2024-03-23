@@ -167,7 +167,7 @@ int main(void) {
 
         if (manual_interaction) {
             manual_interaction = false;
-            manual_interaction_occured(true, false);
+            kha_stack_manual_interaction_occured(true, false);
         }
 
         if (preset_next != kha_stack_preset()) {

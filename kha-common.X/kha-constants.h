@@ -74,6 +74,9 @@ extern "C" {
 #define KHA_CMD_REGISTER_READ_RESPONSE 0xD1
 #define KHA_CMD_REGISTER_READ_REQUEST 0xD0
 
+#define KHA_CMD_APP_LED_ANIMATION 0xB1
+#define KHA_CMD_APP_LED_HSI 0xB0
+
 #define KHA_CMD_SYSTEM_NOP 0x00
 
     // -------------------------------------------------------------------------

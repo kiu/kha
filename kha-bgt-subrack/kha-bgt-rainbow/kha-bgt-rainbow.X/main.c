@@ -170,33 +170,25 @@ void update_ui() {
 }
 
 void mode_change(bool notify) {
-    if (speed != speed_next) {
+    if (speed != speed_next || width != width_next) {
+        enabled_next = true;
+    }
+
+    if (speed != speed_next || width != width_next || enabled != enabled_next) {
         speed = speed_next;
-        enabled_next = true;
-        if (notify) {
-            uint8_t buf2[2] = {LED_ADDR_ANIM_SPEED, speed};
-            kha_stack_tx_create(kha_stack_register_get(RAINBOW_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
-        }
-    }
-    if (width != width_next) {
         width = width_next;
-        enabled_next = true;
-        if (notify) {
-            uint8_t buf2[2] = {LED_ADDR_ANIM_WIDTH, width};
-            kha_stack_tx_create(kha_stack_register_get(RAINBOW_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
-        }
-    }
-    if (enabled != enabled_next) {
         enabled = enabled_next;
+
         if (enabled) {
             btn_state[0] = BTN_STATE_GN;
         } else {
             btn_state[0] = BTN_STATE_RD_OG;
         }
         update_ui();
+
         if (notify) {
-            uint8_t buf2[2] = {LED_ADDR_ANIM_ENABLED, enabled};
-            kha_stack_tx_create(kha_stack_register_get(RAINBOW_ADDR_DEST), KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
+            uint8_t buf3[3] = {speed, width, enabled};
+            kha_stack_tx_create(kha_stack_register_get(RAINBOW_ADDR_DEST), KHA_CMD_APP_LED_ANIMATION, 3, buf3);
         }
     }
 }
@@ -212,9 +204,6 @@ void preset_change(uint8_t preset, bool enabled, uint8_t addr) {
 uint8_t register_change(uint8_t addr, uint8_t value) {
     if (addr < REGISTER_SIZE) {
         if (addr == RAINBOW_ADDR_DEST) {
-            if (value == 0xFF) {
-                value = 0x00;
-            }
         }
     }
 
@@ -241,19 +230,11 @@ uint8_t register_change(uint8_t addr, uint8_t value) {
     return value;
 }
 
-void rx_all_register_slice(uint8_t addr, uint8_t value) {
-    if (addr == LED_ADDR_ANIM_ENABLED) {
-        enabled_next = value;
-        mode_change(false);
-    }
-    if (addr == LED_ADDR_ANIM_SPEED) {
-        speed_next = encoder_verify(1, value);
-        mode_change(false);
-    }
-    if (addr == LED_ADDR_ANIM_WIDTH) {
-        width_next = encoder_verify(0, value);
-        mode_change(false);
-    }
+void led_animation(uint8_t swe[3]) {
+    speed = speed_next = encoder_verify(1, swe[0]);
+    width = width_next = encoder_verify(0, swe[1]);
+    enabled = enabled_next = swe[2];
+    update_ui();
 }
 
 bool rx_all(uint8_t msg[KHA_MSG_LEN_MAX]) {
@@ -268,25 +249,14 @@ bool rx_all(uint8_t msg[KHA_MSG_LEN_MAX]) {
         opt[i] = msg[4 + i];
     }
 
-    if (cmd == KHA_CMD_REGISTER_WRITE_REQUEST || cmd == KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY) {
-        uint16_t reg_addr = opt[0];
-        uint8_t reg_len = optlen - 1;
-
-        if (reg_addr >= KHA_STACK_EEPROM_REGISTER_LEN) {
+    if (cmd == KHA_CMD_APP_LED_ANIMATION) {
+        if (optlen != 3) {
             return false;
         }
-        if (reg_len > KHA_STACK_EEPROM_REGISTER_LEN) {
+        if (to != kha_stack_register_get(RAINBOW_ADDR_DEST)) {
             return false;
         }
-        if (reg_addr + reg_len > KHA_STACK_EEPROM_REGISTER_LEN) {
-            return false;
-        }
-
-        if (to == kha_stack_register_get(RAINBOW_ADDR_DEST)) {
-            for (uint8_t i = 0; i < reg_len; i++) {
-                rx_all_register_slice(reg_addr + i, opt[i + 1]);
-            }
-        }
+        led_animation(opt);
     }
 
     return false;
@@ -303,6 +273,7 @@ int main(void) {
     kha_stack_register_cbr_change(register_change);
     kha_stack_ui_cbr_change(update_ui);
     kha_stack_preset_cbr_change(preset_change);
+    kha_stack_app_led_animation_cbr(led_animation);
     kha_stack_rx_cbr_msg_all_post(rx_all);
     kha_stack_init(false, REGISTER_SIZE, REGISTER_PRESET_WIDTH, KHA_VERSION);
 
@@ -317,6 +288,7 @@ int main(void) {
                 enc_delta[key] = enc_delta[key] & 3;
                 manual_interaction = true;
                 enabled_next = true;
+                diff = diff * 4;
                 if (key == 1) {
                     speed_next = encoder_range(key, speed_next, diff);
                 } else if (key == 0) {
@@ -327,7 +299,7 @@ int main(void) {
 
         if (manual_interaction) {
             manual_interaction = false;
-            manual_interaction_occured(true, true);
+            kha_stack_manual_interaction_occured(true, true);
         }
 
         mode_change(true);

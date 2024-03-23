@@ -125,6 +125,9 @@ extern "C" {
 
     uint8_t kha_stack_userrow_data(uint8_t addr);
 
+    void kha_stack_app_led_animation_cbr(void (* cb)(uint8_t swe[3]));
+    void kha_stack_app_led_hsi_cbr(void (* cb)(uint8_t hsi[3]));
+
     void kha_stack_register_cbr_change(uint8_t(* cb)(uint8_t addr, uint8_t value));
     uint8_t kha_stack_register_get(uint8_t addr);
     bool kha_stack_register_set(uint8_t addr, uint8_t val, bool force_callback);
@@ -141,7 +144,7 @@ extern "C" {
     void kha_stack_tx_cbr_msg_all(bool (* cb)(uint8_t buf[]));
     bool kha_stack_tx_create(uint8_t to, uint8_t cmd, uint8_t optlen, uint8_t opt[]);
 
-    void manual_interaction_occured(bool ui, bool preset);
+    void kha_stack_manual_interaction_occured(bool ui, bool preset);
 
     void kha_stack_process_rx_tx();
 
