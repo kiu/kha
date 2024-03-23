@@ -2,7 +2,7 @@
 
 manifest_file_version: 1.0.0
 project: kha-led-ikea-lighting
-creation_date: 2024-02-10T11:59:43.970+01:00[Europe/Berlin]
+creation_date: 2024-03-23T18:20:11.728+01:00[Europe/Berlin]
 operating_system: Windows 10
 mcc_mode: IDE
 mcc_mode_version: v6.20
@@ -14,7 +14,7 @@ content_manager_version: 5.0.0
 is_mcc_offline: false
 is_using_prerelease_versions: false
 mcc_content_registries: https://registry.npmjs.org/
-device_library: {library_class: com.microchip.mcc.melody.Library, name: Melody, version: 2.6.5}
+device_library: {library_class: com.microchip.mcc.melody.Library, name: Melody, version: 2.7.0}
 packs: {name: ATtiny_DFP, version: 3.1.260}
 modules:
 - {name: '@mchp-mcc/avr-8bit', type: MELODY, version: 4.9.0}

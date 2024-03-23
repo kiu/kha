@@ -266,6 +266,10 @@ Discarded input sections
                 0x0000000000000000        0x6 build/default/production/_ext/1798121363/kha-stack.o
  .text.kha_stack_board_rev_get
                 0x0000000000000000        0x6 build/default/production/_ext/1798121363/kha-stack.o
+ .text.kha_stack_app_led_hsi_cbr
+                0x0000000000000000        0xa build/default/production/_ext/1798121363/kha-stack.o
+ .text.kha_stack_app_led_animation_cbr
+                0x0000000000000000        0xa build/default/production/_ext/1798121363/kha-stack.o
  .text.kha_stack_preset_cbr_change
                 0x0000000000000000        0xa build/default/production/_ext/1798121363/kha-stack.o
  .text.kha_stack_preset
@@ -282,7 +286,7 @@ Discarded input sections
                 0x0000000000000000       0x30 build/default/production/_ext/1798121363/kha-stack.o
  .text.kha_stack_ui_disable
                 0x0000000000000000       0x2e build/default/production/_ext/1798121363/kha-stack.o
- .text.manual_interaction_occured
+ .text.kha_stack_manual_interaction_occured
                 0x0000000000000000       0x1c build/default/production/_ext/1798121363/kha-stack.o
  .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
  .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
@@ -544,7 +548,7 @@ Address of section .text set to 0x4000
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000004000     0x347e
+.text           0x0000000000004000     0x3502
  *(.vectors)
  .vectors       0x0000000000004000       0x90 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/AVR-Dx_DFP/2.4.286/gcc/dev/avr64dd32/avrxmega2/crtavr64dd32.o
                 0x0000000000004000                __vector_default
@@ -560,252 +564,256 @@ Address of section .text set to 0x4000
  *libprintf_flt.a:*(.progmem.data)
  *libc.a:*(.progmem.data)
  *(.progmem*)
- .progmem.data.__c.4995
+ .progmem.data.__c.5007
                 0x0000000000004090       0x27 build/default/production/main.o
- .progmem.data.__c.4993
+ .progmem.data.__c.5005
                 0x00000000000040b7       0x1e build/default/production/main.o
- .progmem.data.__c.4971
+ .progmem.data.__c.4983
                 0x00000000000040d5        0x2 build/default/production/main.o
- .progmem.data.__c.4969
+ .progmem.data.__c.4981
                 0x00000000000040d7        0x9 build/default/production/main.o
- .progmem.data.__c.4967
+ .progmem.data.__c.4979
                 0x00000000000040e0        0xb build/default/production/main.o
- .progmem.data.__c.4957
+ .progmem.data.__c.4969
                 0x00000000000040eb       0x11 build/default/production/main.o
- .progmem.data.__c.4955
+ .progmem.data.__c.4967
                 0x00000000000040fc       0x33 build/default/production/main.o
- .progmem.data.__c.4947
+ .progmem.data.__c.4959
                 0x000000000000412f        0xa build/default/production/main.o
- .progmem.data.__c.4945
+ .progmem.data.__c.4957
                 0x0000000000004139       0x22 build/default/production/main.o
- .progmem.data.__c.4940
+ .progmem.data.__c.4952
                 0x000000000000415b        0xc build/default/production/main.o
- .progmem.data.__c.4938
+ .progmem.data.__c.4950
                 0x0000000000004167       0x23 build/default/production/main.o
- .progmem.data.__c.4932
+ .progmem.data.__c.4944
                 0x000000000000418a        0x2 build/default/production/main.o
- .progmem.data.__c.4930
+ .progmem.data.__c.4942
                 0x000000000000418c        0x9 build/default/production/main.o
- .progmem.data.__c.4928
+ .progmem.data.__c.4940
                 0x0000000000004195        0xb build/default/production/main.o
- .progmem.data.__c.4920
+ .progmem.data.__c.4932
                 0x00000000000041a0        0x5 build/default/production/main.o
- .progmem.data.__c.4914
+ .progmem.data.__c.4926
                 0x00000000000041a5        0x2 build/default/production/main.o
- .progmem.data.__c.4912
+ .progmem.data.__c.4924
                 0x00000000000041a7        0x2 build/default/production/main.o
- .progmem.data.__c.4907
+ .progmem.data.__c.4919
                 0x00000000000041a9        0x2 build/default/production/main.o
- .progmem.data.__c.4905
+ .progmem.data.__c.4917
                 0x00000000000041ab        0x5 build/default/production/main.o
- .progmem.data.__c.4901
+ .progmem.data.__c.4913
                 0x00000000000041b0        0x3 build/default/production/main.o
- .progmem.data.__c.4899
+ .progmem.data.__c.4911
                 0x00000000000041b3        0xe build/default/production/main.o
- .progmem.data.__c.4896
+ .progmem.data.__c.4908
                 0x00000000000041c1        0xe build/default/production/main.o
- .progmem.data.__c.4893
+ .progmem.data.__c.4905
                 0x00000000000041cf        0xe build/default/production/main.o
- .progmem.data.__c.4890
+ .progmem.data.__c.4902
                 0x00000000000041dd        0xe build/default/production/main.o
- .progmem.data.__c.4887
+ .progmem.data.__c.4899
                 0x00000000000041eb        0xe build/default/production/main.o
- .progmem.data.__c.4884
+ .progmem.data.__c.4896
                 0x00000000000041f9        0xe build/default/production/main.o
- .progmem.data.__c.4881
+ .progmem.data.__c.4893
                 0x0000000000004207        0xe build/default/production/main.o
- .progmem.data.__c.4878
+ .progmem.data.__c.4890
                 0x0000000000004215        0xe build/default/production/main.o
- .progmem.data.__c.4875
+ .progmem.data.__c.4887
                 0x0000000000004223        0xe build/default/production/main.o
- .progmem.data.__c.4872
+ .progmem.data.__c.4884
                 0x0000000000004231        0xe build/default/production/main.o
- .progmem.data.__c.4869
+ .progmem.data.__c.4881
                 0x000000000000423f        0xe build/default/production/main.o
- .progmem.data.__c.4866
+ .progmem.data.__c.4878
                 0x000000000000424d        0xe build/default/production/main.o
- .progmem.data.__c.4863
+ .progmem.data.__c.4875
                 0x000000000000425b        0xe build/default/production/main.o
- .progmem.data.__c.4860
+ .progmem.data.__c.4872
                 0x0000000000004269        0xe build/default/production/main.o
- .progmem.data.__c.4857
+ .progmem.data.__c.4869
                 0x0000000000004277        0xe build/default/production/main.o
- .progmem.data.__c.4854
+ .progmem.data.__c.4866
                 0x0000000000004285        0xe build/default/production/main.o
- .progmem.data.__c.4851
+ .progmem.data.__c.4863
                 0x0000000000004293        0xe build/default/production/main.o
- .progmem.data.__c.4848
+ .progmem.data.__c.4860
                 0x00000000000042a1        0xe build/default/production/main.o
- .progmem.data.__c.4845
+ .progmem.data.__c.4857
                 0x00000000000042af        0xe build/default/production/main.o
- .progmem.data.__c.4842
+ .progmem.data.__c.4854
                 0x00000000000042bd        0xe build/default/production/main.o
- .progmem.data.__c.4839
+ .progmem.data.__c.4851
                 0x00000000000042cb        0xe build/default/production/main.o
- .progmem.data.__c.4836
+ .progmem.data.__c.4848
                 0x00000000000042d9        0xe build/default/production/main.o
- .progmem.data.__c.4833
+ .progmem.data.__c.4845
                 0x00000000000042e7        0xe build/default/production/main.o
- .progmem.data.__c.4830
+ .progmem.data.__c.4842
                 0x00000000000042f5        0xe build/default/production/main.o
- .progmem.data.__c.4827
+ .progmem.data.__c.4839
                 0x0000000000004303        0xe build/default/production/main.o
- .progmem.data.__c.4824
+ .progmem.data.__c.4836
                 0x0000000000004311        0xe build/default/production/main.o
- .progmem.data.__c.4821
+ .progmem.data.__c.4833
                 0x000000000000431f        0xe build/default/production/main.o
- .progmem.data.__c.4818
+ .progmem.data.__c.4830
                 0x000000000000432d        0xe build/default/production/main.o
- .progmem.data.__c.4815
+ .progmem.data.__c.4827
                 0x000000000000433b        0xe build/default/production/main.o
- .progmem.data.__c.4812
+ .progmem.data.__c.4824
                 0x0000000000004349        0xe build/default/production/main.o
- .progmem.data.__c.4809
+ .progmem.data.__c.4821
                 0x0000000000004357        0xe build/default/production/main.o
- .progmem.data.__c.4806
+ .progmem.data.__c.4818
                 0x0000000000004365        0xe build/default/production/main.o
- .progmem.data.__c.4803
+ .progmem.data.__c.4815
                 0x0000000000004373        0xe build/default/production/main.o
- .progmem.data.__c.4799
+ .progmem.data.__c.4812
                 0x0000000000004381        0xe build/default/production/main.o
- .progmem.data.__c.4796
-                0x000000000000438f        0x9 build/default/production/main.o
- .progmem.data.__c.4794
-                0x0000000000004398        0x2 build/default/production/main.o
+ .progmem.data.__c.4809
+                0x000000000000438f        0xe build/default/production/main.o
+ .progmem.data.__c.4805
+                0x000000000000439d        0xe build/default/production/main.o
+ .progmem.data.__c.4802
+                0x00000000000043ab        0x9 build/default/production/main.o
+ .progmem.data.__c.4800
+                0x00000000000043b4        0x2 build/default/production/main.o
+ .progmem.data.__c.4798
+                0x00000000000043b6        0x2 build/default/production/main.o
+ .progmem.data.__c.4795
+                0x00000000000043b8        0x2 build/default/production/main.o
  .progmem.data.__c.4792
-                0x000000000000439a        0x2 build/default/production/main.o
+                0x00000000000043ba        0x2 build/default/production/main.o
  .progmem.data.__c.4789
-                0x000000000000439c        0x2 build/default/production/main.o
+                0x00000000000043bc        0x2 build/default/production/main.o
  .progmem.data.__c.4786
-                0x000000000000439e        0x2 build/default/production/main.o
+                0x00000000000043be        0x2 build/default/production/main.o
  .progmem.data.__c.4783
-                0x00000000000043a0        0x2 build/default/production/main.o
- .progmem.data.__c.4780
-                0x00000000000043a2        0x2 build/default/production/main.o
- .progmem.data.__c.4777
-                0x00000000000043a4        0x2 build/default/production/main.o
- .progmem.data.__c.4773
-                0x00000000000043a6        0x2 build/default/production/main.o
- .progmem.data.__c.4770
-                0x00000000000043a8       0x15 build/default/production/main.o
- .progmem.data.__c.4765
-                0x00000000000043bd       0x18 build/default/production/main.o
- .progmem.data.__c.4763
-                0x00000000000043d5        0x2 build/default/production/main.o
+                0x00000000000043c0        0x2 build/default/production/main.o
+ .progmem.data.__c.4779
+                0x00000000000043c2        0x2 build/default/production/main.o
+ .progmem.data.__c.4776
+                0x00000000000043c4       0x15 build/default/production/main.o
+ .progmem.data.__c.4771
+                0x00000000000043d9       0x18 build/default/production/main.o
+ .progmem.data.__c.4769
+                0x00000000000043f1        0x2 build/default/production/main.o
+ .progmem.data.__c.4767
+                0x00000000000043f3       0x22 build/default/production/main.o
+ .progmem.data.__c.4764
+                0x0000000000004415       0x16 build/default/production/main.o
  .progmem.data.__c.4761
-                0x00000000000043d7       0x22 build/default/production/main.o
+                0x000000000000442b       0x16 build/default/production/main.o
  .progmem.data.__c.4758
-                0x00000000000043f9       0x16 build/default/production/main.o
+                0x0000000000004441       0x15 build/default/production/main.o
  .progmem.data.__c.4755
-                0x000000000000440f       0x16 build/default/production/main.o
+                0x0000000000004456       0x31 build/default/production/main.o
  .progmem.data.__c.4752
-                0x0000000000004425       0x15 build/default/production/main.o
+                0x0000000000004487       0x32 build/default/production/main.o
  .progmem.data.__c.4749
-                0x000000000000443a       0x31 build/default/production/main.o
+                0x00000000000044b9       0x36 build/default/production/main.o
  .progmem.data.__c.4746
-                0x000000000000446b       0x32 build/default/production/main.o
+                0x00000000000044ef       0x40 build/default/production/main.o
  .progmem.data.__c.4743
-                0x000000000000449d       0x36 build/default/production/main.o
+                0x000000000000452f        0xc build/default/production/main.o
  .progmem.data.__c.4740
-                0x00000000000044d3       0x40 build/default/production/main.o
+                0x000000000000453b        0xb build/default/production/main.o
  .progmem.data.__c.4737
-                0x0000000000004513        0xc build/default/production/main.o
+                0x0000000000004546       0x2d build/default/production/main.o
  .progmem.data.__c.4734
-                0x000000000000451f        0xb build/default/production/main.o
+                0x0000000000004573       0x1a build/default/production/main.o
  .progmem.data.__c.4731
-                0x000000000000452a       0x2d build/default/production/main.o
+                0x000000000000458d       0x32 build/default/production/main.o
  .progmem.data.__c.4728
-                0x0000000000004557       0x1a build/default/production/main.o
+                0x00000000000045bf       0x30 build/default/production/main.o
  .progmem.data.__c.4725
-                0x0000000000004571       0x32 build/default/production/main.o
+                0x00000000000045ef       0x21 build/default/production/main.o
  .progmem.data.__c.4722
-                0x00000000000045a3       0x30 build/default/production/main.o
+                0x0000000000004610       0x29 build/default/production/main.o
  .progmem.data.__c.4719
-                0x00000000000045d3       0x21 build/default/production/main.o
+                0x0000000000004639       0x3f build/default/production/main.o
  .progmem.data.__c.4716
-                0x00000000000045f4       0x29 build/default/production/main.o
+                0x0000000000004678       0x3b build/default/production/main.o
  .progmem.data.__c.4713
-                0x000000000000461d       0x3f build/default/production/main.o
+                0x00000000000046b3       0x2e build/default/production/main.o
  .progmem.data.__c.4710
-                0x000000000000465c       0x3b build/default/production/main.o
+                0x00000000000046e1       0x42 build/default/production/main.o
  .progmem.data.__c.4707
-                0x0000000000004697       0x2e build/default/production/main.o
+                0x0000000000004723       0x2a build/default/production/main.o
  .progmem.data.__c.4704
-                0x00000000000046c5       0x42 build/default/production/main.o
+                0x000000000000474d       0x2a build/default/production/main.o
  .progmem.data.__c.4701
-                0x0000000000004707       0x2a build/default/production/main.o
+                0x0000000000004777       0x2b build/default/production/main.o
  .progmem.data.__c.4698
-                0x0000000000004731       0x2a build/default/production/main.o
+                0x00000000000047a2       0x2a build/default/production/main.o
  .progmem.data.__c.4695
-                0x000000000000475b       0x2b build/default/production/main.o
+                0x00000000000047cc       0x26 build/default/production/main.o
  .progmem.data.__c.4692
-                0x0000000000004786       0x2a build/default/production/main.o
+                0x00000000000047f2       0x25 build/default/production/main.o
  .progmem.data.__c.4689
-                0x00000000000047b0       0x26 build/default/production/main.o
+                0x0000000000004817       0x48 build/default/production/main.o
  .progmem.data.__c.4686
-                0x00000000000047d6       0x25 build/default/production/main.o
+                0x000000000000485f       0x29 build/default/production/main.o
  .progmem.data.__c.4683
-                0x00000000000047fb       0x48 build/default/production/main.o
+                0x0000000000004888       0x30 build/default/production/main.o
  .progmem.data.__c.4680
-                0x0000000000004843       0x29 build/default/production/main.o
+                0x00000000000048b8       0x26 build/default/production/main.o
  .progmem.data.__c.4677
-                0x000000000000486c       0x30 build/default/production/main.o
+                0x00000000000048de       0x37 build/default/production/main.o
  .progmem.data.__c.4674
-                0x000000000000489c       0x26 build/default/production/main.o
- .progmem.data.__c.4671
-                0x00000000000048c2       0x37 build/default/production/main.o
- .progmem.data.__c.4668
-                0x00000000000048f9       0x1c build/default/production/main.o
- .progmem.data.__c.4665
                 0x0000000000004915       0x1c build/default/production/main.o
+ .progmem.data.__c.4671
+                0x0000000000004931       0x1c build/default/production/main.o
+ .progmem.data.__c.4668
+                0x000000000000494d       0x1f build/default/production/main.o
+ .progmem.data.__c.4665
+                0x000000000000496c       0x1f build/default/production/main.o
  .progmem.data.__c.4662
-                0x0000000000004931       0x1f build/default/production/main.o
+                0x000000000000498b       0x21 build/default/production/main.o
  .progmem.data.__c.4659
-                0x0000000000004950       0x1f build/default/production/main.o
+                0x00000000000049ac       0x21 build/default/production/main.o
  .progmem.data.__c.4656
-                0x000000000000496f       0x21 build/default/production/main.o
+                0x00000000000049cd       0x23 build/default/production/main.o
  .progmem.data.__c.4653
-                0x0000000000004990       0x21 build/default/production/main.o
+                0x00000000000049f0       0x23 build/default/production/main.o
  .progmem.data.__c.4650
-                0x00000000000049b1       0x23 build/default/production/main.o
- .progmem.data.__c.4647
-                0x00000000000049d4       0x23 build/default/production/main.o
- .progmem.data.__c.4644
-                0x00000000000049f7       0x38 build/default/production/main.o
- .progmem.data.__c.4640
-                0x0000000000004a2f       0x3b build/default/production/main.o
- .progmem.data.__c.4637
-                0x0000000000004a6a        0xd build/default/production/main.o
-                0x0000000000004a78                . = ALIGN (0x2)
- *fill*         0x0000000000004a77        0x1 
+                0x0000000000004a13       0x38 build/default/production/main.o
+ .progmem.data.__c.4646
+                0x0000000000004a4b       0x3b build/default/production/main.o
+ .progmem.data.__c.4643
+                0x0000000000004a86        0xd build/default/production/main.o
+                0x0000000000004a94                . = ALIGN (0x2)
+ *fill*         0x0000000000004a93        0x1 
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x0000000000004a78                __ctors_start = .
+                0x0000000000004a94                __ctors_start = .
  *(.ctors)
-                0x0000000000004a78                __ctors_end = .
-                0x0000000000004a78                __dtors_start = .
+                0x0000000000004a94                __ctors_end = .
+                0x0000000000004a94                __dtors_start = .
  *(.dtors)
-                0x0000000000004a78                __dtors_end = .
+                0x0000000000004a94                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x0000000000004a78        0x0 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/AVR-Dx_DFP/2.4.286/gcc/dev/avr64dd32/avrxmega2/crtavr64dd32.o
-                0x0000000000004a78                __init
+ .init0         0x0000000000004a94        0x0 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/AVR-Dx_DFP/2.4.286/gcc/dev/avr64dd32/avrxmega2/crtavr64dd32.o
+                0x0000000000004a94                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x0000000000004a78        0xc C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/AVR-Dx_DFP/2.4.286/gcc/dev/avr64dd32/avrxmega2/crtavr64dd32.o
+ .init2         0x0000000000004a94        0xc C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/AVR-Dx_DFP/2.4.286/gcc/dev/avr64dd32/avrxmega2/crtavr64dd32.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x0000000000004a84       0x16 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_copy_data.o)
-                0x0000000000004a84                __do_copy_data
- .init4         0x0000000000004a9a       0x10 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_clear_bss.o)
-                0x0000000000004a9a                __do_clear_bss
+ .init4         0x0000000000004aa0       0x16 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_copy_data.o)
+                0x0000000000004aa0                __do_copy_data
+ .init4         0x0000000000004ab6       0x10 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_clear_bss.o)
+                0x0000000000004ab6                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -816,346 +824,346 @@ Address of section .text set to 0x4000
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x0000000000004aaa        0x8 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/AVR-Dx_DFP/2.4.286/gcc/dev/avr64dd32/avrxmega2/crtavr64dd32.o
+ .init9         0x0000000000004ac6        0x8 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/AVR-Dx_DFP/2.4.286/gcc/dev/avr64dd32/avrxmega2/crtavr64dd32.o
  *(.init9)
  *(.text)
- .text          0x0000000000004ab2        0x4 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/AVR-Dx_DFP/2.4.286/gcc/dev/avr64dd32/avrxmega2/crtavr64dd32.o
-                0x0000000000004ab2                __vector_22
-                0x0000000000004ab2                __vector_28
-                0x0000000000004ab2                __vector_1
-                0x0000000000004ab2                __vector_32
-                0x0000000000004ab2                __vector_12
-                0x0000000000004ab2                __bad_interrupt
-                0x0000000000004ab2                __vector_35
-                0x0000000000004ab2                __vector_3
-                0x0000000000004ab2                __vector_23
-                0x0000000000004ab2                __vector_30
-                0x0000000000004ab2                __vector_25
-                0x0000000000004ab2                __vector_11
-                0x0000000000004ab2                __vector_13
-                0x0000000000004ab2                __vector_17
-                0x0000000000004ab2                __vector_19
-                0x0000000000004ab2                __vector_7
-                0x0000000000004ab2                __vector_27
-                0x0000000000004ab2                __vector_33
-                0x0000000000004ab2                __vector_4
-                0x0000000000004ab2                __vector_9
-                0x0000000000004ab2                __vector_2
-                0x0000000000004ab2                __vector_15
-                0x0000000000004ab2                __vector_26
-                0x0000000000004ab2                __vector_14
-                0x0000000000004ab2                __vector_10
-                0x0000000000004ab2                __vector_16
-                0x0000000000004ab2                __vector_18
-                0x0000000000004ab2                __vector_20
-                0x0000000000004ab6                . = ALIGN (0x2)
+ .text          0x0000000000004ace        0x4 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/AVR-Dx_DFP/2.4.286/gcc/dev/avr64dd32/avrxmega2/crtavr64dd32.o
+                0x0000000000004ace                __vector_22
+                0x0000000000004ace                __vector_28
+                0x0000000000004ace                __vector_1
+                0x0000000000004ace                __vector_32
+                0x0000000000004ace                __vector_12
+                0x0000000000004ace                __bad_interrupt
+                0x0000000000004ace                __vector_35
+                0x0000000000004ace                __vector_3
+                0x0000000000004ace                __vector_23
+                0x0000000000004ace                __vector_30
+                0x0000000000004ace                __vector_25
+                0x0000000000004ace                __vector_11
+                0x0000000000004ace                __vector_13
+                0x0000000000004ace                __vector_17
+                0x0000000000004ace                __vector_19
+                0x0000000000004ace                __vector_7
+                0x0000000000004ace                __vector_27
+                0x0000000000004ace                __vector_33
+                0x0000000000004ace                __vector_4
+                0x0000000000004ace                __vector_9
+                0x0000000000004ace                __vector_2
+                0x0000000000004ace                __vector_15
+                0x0000000000004ace                __vector_26
+                0x0000000000004ace                __vector_14
+                0x0000000000004ace                __vector_10
+                0x0000000000004ace                __vector_16
+                0x0000000000004ace                __vector_18
+                0x0000000000004ace                __vector_20
+                0x0000000000004ad2                . = ALIGN (0x2)
  *(.text.*)
  .text.ccp_write_spm.constprop.0
-                0x0000000000004ab6        0xc build/default/production/mcc_generated_files/nvm/src/nvm.o
+                0x0000000000004ad2        0xc build/default/production/mcc_generated_files/nvm/src/nvm.o
  .text.NVM_StatusClear
-                0x0000000000004ac2        0xc build/default/production/mcc_generated_files/nvm/src/nvm.o
-                0x0000000000004ac2                NVM_StatusClear
+                0x0000000000004ade        0xc build/default/production/mcc_generated_files/nvm/src/nvm.o
+                0x0000000000004ade                NVM_StatusClear
  .text.NVM_Initialize
-                0x0000000000004ace        0xa build/default/production/mcc_generated_files/nvm/src/nvm.o
-                0x0000000000004ace                NVM_Initialize
+                0x0000000000004aea        0xa build/default/production/mcc_generated_files/nvm/src/nvm.o
+                0x0000000000004aea                NVM_Initialize
  .text.FLASH_Read
-                0x0000000000004ad8        0x6 build/default/production/mcc_generated_files/nvm/src/nvm.o
-                0x0000000000004ad8                FLASH_Read
+                0x0000000000004af4        0x6 build/default/production/mcc_generated_files/nvm/src/nvm.o
+                0x0000000000004af4                FLASH_Read
  .text.EEPROM_Read
-                0x0000000000004ade        0x6 build/default/production/mcc_generated_files/nvm/src/nvm.o
-                0x0000000000004ade                EEPROM_Read
+                0x0000000000004afa        0x6 build/default/production/mcc_generated_files/nvm/src/nvm.o
+                0x0000000000004afa                EEPROM_Read
  .text.EEPROM_Write
-                0x0000000000004ae4       0x1e build/default/production/mcc_generated_files/nvm/src/nvm.o
-                0x0000000000004ae4                EEPROM_Write
+                0x0000000000004b00       0x1e build/default/production/mcc_generated_files/nvm/src/nvm.o
+                0x0000000000004b00                EEPROM_Write
  .text.EEPROM_IsBusy
-                0x0000000000004b02        0xa build/default/production/mcc_generated_files/nvm/src/nvm.o
-                0x0000000000004b02                EEPROM_IsBusy
+                0x0000000000004b1e        0xa build/default/production/mcc_generated_files/nvm/src/nvm.o
+                0x0000000000004b1e                EEPROM_IsBusy
  .text.SIGROW_Read
-                0x0000000000004b0c        0x6 build/default/production/mcc_generated_files/nvm/src/nvm.o
-                0x0000000000004b0c                SIGROW_Read
+                0x0000000000004b28        0x6 build/default/production/mcc_generated_files/nvm/src/nvm.o
+                0x0000000000004b28                SIGROW_Read
  .text.IO_PC1_DefaultInterruptHandler
-                0x0000000000004b12        0x2 build/default/production/mcc_generated_files/system/src/pins.o
-                0x0000000000004b12                IO_PC1_DefaultInterruptHandler
+                0x0000000000004b2e        0x2 build/default/production/mcc_generated_files/system/src/pins.o
+                0x0000000000004b2e                IO_PC1_DefaultInterruptHandler
  .text.IO_PA3_DefaultInterruptHandler
-                0x0000000000004b14        0x2 build/default/production/mcc_generated_files/system/src/pins.o
-                0x0000000000004b14                IO_PA3_DefaultInterruptHandler
+                0x0000000000004b30        0x2 build/default/production/mcc_generated_files/system/src/pins.o
+                0x0000000000004b30                IO_PA3_DefaultInterruptHandler
  .text.IO_PC0_DefaultInterruptHandler
-                0x0000000000004b16        0x2 build/default/production/mcc_generated_files/system/src/pins.o
-                0x0000000000004b16                IO_PC0_DefaultInterruptHandler
+                0x0000000000004b32        0x2 build/default/production/mcc_generated_files/system/src/pins.o
+                0x0000000000004b32                IO_PC0_DefaultInterruptHandler
  .text.IO_PA1_DefaultInterruptHandler
-                0x0000000000004b18        0x2 build/default/production/mcc_generated_files/system/src/pins.o
-                0x0000000000004b18                IO_PA1_DefaultInterruptHandler
+                0x0000000000004b34        0x2 build/default/production/mcc_generated_files/system/src/pins.o
+                0x0000000000004b34                IO_PA1_DefaultInterruptHandler
  .text.IO_PA0_DefaultInterruptHandler
-                0x0000000000004b1a        0x2 build/default/production/mcc_generated_files/system/src/pins.o
-                0x0000000000004b1a                IO_PA0_DefaultInterruptHandler
+                0x0000000000004b36        0x2 build/default/production/mcc_generated_files/system/src/pins.o
+                0x0000000000004b36                IO_PA0_DefaultInterruptHandler
  .text.PIN_MANAGER_Initialize
-                0x0000000000004b1c       0xec build/default/production/mcc_generated_files/system/src/pins.o
-                0x0000000000004b1c                PIN_MANAGER_Initialize
+                0x0000000000004b38       0xec build/default/production/mcc_generated_files/system/src/pins.o
+                0x0000000000004b38                PIN_MANAGER_Initialize
  .text.IO_PA1_SetInterruptHandler
-                0x0000000000004c08        0xa build/default/production/mcc_generated_files/system/src/pins.o
-                0x0000000000004c08                IO_PA1_SetInterruptHandler
+                0x0000000000004c24        0xa build/default/production/mcc_generated_files/system/src/pins.o
+                0x0000000000004c24                IO_PA1_SetInterruptHandler
  .text.__vector_8
-                0x0000000000004c12       0x72 build/default/production/mcc_generated_files/system/src/pins.o
-                0x0000000000004c12                __vector_8
+                0x0000000000004c2e       0x72 build/default/production/mcc_generated_files/system/src/pins.o
+                0x0000000000004c2e                __vector_8
  .text.__vector_29
-                0x0000000000004c84       0x64 build/default/production/mcc_generated_files/system/src/pins.o
-                0x0000000000004c84                __vector_29
+                0x0000000000004ca0       0x64 build/default/production/mcc_generated_files/system/src/pins.o
+                0x0000000000004ca0                __vector_29
  .text.__vector_24
-                0x0000000000004ce8       0x1c build/default/production/mcc_generated_files/system/src/pins.o
-                0x0000000000004ce8                __vector_24
- .text.__vector_34
                 0x0000000000004d04       0x1c build/default/production/mcc_generated_files/system/src/pins.o
-                0x0000000000004d04                __vector_34
+                0x0000000000004d04                __vector_24
+ .text.__vector_34
+                0x0000000000004d20       0x1c build/default/production/mcc_generated_files/system/src/pins.o
+                0x0000000000004d20                __vector_34
  .text.WDT_Initialize
-                0x0000000000004d20       0x1c build/default/production/mcc_generated_files/system/src/system.o
-                0x0000000000004d20                WDT_Initialize
+                0x0000000000004d3c       0x1c build/default/production/mcc_generated_files/system/src/system.o
+                0x0000000000004d3c                WDT_Initialize
  .text.SYSTEM_Initialize
-                0x0000000000004d3c       0x20 build/default/production/mcc_generated_files/system/src/system.o
-                0x0000000000004d3c                SYSTEM_Initialize
+                0x0000000000004d58       0x20 build/default/production/mcc_generated_files/system/src/system.o
+                0x0000000000004d58                SYSTEM_Initialize
  .text.CPUINT_Initialize
-                0x0000000000004d5c       0x18 build/default/production/mcc_generated_files/system/src/interrupt.o
-                0x0000000000004d5c                CPUINT_Initialize
+                0x0000000000004d78       0x18 build/default/production/mcc_generated_files/system/src/interrupt.o
+                0x0000000000004d78                CPUINT_Initialize
  .text.protected_write_io
-                0x0000000000004d74        0x8 build/default/production/mcc_generated_files/system/src/protected_io.o
-                0x0000000000004d74                protected_write_io
+                0x0000000000004d90        0x8 build/default/production/mcc_generated_files/system/src/protected_io.o
+                0x0000000000004d90                protected_write_io
  .text.ccp_write_io
-                0x0000000000004d7c        0x8 build/default/production/mcc_generated_files/system/src/clock.o
+                0x0000000000004d98        0x8 build/default/production/mcc_generated_files/system/src/clock.o
  .text.CLOCK_Initialize
-                0x0000000000004d84       0x82 build/default/production/mcc_generated_files/system/src/clock.o
-                0x0000000000004d84                CLOCK_Initialize
+                0x0000000000004da0       0x82 build/default/production/mcc_generated_files/system/src/clock.o
+                0x0000000000004da0                CLOCK_Initialize
  .text.DELAY_milliseconds
-                0x0000000000004e06       0x14 build/default/production/mcc_generated_files/timer/src/delay.o
-                0x0000000000004e06                DELAY_milliseconds
+                0x0000000000004e22       0x14 build/default/production/mcc_generated_files/timer/src/delay.o
+                0x0000000000004e22                DELAY_milliseconds
  .text.RTC_Initialize
-                0x0000000000004e1a       0x50 build/default/production/mcc_generated_files/timer/src/rtc.o
-                0x0000000000004e1a                RTC_Initialize
+                0x0000000000004e36       0x50 build/default/production/mcc_generated_files/timer/src/rtc.o
+                0x0000000000004e36                RTC_Initialize
  .text.RTC_SetPITIsrCallback
-                0x0000000000004e6a        0xa build/default/production/mcc_generated_files/timer/src/rtc.o
-                0x0000000000004e6a                RTC_SetPITIsrCallback
+                0x0000000000004e86        0xa build/default/production/mcc_generated_files/timer/src/rtc.o
+                0x0000000000004e86                RTC_SetPITIsrCallback
  .text.__vector_5
-                0x0000000000004e74       0x86 build/default/production/mcc_generated_files/timer/src/rtc.o
-                0x0000000000004e74                __vector_5
+                0x0000000000004e90       0x86 build/default/production/mcc_generated_files/timer/src/rtc.o
+                0x0000000000004e90                __vector_5
  .text.__vector_6
-                0x0000000000004efa       0x58 build/default/production/mcc_generated_files/timer/src/rtc.o
-                0x0000000000004efa                __vector_6
+                0x0000000000004f16       0x58 build/default/production/mcc_generated_files/timer/src/rtc.o
+                0x0000000000004f16                __vector_6
  .text.USART1_Initialize
-                0x0000000000004f52       0x78 build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x0000000000004f52                USART1_Initialize
+                0x0000000000004f6e       0x78 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x0000000000004f6e                USART1_Initialize
  .text.USART1_IsRxReady
-                0x0000000000004fca        0xe build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x0000000000004fca                USART1_IsRxReady
+                0x0000000000004fe6        0xe build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x0000000000004fe6                USART1_IsRxReady
  .text.USART1_IsTxReady
-                0x0000000000004fd8        0xc build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x0000000000004fd8                USART1_IsTxReady
+                0x0000000000004ff4        0xc build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x0000000000004ff4                USART1_IsTxReady
  .text.USART1_printCHAR
-                0x0000000000004fe4       0x18 build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x0000000000004fe4                USART1_printCHAR
+                0x0000000000005000       0x18 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x0000000000005000                USART1_printCHAR
  .text.USART1_Read
-                0x0000000000004ffc       0x40 build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x0000000000004ffc                USART1_Read
+                0x0000000000005018       0x40 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x0000000000005018                USART1_Read
  .text.USART1_ReceiveISR
-                0x000000000000503c       0xc4 build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x000000000000503c                USART1_ReceiveISR
+                0x0000000000005058       0xc4 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x0000000000005058                USART1_ReceiveISR
  .text.USART1_DefaultFramingErrorCallback
-                0x0000000000005100        0x2 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x000000000000511c        0x2 build/default/production/mcc_generated_files/uart/src/usart1.o
  .text.USART1_RxCompleteCallbackRegister
-                0x0000000000005102        0xe build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x0000000000005102                USART1_RxCompleteCallbackRegister
+                0x000000000000511e        0xe build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x000000000000511e                USART1_RxCompleteCallbackRegister
  .text.USART1_DefaultParityErrorCallback
-                0x0000000000005110        0x2 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x000000000000512c        0x2 build/default/production/mcc_generated_files/uart/src/usart1.o
  .text.USART1_DefaultOverrunErrorCallback
-                0x0000000000005112        0x2 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x000000000000512e        0x2 build/default/production/mcc_generated_files/uart/src/usart1.o
  .text.__vector_31
-                0x0000000000005114       0x48 build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x0000000000005114                __vector_31
+                0x0000000000005130       0x48 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x0000000000005130                __vector_31
  .text.USART0_Initialize
-                0x000000000000515c       0x78 build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x000000000000515c                USART0_Initialize
+                0x0000000000005178       0x78 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000005178                USART0_Initialize
  .text.USART0_IsRxReady
-                0x00000000000051d4       0x12 build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x00000000000051d4                USART0_IsRxReady
+                0x00000000000051f0       0x12 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x00000000000051f0                USART0_IsRxReady
  .text.USART0_IsTxReady
-                0x00000000000051e6        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x00000000000051e6                USART0_IsTxReady
+                0x0000000000005202        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000005202                USART0_IsTxReady
  .text.USART0_Read
-                0x00000000000051f2       0x5a build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x00000000000051f2                USART0_Read
+                0x000000000000520e       0x5a build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x000000000000520e                USART0_Read
  .text.USART0_ReceiveISR
-                0x000000000000524c       0xe2 build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x000000000000524c                USART0_ReceiveISR
+                0x0000000000005268       0xe2 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000005268                USART0_ReceiveISR
  .text.USART0_Write
-                0x000000000000532e        0x6 build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x000000000000532e                USART0_Write
+                0x000000000000534a        0x6 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x000000000000534a                USART0_Write
  .text.USART0_DefaultFramingErrorCallback
-                0x0000000000005334        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000005350        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
  .text.USART0_DefaultParityErrorCallback
-                0x0000000000005336        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000005352        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
  .text.USART0_DefaultOverrunErrorCallback
-                0x0000000000005338        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000005354        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
  .text.__vector_21
-                0x000000000000533a       0x48 build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x000000000000533a                __vector_21
+                0x0000000000005356       0x48 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000005356                __vector_21
  .text.dump_log
-                0x0000000000005382      0x3c8 build/default/production/main.o
-                0x0000000000005382                dump_log
+                0x000000000000539e      0x3c8 build/default/production/main.o
+                0x000000000000539e                dump_log
  .text.register_change
-                0x000000000000574a       0x20 build/default/production/main.o
-                0x000000000000574a                register_change
+                0x0000000000005766       0x20 build/default/production/main.o
+                0x0000000000005766                register_change
  .text.helperHex2uint8
-                0x000000000000576a       0x20 build/default/production/main.o
-                0x000000000000576a                helperHex2uint8
+                0x0000000000005786       0x20 build/default/production/main.o
+                0x0000000000005786                helperHex2uint8
  .text.dump_msg
-                0x000000000000578a      0x2fe build/default/production/main.o
-                0x000000000000578a                dump_msg
+                0x00000000000057a6      0x31e build/default/production/main.o
+                0x00000000000057a6                dump_msg
  .text.dump_msg_raw
-                0x0000000000005a88       0x4a build/default/production/main.o
-                0x0000000000005a88                dump_msg_raw
- .text.tx_all   0x0000000000005ad2       0x6c build/default/production/main.o
-                0x0000000000005ad2                tx_all
+                0x0000000000005ac4       0x4a build/default/production/main.o
+                0x0000000000005ac4                dump_msg_raw
+ .text.tx_all   0x0000000000005b0e       0x6c build/default/production/main.o
+                0x0000000000005b0e                tx_all
  .text.rx_msg_all
-                0x0000000000005b3e       0x6c build/default/production/main.o
-                0x0000000000005b3e                rx_msg_all
+                0x0000000000005b7a       0x6c build/default/production/main.o
+                0x0000000000005b7a                rx_msg_all
  .text.tx_send_hex
-                0x0000000000005baa      0x1e4 build/default/production/main.o
-                0x0000000000005baa                tx_send_hex
- .text.rx       0x0000000000005d8e       0xb8 build/default/production/main.o
-                0x0000000000005d8e                rx
+                0x0000000000005be6      0x1e4 build/default/production/main.o
+                0x0000000000005be6                tx_send_hex
+ .text.rx       0x0000000000005dca       0xbc build/default/production/main.o
+                0x0000000000005dca                rx
  .text.startup.main
-                0x0000000000005e46       0x7a build/default/production/main.o
-                0x0000000000005e46                main
+                0x0000000000005e86       0x7a build/default/production/main.o
+                0x0000000000005e86                main
  .text.kha_stack_tick
-                0x0000000000005ec0       0x2a build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000005ec0                kha_stack_tick
+                0x0000000000005f00       0x2a build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000005f00                kha_stack_tick
  .text.kha_stack_rx_detect
-                0x0000000000005eea        0xa build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000005eea                kha_stack_rx_detect
+                0x0000000000005f2a        0xa build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000005f2a                kha_stack_rx_detect
  .text.kha_stack_cbr_log
-                0x0000000000005ef4        0xa build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000005ef4                kha_stack_cbr_log
+                0x0000000000005f34        0xa build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000005f34                kha_stack_cbr_log
  .text.kha_stack_crc8
-                0x0000000000005efe       0x2e build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000005efe                kha_stack_crc8
+                0x0000000000005f3e       0x2e build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000005f3e                kha_stack_crc8
  .text.kha_stack_crc32
-                0x0000000000005f2c       0x4c build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000005f2c                kha_stack_crc32
+                0x0000000000005f6c       0x4c build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000005f6c                kha_stack_crc32
  .text.kha_stack_crc32_flash_and_store
-                0x0000000000005f78       0xa4 build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000005f78                kha_stack_crc32_flash_and_store
+                0x0000000000005fb8       0xa4 build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000005fb8                kha_stack_crc32_flash_and_store
  .text.kha_stack_msg_match
-                0x000000000000601c       0x24 build/default/production/_ext/1798121363/kha-stack.o
-                0x000000000000601c                kha_stack_msg_match
+                0x000000000000605c       0x24 build/default/production/_ext/1798121363/kha-stack.o
+                0x000000000000605c                kha_stack_msg_match
  .text.kha_stack_msg_addr_type
-                0x0000000000006040       0x30 build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000006040                kha_stack_msg_addr_type
+                0x0000000000006080       0x30 build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000006080                kha_stack_msg_addr_type
  .text.kha_stack_register_cbr_change
-                0x0000000000006070        0xa build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000006070                kha_stack_register_cbr_change
+                0x00000000000060b0        0xa build/default/production/_ext/1798121363/kha-stack.o
+                0x00000000000060b0                kha_stack_register_cbr_change
  .text.kha_stack_rx_cbr_msg_all
-                0x000000000000607a        0xa build/default/production/_ext/1798121363/kha-stack.o
-                0x000000000000607a                kha_stack_rx_cbr_msg_all
+                0x00000000000060ba        0xa build/default/production/_ext/1798121363/kha-stack.o
+                0x00000000000060ba                kha_stack_rx_cbr_msg_all
  .text.kha_stack_tx_cbr_msg_all
-                0x0000000000006084        0xa build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000006084                kha_stack_tx_cbr_msg_all
+                0x00000000000060c4        0xa build/default/production/_ext/1798121363/kha-stack.o
+                0x00000000000060c4                kha_stack_tx_cbr_msg_all
  .text.kha_stack_tx_create
-                0x000000000000608e       0xaa build/default/production/_ext/1798121363/kha-stack.o
-                0x000000000000608e                kha_stack_tx_create
+                0x00000000000060ce       0xaa build/default/production/_ext/1798121363/kha-stack.o
+                0x00000000000060ce                kha_stack_tx_create
  .text.kha_stack_log
-                0x0000000000006138       0x62 build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000006138                kha_stack_log
+                0x0000000000006178       0x62 build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000006178                kha_stack_log
  .text.kha_stack_stats_clear
-                0x000000000000619a       0x20 build/default/production/_ext/1798121363/kha-stack.o
-                0x000000000000619a                kha_stack_stats_clear
+                0x00000000000061da       0x20 build/default/production/_ext/1798121363/kha-stack.o
+                0x00000000000061da                kha_stack_stats_clear
  .text.kha_stack_register_get
-                0x00000000000061ba       0x32 build/default/production/_ext/1798121363/kha-stack.o
-                0x00000000000061ba                kha_stack_register_get
+                0x00000000000061fa       0x32 build/default/production/_ext/1798121363/kha-stack.o
+                0x00000000000061fa                kha_stack_register_get
  .text.kha_stack_register_set
-                0x00000000000061ec       0x82 build/default/production/_ext/1798121363/kha-stack.o
-                0x00000000000061ec                kha_stack_register_set
+                0x000000000000622c       0x82 build/default/production/_ext/1798121363/kha-stack.o
+                0x000000000000622c                kha_stack_register_set
  .text.kha_stack_register_wipe
-                0x000000000000626e       0x2c build/default/production/_ext/1798121363/kha-stack.o
-                0x000000000000626e                kha_stack_register_wipe
+                0x00000000000062ae       0x2c build/default/production/_ext/1798121363/kha-stack.o
+                0x00000000000062ae                kha_stack_register_wipe
  .text.kha_stack_register_store
-                0x000000000000629a       0x4c build/default/production/_ext/1798121363/kha-stack.o
-                0x000000000000629a                kha_stack_register_store
+                0x00000000000062da       0x4c build/default/production/_ext/1798121363/kha-stack.o
+                0x00000000000062da                kha_stack_register_store
  .text.kha_stack_register_load
-                0x00000000000062e6       0x5e build/default/production/_ext/1798121363/kha-stack.o
-                0x00000000000062e6                kha_stack_register_load
+                0x0000000000006326       0x5e build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000006326                kha_stack_register_load
  .text.kha_stack_tx_add
-                0x0000000000006344       0x58 build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000006344                kha_stack_tx_add
+                0x0000000000006384       0x58 build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000006384                kha_stack_tx_add
  .text.kha_stack_preset_set
-                0x000000000000639c       0x8e build/default/production/_ext/1798121363/kha-stack.o
-                0x000000000000639c                kha_stack_preset_set
+                0x00000000000063dc       0x8e build/default/production/_ext/1798121363/kha-stack.o
+                0x00000000000063dc                kha_stack_preset_set
  .text.kha_stack_send_ident_or_up
-                0x000000000000642a       0xf2 build/default/production/_ext/1798121363/kha-stack.o
-                0x000000000000642a                kha_stack_send_ident_or_up
+                0x000000000000646a       0xf2 build/default/production/_ext/1798121363/kha-stack.o
+                0x000000000000646a                kha_stack_send_ident_or_up
  .text.kha_stack_process_cmd
-                0x000000000000651c      0x41c build/default/production/_ext/1798121363/kha-stack.o
-                0x000000000000651c                kha_stack_process_cmd
+                0x000000000000655c      0x460 build/default/production/_ext/1798121363/kha-stack.o
+                0x000000000000655c                kha_stack_process_cmd
  .text.kha_process_rx
-                0x0000000000006938       0x70 build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000006938                kha_process_rx
+                0x00000000000069bc       0x70 build/default/production/_ext/1798121363/kha-stack.o
+                0x00000000000069bc                kha_process_rx
  .text.kha_stack_process_rx
-                0x00000000000069a8      0x142 build/default/production/_ext/1798121363/kha-stack.o
-                0x00000000000069a8                kha_stack_process_rx
+                0x0000000000006a2c      0x142 build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000006a2c                kha_stack_process_rx
  .text.kha_stack_tx_remove
-                0x0000000000006aea       0x3c build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000006aea                kha_stack_tx_remove
+                0x0000000000006b6e       0x3c build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000006b6e                kha_stack_tx_remove
  .text.kha_stack_process_tx
-                0x0000000000006b26      0x112 build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000006b26                kha_stack_process_tx
+                0x0000000000006baa      0x112 build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000006baa                kha_stack_process_tx
  .text.kha_stack_process_rx_tx
-                0x0000000000006c38        0xe build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000006c38                kha_stack_process_rx_tx
+                0x0000000000006cbc        0xe build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000006cbc                kha_stack_process_rx_tx
  .text.kha_stack_init_register
-                0x0000000000006c46       0x54 build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000006c46                kha_stack_init_register
+                0x0000000000006cca       0x54 build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000006cca                kha_stack_init_register
  .text.kha_stack_init_userrow
-                0x0000000000006c9a       0xec build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000006c9a                kha_stack_init_userrow
+                0x0000000000006d1e       0xec build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000006d1e                kha_stack_init_userrow
  .text.kha_stack_init_version_and_crc
-                0x0000000000006d86       0x82 build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000006d86                kha_stack_init_version_and_crc
+                0x0000000000006e0a       0x82 build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000006e0a                kha_stack_init_version_and_crc
  .text.kha_stack_init
-                0x0000000000006e08       0x9e build/default/production/_ext/1798121363/kha-stack.o
-                0x0000000000006e08                kha_stack_init
- .text.libgcc   0x0000000000006ea6        0xc c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_tablejump2.o)
-                0x0000000000006ea6                __tablejump2__
+                0x0000000000006e8c       0x9e build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000006e8c                kha_stack_init
+ .text.libgcc   0x0000000000006f2a        0xc c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_tablejump2.o)
+                0x0000000000006f2a                __tablejump2__
  .text.avr-libc
-                0x0000000000006eb2       0x12 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memcpy.o)
-                0x0000000000006eb2                memcpy
+                0x0000000000006f36       0x12 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memcpy.o)
+                0x0000000000006f36                memcpy
  .text.avr-libc
-                0x0000000000006ec4        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memset.o)
-                0x0000000000006ec4                memset
+                0x0000000000006f48        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memset.o)
+                0x0000000000006f48                memset
  .text.avr-libc
-                0x0000000000006ed2       0x4a c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(printf_p.o)
-                0x0000000000006ed2                printf_P
+                0x0000000000006f56       0x4a c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(printf_p.o)
+                0x0000000000006f56                printf_P
  .text.avr-libc
-                0x0000000000006f1c      0x3b4 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(vfprintf_std.o)
-                0x0000000000006f1c                vfprintf
+                0x0000000000006fa0      0x3b4 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(vfprintf_std.o)
+                0x0000000000006fa0                vfprintf
  .text.avr-libc
-                0x00000000000072d0       0x16 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(strnlen_P.o)
-                0x00000000000072d0                strnlen_P
+                0x0000000000007354       0x16 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(strnlen_P.o)
+                0x0000000000007354                strnlen_P
  .text.avr-libc
-                0x00000000000072e6       0x16 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(strnlen.o)
-                0x00000000000072e6                strnlen
+                0x000000000000736a       0x16 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(strnlen.o)
+                0x000000000000736a                strnlen
  .text.avr-libc
-                0x00000000000072fc       0x60 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(fputc.o)
-                0x00000000000072fc                fputc
+                0x0000000000007380       0x60 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(fputc.o)
+                0x0000000000007380                fputc
  .text.avr-libc
-                0x000000000000735c       0xbc c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(ultoa_invert.o)
-                0x000000000000735c                __ultoa_invert
+                0x00000000000073e0       0xbc c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(ultoa_invert.o)
+                0x00000000000073e0                __ultoa_invert
  .text.libgcc.prologue
-                0x0000000000007418       0x32 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_prologue.o)
-                0x0000000000007418                __prologue_saves__
+                0x000000000000749c       0x32 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_prologue.o)
+                0x000000000000749c                __prologue_saves__
  .text.libgcc.prologue
-                0x000000000000744a       0x30 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_epilogue.o)
-                0x000000000000744a                __epilogue_restores__
-                0x000000000000747a                . = ALIGN (0x2)
+                0x00000000000074ce       0x30 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_epilogue.o)
+                0x00000000000074ce                __epilogue_restores__
+                0x00000000000074fe                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000000000000747a        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
-                0x000000000000747a                _exit
-                0x000000000000747a                exit
+ .fini9         0x00000000000074fe        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
+                0x00000000000074fe                _exit
+                0x00000000000074fe                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -1174,11 +1182,11 @@ Address of section .text set to 0x4000
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000000000000747a        0x4 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
+ .fini0         0x00000000000074fe        0x4 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
  *(.fini0)
-                0x000000000000747e                _etext = .
+                0x0000000000007502                _etext = .
 
-.data           0x0000000000806000       0x18 load address 0x000000000000747e
+.data           0x0000000000806000       0x18 load address 0x0000000000007502
                 0x0000000000806000                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -1212,7 +1220,7 @@ Address of section .text set to 0x4000
                 0x0000000000806018                _edata = .
                 0x0000000000806018                PROVIDE (__data_end, .)
 
-.bss            0x0000000000806018      0xc4c
+.bss            0x0000000000806018      0xc50
                 0x0000000000806018                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -1296,42 +1304,46 @@ Address of section .text set to 0x4000
                 0x0000000000806b2d       0xee build/default/production/_ext/1798121363/kha-stack.o
  .bss.kha_stack_register_cbh_change
                 0x0000000000806c1b        0x2 build/default/production/_ext/1798121363/kha-stack.o
+ .bss.kha_stack_app_led_hsi_cbh
+                0x0000000000806c1d        0x2 build/default/production/_ext/1798121363/kha-stack.o
+ .bss.kha_stack_app_led_animation_cbh
+                0x0000000000806c1f        0x2 build/default/production/_ext/1798121363/kha-stack.o
  .bss.kha_stack_userrow
-                0x0000000000806c1d       0x20 build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000806c21       0x20 build/default/production/_ext/1798121363/kha-stack.o
  .bss.kha_stack_ui_cbh_change
-                0x0000000000806c3d        0x2 build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000806c41        0x2 build/default/production/_ext/1798121363/kha-stack.o
  .bss.kha_stack_debug
-                0x0000000000806c3f        0x1 build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000806c43        0x1 build/default/production/_ext/1798121363/kha-stack.o
  .bss.kha_stack_cbh_log
-                0x0000000000806c40        0x2 build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000806c44        0x2 build/default/production/_ext/1798121363/kha-stack.o
  .bss.kha_stack_stats
-                0x0000000000806c42        0x8 build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000806c46        0x8 build/default/production/_ext/1798121363/kha-stack.o
  .bss.kha_stack_bootloader
-                0x0000000000806c4a        0x1 build/default/production/_ext/1798121363/kha-stack.o
+                0x0000000000806c4e        0x1 build/default/production/_ext/1798121363/kha-stack.o
  *(COMMON)
- COMMON         0x0000000000806c4b        0x9 build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x0000000000806c4b                USART1_RxInterruptHandler
-                0x0000000000806c4d                USART1_FramingErrorHandler
-                0x0000000000806c4f                USART1_OverrunErrorHandler
-                0x0000000000806c51                usart1RxCount
-                0x0000000000806c52                USART1_ParityErrorHandler
- COMMON         0x0000000000806c54        0xa build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x0000000000806c54                USART0_RxInterruptHandler
-                0x0000000000806c56                USART0_OverrunErrorHandler
-                0x0000000000806c58                usart0RxCount
-                0x0000000000806c5a                USART0_FramingErrorHandler
-                0x0000000000806c5c                USART0_ParityErrorHandler
- COMMON         0x0000000000806c5e        0x6 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(iob.o)
-                0x0000000000806c5e                __iob
-                0x0000000000806c64                PROVIDE (__bss_end, .)
-                0x000000000000747e                __data_load_start = LOADADDR (.data)
-                0x0000000000007496                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0000000000806c4f        0x9 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x0000000000806c4f                USART1_RxInterruptHandler
+                0x0000000000806c51                USART1_FramingErrorHandler
+                0x0000000000806c53                USART1_OverrunErrorHandler
+                0x0000000000806c55                usart1RxCount
+                0x0000000000806c56                USART1_ParityErrorHandler
+ COMMON         0x0000000000806c58        0xa build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000806c58                USART0_RxInterruptHandler
+                0x0000000000806c5a                USART0_OverrunErrorHandler
+                0x0000000000806c5c                usart0RxCount
+                0x0000000000806c5e                USART0_FramingErrorHandler
+                0x0000000000806c60                USART0_ParityErrorHandler
+ COMMON         0x0000000000806c62        0x6 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(iob.o)
+                0x0000000000806c62                __iob
+                0x0000000000806c68                PROVIDE (__bss_end, .)
+                0x0000000000007502                __data_load_start = LOADADDR (.data)
+                0x000000000000751a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0000000000806c64        0x0
+.noinit         0x0000000000806c68        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                        PROVIDE (__noinit_end, .)
-                0x0000000000806c64                _end = .
+                0x0000000000806c68                _end = .
                 [!provide]                        PROVIDE (__heap_start, .)
 
 .eeprom         0x0000000000810000        0x0

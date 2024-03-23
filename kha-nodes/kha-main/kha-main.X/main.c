@@ -24,7 +24,7 @@ static volatile uint32_t tick = 0;
 enum BTN_STATE {
     BTN_STATE_RD_OG, BTN_STATE_RD_OG_BLINK, BTN_STATE_OFF
 };
-static uint8_t btn_state[KEY_AMOUNT] = {BTN_STATE_OFF};
+static uint8_t btn_state[KEY_AMOUNT] = {BTN_STATE_RD_OG};
 
 static volatile bool manual_interaction = false;
 
@@ -86,10 +86,8 @@ void preset_change(uint8_t preset, bool enabled, uint8_t addr) {
 
     if (preset == KHA_PRESET_SHUTDOWN) {
         btn_state[0] = BTN_STATE_RD_OG_BLINK;
-    } else if (preset == KHA_PRESET_OFF) {
-        btn_state[0] = BTN_STATE_RD_OG;
     } else {
-        btn_state[0] = BTN_STATE_OFF;
+        btn_state[0] = BTN_STATE_RD_OG;
     }
 
     update_ui();
@@ -117,7 +115,7 @@ int main(void) {
 
         if (manual_interaction) {
             manual_interaction = false;
-            manual_interaction_occured(true, false);
+            kha_stack_manual_interaction_occured(true, false);
         }
 
         if (preset_next != kha_stack_preset()) {

@@ -60,9 +60,6 @@ int8_t RTC_Initialize(void)
     // DBGRUN disabled; 
     RTC.DBGCTRL = 0x0;
 
-    // CORREN disabled; PRESCALER RTC Clock / 1; RTCEN enabled; RUNSTDBY disabled; 
-    RTC.CTRLA = 0x1;
-
 
         while (RTC.PITSTATUS > 0) { /* Wait for all register to be synchronized */
     }

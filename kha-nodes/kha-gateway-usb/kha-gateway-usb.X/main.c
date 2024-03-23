@@ -300,6 +300,13 @@ void dump_msg(uint8_t buf[]) {
             printf("READ REQ]    ");
             break;
 
+        case KHA_CMD_APP_LED_ANIMATION:
+            printf("A LED ANIM]  ");
+            break;
+        case KHA_CMD_APP_LED_HSI:
+            printf("A LED HSI]   ");
+            break;
+
         case KHA_CMD_SYSTEM_NOP:
             printf("NOP]         ");
             break;
@@ -429,6 +436,9 @@ void rx(void) {
         if (c == '\r') {
             continue;
         }
+        if (c == ' ') {
+            continue;
+        }
         if (c == '\n' || rxbuf_idx == 255) {
             rxbuf[rxbuf_idx] = '\0';
             uint8_t hex[rxbuf_idx];
@@ -438,7 +448,6 @@ void rx(void) {
             tx_send_hex(hex, rxbuf_idx);
             rxbuf_idx = 0;
         } else {
-
             rxbuf[rxbuf_idx] = c;
             rxbuf_idx++;
         }
@@ -487,7 +496,7 @@ int main(void) {
     kha_stack_tx_cbr_msg_all(tx_all);
     kha_stack_cbr_log(dump_log);
     kha_stack_init(false, REGISTER_SIZE, REGISTER_PRESET_WIDTH, KHA_VERSION);
-
+    
     USART1_RxCompleteCallbackRegister(rx);
 
     while (1) {

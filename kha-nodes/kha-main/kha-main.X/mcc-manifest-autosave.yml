@@ -2,7 +2,7 @@
 
 manifest_file_version: 1.0.0
 project: kha-main
-creation_date: 2024-03-15T18:10:04.497+01:00[Europe/Berlin]
+creation_date: 2024-03-23T16:28:39.840+01:00[Europe/Berlin]
 operating_system: Windows 10
 mcc_mode: IDE
 mcc_mode_version: v6.20
@@ -28,7 +28,7 @@ modules:
 - {name: '@mchp-mcc/scf-avr8-memory-v1', type: MELODY, version: 7.0.1}
 - {name: '@mchp-mcc/scf-avr8-rstctrl-v1', type: MELODY, version: 4.0.7}
 - {name: '@mchp-mcc/scf-avr8-rtc-v1', type: MELODY, version: 4.2.5}
-- {name: '@mchp-mcc/scf-avr8-tca-v1', type: MELODY, version: 6.0.10}
+- {name: '@mchp-mcc/scf-avr8-tca-v1', type: MELODY, version: 6.0.11}
 - {name: '@mchp-mcc/scf-avr8-usart-v1', type: MELODY, version: 10.2.0}
 - {name: '@mchp-mcc/scf-avr8-wwdt-v1', type: MELODY, version: 4.2.5}
 - {name: '@mchp-mcc/uart-driver', type: MELODY, version: 1.10.0}

@@ -10,7 +10,7 @@
 
 // ---
 
-#define REGISTER_SIZE 12
+#define REGISTER_SIZE 6
 #define REGISTER_PRESET_WIDTH 0
 
 #define IKEA_NODE_HARDWARE_OXBERG 2
@@ -132,18 +132,20 @@ void update_led() {
         }
     }
 
-    if (anim_e) {
+    if (anim_e) {        
+        float step = anim_w / 6;
+        
         if (mode == IKEA_SELECTION_LOW) {
             if (layout_orientation == LAYOUT_ORIENTATION_HORIZONTAL && layout_amount > 1) {
                 for (uint8_t i = 0; i < layout_amount; i++) {
-                    send_rx4_hsi(i + 1, hsi_h_net + ((layout_location + i) * anim_w), hsi_s_net, hsi_i_net);
+                    send_rx4_hsi(i + 1, hsi_h_net + ((layout_location + i) * step), hsi_s_net, hsi_i_net);
                 }
             } else {
                 for (uint8_t i = 0; i < layout_amount; i++) {
                     if (i < layout_low_amount) {
-                        send_rx4_hsi(i + 1, hsi_h_net + (layout_location * anim_w), hsi_s_net, hsi_i_net);
+                        send_rx4_hsi(i + 1, hsi_h_net + (layout_location * step), hsi_s_net, hsi_i_net);
                     } else {
-                        send_rx4_hsi(i + 1, hsi_h_net + (layout_location * anim_w), hsi_s_net, 0x00);
+                        send_rx4_hsi(i + 1, hsi_h_net + (layout_location * step), hsi_s_net, 0x00);
                     }
                 }
             }
@@ -153,11 +155,11 @@ void update_led() {
             float fraction = hsi_i_net / (float) (layout_amount + 1);
             if (layout_orientation == LAYOUT_ORIENTATION_HORIZONTAL && layout_amount > 1) {
                 for (uint8_t i = 0; i < layout_amount; i++) {
-                    send_rx4_hsi(i + 1, hsi_h_net + ((layout_location + i) * anim_w), hsi_s_net, fraction * (layout_amount - i));
+                    send_rx4_hsi(i + 1, hsi_h_net + ((layout_location + i) * step), hsi_s_net, fraction * (layout_amount - i));
                 }
             } else {
                 for (uint8_t i = 0; i < layout_amount; i++) {
-                    send_rx4_hsi(i + 1, hsi_h_net + (layout_location * anim_w), hsi_s_net, fraction * (layout_amount - i));
+                    send_rx4_hsi(i + 1, hsi_h_net + (layout_location * step), hsi_s_net, fraction * (layout_amount - i));
                 }
             }
         }
@@ -165,19 +167,19 @@ void update_led() {
         if (mode == IKEA_SELECTION_FULL) {
             if (layout_orientation == LAYOUT_ORIENTATION_HORIZONTAL && layout_amount > 1) {
                 for (uint8_t i = 0; i < layout_amount; i++) {
-                    send_rx4_hsi(i + 1, hsi_h_net + ((layout_location + i) * anim_w), hsi_s_net, hsi_i_net);
+                    send_rx4_hsi(i + 1, hsi_h_net + ((layout_location + i) * step), hsi_s_net, hsi_i_net);
                 }
             } else {
-                send_rx4_hsi(KHA_LED_ADDR_BROADCAST, hsi_h_net + (layout_location * anim_w), hsi_s_net, hsi_i_net);
+                send_rx4_hsi(KHA_LED_ADDR_BROADCAST, hsi_h_net + (layout_location * step), hsi_s_net, hsi_i_net);
             }
         }
     }
 }
 
-void hsi_set(uint8_t h, uint8_t s, uint8_t i) {
-    hsi_h_net = h;
-    hsi_s_net = s;
-    hsi_i_net = i;
+void hsi_set(uint8_t hsi[3]) {
+    hsi_h_net = hsi[0];
+    hsi_s_net = hsi[1];
+    hsi_i_net = hsi[2];
     hsi_changed = true;
 }
 
@@ -195,9 +197,44 @@ void anim_tick() {
     anim_tick_count++;
     if (anim_tick_count >= anim_s) {
         anim_tick_count = 0;
-        hsi_set(hsi_h_net, hsi_s_net, hsi_i_net);
         hsi_h_net++;
+        hsi_changed = true;
     }
+}
+
+void anim_set(uint8_t swe[3]) {
+    uint8_t tmp;
+
+    tmp = swe[0];
+    if (tmp < ANIM_S_MIN) {
+        tmp = ANIM_S_MIN;
+    }
+    if (tmp > ANIM_S_MAX) {
+        tmp = ANIM_S_MAX;
+    }
+    anim_s = 0xFF - tmp;
+
+    tmp = swe[1];
+    if (tmp < ANIM_W_MIN) {
+        tmp = ANIM_W_MIN;
+    }
+    if (tmp > ANIM_W_MAX) {
+        tmp = ANIM_W_MAX;
+    }
+    anim_w = tmp;
+
+    tmp = swe[2];
+    if (tmp > 1) {
+        tmp = 0;
+    }
+    anim_e = tmp;
+    if (anim_e) {
+        TCA0_Compare0CallbackRegister(anim_tick);
+    } else {
+        TCA0_Compare0CallbackRegister(NULL);
+    }
+
+    hsi_changed = true;
 }
 
 // ---
@@ -227,41 +264,7 @@ uint8_t register_change(uint8_t addr, uint8_t value) {
             }
             mode_next = value;
         }
-
-        if (addr == LED_ADDR_HUE) {
-            hsi_set(value, hsi_s_net, hsi_i_net);
-        }
-
-        if (addr == LED_ADDR_SATURATION) {
-            hsi_set(hsi_h_net, value, hsi_i_net);
-        }
-
-        if (addr == LED_ADDR_INTENSE) {
-            hsi_set(hsi_h_net, hsi_s_net, value);
-        }
-
-        if (addr == LED_ADDR_ANIM_ENABLED) {
-            if (value > 1) {
-                value = 0;
-            }
-            anim_e = value;
-            if (value) {
-                TCA0_Compare0CallbackRegister(anim_tick);
-            } else {
-                TCA0_Compare0CallbackRegister(NULL);
-            }
-        }
-
-        if (addr == LED_ADDR_ANIM_SPEED) {
-            anim_s = 0xFF - value;
-            hsi_changed = true;
-        }
-
-        if (addr == LED_ADDR_ANIM_WIDTH) {
-            anim_w = value;
-            hsi_changed = true;
-        }
-
+        
         if (addr == IKEA_ADDR_IDENT) {
             if (value > 0) {
                 value = 0;
@@ -325,6 +328,8 @@ int main(void) {
     led_off();
 
     kha_stack_register_cbr_change(register_change);
+    kha_stack_app_led_animation_cbr(anim_set);
+    kha_stack_app_led_hsi_cbr(hsi_set);
     kha_stack_init(false, REGISTER_SIZE, REGISTER_PRESET_WIDTH, KHA_VERSION);
 
     update_led();

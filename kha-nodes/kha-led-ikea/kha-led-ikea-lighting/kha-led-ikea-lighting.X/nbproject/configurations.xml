@@ -138,6 +138,13 @@
         <property key="include-paths" value=""/>
         <property key="suppress-warnings" value="false"/>
       </AVR-AS>
+      <AVR-AS-PRE>
+        <property key="announce-version" value="false"/>
+        <property key="include-paths" value=""/>
+        <property key="preprocessor-macros" value=""/>
+        <property key="preprocessor-macros-undefined" value=""/>
+        <property key="suppress-warnings" value="false"/>
+      </AVR-AS-PRE>
       <AVR-CPP>
         <property key="additional-warnings" value="true"/>
         <property key="call-prologues" value="false"/>
@@ -255,6 +262,8 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-7ff"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="C:/Users/kiu/Documents/projects/hardware/done/kha/kha-nodes/kha-led-ikea/kha-led-ikea-lighting/kha-led-ikea-lighting.X/debug/default/kha-led-ikea-lighting_ptg"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.preservedataflash" value="false"/>
         <property key="programoptions.preservedataflash.ranges"
