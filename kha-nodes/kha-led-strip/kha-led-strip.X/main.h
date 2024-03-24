@@ -14,11 +14,8 @@ extern "C" {
 
 #define STRIP_ADDR_CFG_LEDS 0x01
 #define STRIP_ADDR_CFG_COMM 0x02
-#define STRIP_ADDR_CFG_IDX_0 0x03
-#define STRIP_ADDR_CFG_IDX_1 0x04
-#define STRIP_ADDR_CFG_IDX_2 0x05
-#define STRIP_ADDR_CFG_IDX_3 0x06
-
+#define STRIP_ADDR_CFG_INTENSITY_MAX 0x03
+    
 #ifdef	__cplusplus
 }
 #endif

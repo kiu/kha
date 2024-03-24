@@ -133,7 +133,7 @@ void update_led() {
     }
 
     if (anim_e) {        
-        float step = anim_w / 6;
+        float step = (float)anim_w / 6.0;
         
         if (mode == IKEA_SELECTION_LOW) {
             if (layout_orientation == LAYOUT_ORIENTATION_HORIZONTAL && layout_amount > 1) {
