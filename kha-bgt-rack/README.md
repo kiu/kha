@@ -4,4 +4,4 @@
 
 ## Photos
 
-<img src="../kha-banner2.jpg" width="800"/>
+<img src="../kha-rack-empty.jpg" width="800"/>
