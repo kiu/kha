@@ -15,3 +15,5 @@ Mains Power Switching Module
 <img src="kha-bgt-power-photo-02.jpg" width="800"/>
 
 <img src="kha-bgt-power-photo-03.jpg" width="800"/>
+
+<img src="kha-bgt-power-photo-04.jpg" width="800"/>
