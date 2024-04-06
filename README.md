@@ -23,7 +23,7 @@ Overengineered Modular RS-485 Multi-Master 19" Subrack Home Control
 ## Videos
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=BUSnTUGKZzc" target="_blank">
-	<img src="http://img.youtube.com/vi/BUSnTUGKZzc/mqdefault.jpg" alt="kha on youtube" width="800" border="2" />
+	<img src="http://img.youtube.com/vi/BUSnTUGKZzc/hqdefault.jpg" alt="kha on youtube" width="800" border="2" />
 </a>
 
 ## Photos
