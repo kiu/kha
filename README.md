@@ -21,6 +21,7 @@ Overengineered Modular RS-485 Multi-Master 19" Subrack Home Control
 - [kha-protocol.pdf](kha-protocol.pdf) / [.ods](kha-protocol.ods): Protocol stack definitions
 
 ## Videos
+Two hour deep dive lecture style video on youtube: https://youtu.be/BUSnTUGKZzc
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=BUSnTUGKZzc" target="_blank">
 	<img src="http://img.youtube.com/vi/BUSnTUGKZzc/hqdefault.jpg" alt="kha on youtube" width="800" border="2" />
