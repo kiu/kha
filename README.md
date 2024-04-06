@@ -20,6 +20,12 @@ Overengineered Modular RS-485 Multi-Master 19" Subrack Home Control
 - [kha-bom-collection.pdf](kha-bom-collection.pdf) / [.ods](kha-bom-collection.ods): Not exactly a Bill-of-Materials rather a collection of most components used
 - [kha-protocol.pdf](kha-protocol.pdf) / [.ods](kha-protocol.ods): Protocol stack definitions
 
+## Videos
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=BUSnTUGKZzc" target="_blank">
+	<img src="http://img.youtube.com/vi/BUSnTUGKZzc/mqdefault.jpg" alt="kha on youtube" width="800" border="2" />
+</a>
+
 ## Photos
 
 <img src="kha-rack-empty.jpg" width="800"/>
