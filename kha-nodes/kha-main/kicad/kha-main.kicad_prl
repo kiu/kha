@@ -76,26 +76,14 @@
     "files": [
       {
         "name": "kha-main.kicad_sch",
-        "open": true,
-        "window": {
-          "display": 0,
-          "maximized": false,
-          "pos_x": -7,
-          "pos_y": 0,
-          "size_x": 1734,
-          "size_y": 1399
-        }
-      },
-      {
-        "name": "kha-main.kicad_pcb",
         "open": false,
         "window": {
           "display": 0,
-          "maximized": true,
-          "pos_x": -8,
-          "pos_y": -8,
-          "size_x": 3456,
-          "size_y": 1408
+          "maximized": false,
+          "pos_x": 180,
+          "pos_y": 184,
+          "size_x": 1734,
+          "size_y": 1399
         }
       }
     ]

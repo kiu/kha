@@ -76,26 +76,14 @@
     "files": [
       {
         "name": "kha-led-ikea-oxberg40.kicad_sch",
-        "open": false,
+        "open": true,
         "window": {
           "display": 0,
           "maximized": false,
-          "pos_x": 1094,
-          "pos_y": 27,
+          "pos_x": 1713,
+          "pos_y": 0,
           "size_x": 1734,
           "size_y": 1399
-        }
-      },
-      {
-        "name": "kha-led-ikea-oxberg40.kicad_pcb",
-        "open": false,
-        "window": {
-          "display": 0,
-          "maximized": true,
-          "pos_x": -7,
-          "pos_y": 0,
-          "size_x": 1718,
-          "size_y": 1317
         }
       }
     ]

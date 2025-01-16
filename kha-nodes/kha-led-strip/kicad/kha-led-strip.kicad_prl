@@ -80,20 +80,8 @@
         "window": {
           "display": 0,
           "maximized": false,
-          "pos_x": -7,
-          "pos_y": 0,
-          "size_x": 1734,
-          "size_y": 1399
-        }
-      },
-      {
-        "name": "kha-led-strip.kicad_pcb",
-        "open": false,
-        "window": {
-          "display": 0,
-          "maximized": false,
-          "pos_x": 1713,
-          "pos_y": 0,
+          "pos_x": 1032,
+          "pos_y": 303,
           "size_x": 1734,
           "size_y": 1399
         }
