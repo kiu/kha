@@ -197,9 +197,6 @@ void mode_switch(opmode om) {
         IO_SR01_SetHigh();
         IO_SR02_SetLow();
         IO_SR03_SetLow();
-
-        uint8_t buf2[2] = {0x02, 0x01};
-        kha_stack_tx_create(0xC5, KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
     }
 
     if (om == AUXC) {
@@ -216,6 +213,16 @@ void mode_switch(opmode om) {
         IO_BT_VCC_SetLow();
         IO_BT_CON_SetHigh();
         USART1_Enable();
+    }
+
+    if (kha_stack_device_address_get() == 0xB2) {
+        if (om == AUXB) {
+            uint8_t buf2[2] = {0x02, 0x01};
+            kha_stack_tx_create(0xC5, KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
+        } else {
+            uint8_t buf2[2] = {0x02, 0x00};
+            kha_stack_tx_create(0xC5, KHA_CMD_REGISTER_WRITE_REQUEST_NO_REPLY, 2, buf2);
+        }
     }
 
     update_ui();

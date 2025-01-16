@@ -110,7 +110,7 @@
         <targetDevice>AVR64DD32</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>Simulator</platformTool>
         <languageToolchain>AVR</languageToolchain>
         <languageToolchainVersion>7.3.0</languageToolchainVersion>
         <platform>3</platform>
