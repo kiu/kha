@@ -1,16 +1,18 @@
 /**
-  * TCA0 Generated Driver File
-  *
-  * @file tca0.c
-  *
-  * @ingroup tca0_normal
-  *
-  * @brief This file contains the API implementations for TCA0 module driver in Normal (16-bit) mode.
-  *
-  * @version TCA0 Driver Version 2.1.2
-*/
+ * TCA0 Generated Driver File
+ *
+ * @file tca0.c
+ *
+ * @ingroup tca0_normal
+ *
+ * @brief Driver implementation for the TCA0 module in Normal (16-bit) mode.
+ *
+ * @version TCA0 Driver Version 3.0.0
+ *
+ * @version Package Version 7.0.0
+ */
 /*
-© [2024] Microchip Technology Inc. and its subsidiaries.
+© [2025] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -30,283 +32,155 @@
     THIS SOFTWARE.
 */
 
-
 #include "../tca0.h"
 
-const struct TMR_INTERFACE TCA0_Interface = {
-    .Initialize = TCA0_Initialize,
-    .Start = TCA0_Start,
-    .Stop = TCA0_Stop,
-    .PeriodCountSet = TCA0_Write,
-    .TimeoutCallbackRegister = TCA0_OverflowCallbackRegister,
-    .Tasks = NULL
-};
-void TCA0_DefaultCompare0CallbackRegister(void);
-void (*TCA0_CMP0_isr_cb)(void) = &TCA0_DefaultCompare0CallbackRegister;
+static void (*TCA0_CMP0Callback)(void) = NULL;
+static void (*TCA0_CMP1Callback)(void) = NULL;
+static void (*TCA0_CMP2Callback)(void) = NULL;
+static void (*TCA0_OVFCallback)(void) = NULL;
 
-void TCA0_DefaultCompare1CallbackRegister(void);
-void (*TCA0_CMP1_isr_cb)(void) = &TCA0_DefaultCompare1CallbackRegister;
-
-void TCA0_DefaultCompare2CallbackRegister(void);
-void (*TCA0_CMP2_isr_cb)(void) = &TCA0_DefaultCompare2CallbackRegister;
-
-void TCA0_DefaultOverflowCallbackRegister(void);
-void (*TCA0_OVF_isr_cb)(void) = &TCA0_DefaultOverflowCallbackRegister;
-
-void TCA0_DefaultCompare0CallbackRegister(void)
+void TCA0_Initialize(void) 
 {
-    //Add your ISR code here
+    TCA0.SINGLE.CMP0 = 0x0;  // CMP0 0x0
+
+    TCA0.SINGLE.CMP1 = 0x0;  // CMP1 0x0
+
+    TCA0.SINGLE.CMP2 = 0x0;  // CMP2 0x0
+
+    TCA0.SINGLE.CNT = 0x0;  // CNT 0x0
+
+    TCA0.SINGLE.CTRLB = (0 << TCA_SINGLE_ALUPD_bp)   // ALUPD disabled
+        | (0 << TCA_SINGLE_CMP0EN_bp)   // CMP0EN disabled
+        | (0 << TCA_SINGLE_CMP1EN_bp)   // CMP1EN disabled
+        | (0 << TCA_SINGLE_CMP2EN_bp)   // CMP2EN disabled
+        | (TCA_SINGLE_WGMODE_NORMAL_gc);  // WGMODE NORMAL
+
+    TCA0.SINGLE.CTRLC = (0 << TCA_SINGLE_CMP0OV_bp)   // CMP0OV disabled
+        | (0 << TCA_SINGLE_CMP1OV_bp)   // CMP1OV disabled
+        | (0 << TCA_SINGLE_CMP2OV_bp);  // CMP2OV disabled
+
+    TCA0.SINGLE.CTRLD = (0 << TCA_SINGLE_SPLITM_bp);  // SPLITM disabled
+
+    TCA0.SINGLE.CTRLECLR = (TCA_SINGLE_CMD_NONE_gc)   // CMD NONE
+        | (0 << TCA_SINGLE_DIR_bp)   // DIR disabled
+        | (0 << TCA_SINGLE_LUPD_bp);  // LUPD disabled
+
+    TCA0.SINGLE.CTRLESET = (TCA_SINGLE_CMD_NONE_gc)   // CMD NONE
+        | (TCA_SINGLE_DIR_UP_gc)   // DIR UP
+        | (0 << TCA_SINGLE_LUPD_bp);  // LUPD disabled
+
+    TCA0.SINGLE.CTRLFCLR = (0 << TCA_SINGLE_CMP0BV_bp)   // CMP0BV disabled
+        | (0 << TCA_SINGLE_CMP1BV_bp)   // CMP1BV disabled
+        | (0 << TCA_SINGLE_CMP2BV_bp)   // CMP2BV disabled
+        | (0 << TCA_SINGLE_PERBV_bp);  // PERBV disabled
+
+    TCA0.SINGLE.CTRLFSET = (0 << TCA_SINGLE_CMP0BV_bp)   // CMP0BV disabled
+        | (0 << TCA_SINGLE_CMP1BV_bp)   // CMP1BV disabled
+        | (0 << TCA_SINGLE_CMP2BV_bp)   // CMP2BV disabled
+        | (0 << TCA_SINGLE_PERBV_bp);  // PERBV disabled
+
+    TCA0.SINGLE.DBGCTRL = (0 << TCA_SINGLE_DBGRUN_bp);  // DBGRUN disabled
+
+    TCA0.SINGLE.EVCTRL = (0 << TCA_SINGLE_CNTAEI_bp)   // CNTAEI disabled
+        | (0 << TCA_SINGLE_CNTBEI_bp)   // CNTBEI disabled
+        | (TCA_SINGLE_EVACTA_CNT_POSEDGE_gc)   // EVACTA CNT_POSEDGE
+        | (TCA_SINGLE_EVACTB_NONE_gc);  // EVACTB NONE
+
+    TCA0.SINGLE.INTCTRL = (1 << TCA_SINGLE_CMP0_bp)   // CMP0 enabled
+        | (0 << TCA_SINGLE_CMP1_bp)   // CMP1 disabled
+        | (0 << TCA_SINGLE_CMP2_bp)   // CMP2 disabled
+        | (0 << TCA_SINGLE_OVF_bp);  // OVF disabled
+
+    TCA0.SINGLE.INTFLAGS = (0 << TCA_SINGLE_CMP0_bp)   // CMP0 disabled
+        | (0 << TCA_SINGLE_CMP1_bp)   // CMP1 disabled
+        | (0 << TCA_SINGLE_CMP2_bp)   // CMP2 disabled
+        | (0 << TCA_SINGLE_OVF_bp);  // OVF disabled
+
+    TCA0.SINGLE.PER = 0xE9U;  // PER 0xE9
+
+    TCA0.SINGLE.TEMP = 0x0;  // TEMP 0x0
+
+    TCA0.SINGLE.CTRLA = (TCA_SINGLE_CLKSEL_DIV1024_gc)   // CLKSEL DIV1024
+        | (1 << TCA_SINGLE_ENABLE_bp)   // ENABLE enabled
+        | (0 << TCA_SINGLE_RUNSTDBY_bp);  // RUNSTDBY disabled
 }
 
-void TCA0_DefaultCompare1CallbackRegister(void)
+void TCA0_Deinitialize(void)
 {
-    //Add your ISR code here
-}
+    TCA0.SINGLE.CTRLA &= ~TCA_SINGLE_ENABLE_bm;
 
-void TCA0_DefaultCompare2CallbackRegister(void)
-{
-    //Add your ISR code here
-}
-
-void TCA0_DefaultOverflowCallbackRegister(void)
-{
-    //Add your ISR code here
-}
-
-void TCA0_OverflowCallbackRegister(TCA0_cb_t cb)
-{
-    TCA0_OVF_isr_cb = cb;
-}
-
-void TCA0_Compare0CallbackRegister(TCA0_cb_t cb)
-{
-    TCA0_CMP0_isr_cb = cb;
-}
-
-void TCA0_Compare1CallbackRegister(TCA0_cb_t cb)
-{
-    TCA0_CMP1_isr_cb = cb;
-}
-
-void TCA0_Compare2CallbackRegister(TCA0_cb_t cb)
-{
-    TCA0_CMP2_isr_cb = cb;
-}
-
-
-ISR(TCA0_CMP0_vect)
-{
-    if (TCA0_CMP0_isr_cb != NULL)
-        (*TCA0_CMP0_isr_cb)();
-    
-    TCA0.SINGLE.INTFLAGS = TCA_SINGLE_CMP0_bm;
-}
-
-void TCA0_Initialize(void) {
-    // Compare 0
-    TCA0.SINGLE.CMP0 = 0x0;
-        
-    // Compare 1
-    TCA0.SINGLE.CMP1 = 0x0;
-    
-    // Compare 2
-    TCA0.SINGLE.CMP2 = 0x0;
-        
-    // Count
-    TCA0.SINGLE.CNT = 0x0;
-    
-    // ALUPD disabled; CMP0EN disabled; CMP1EN disabled; CMP2EN disabled; WGMODE NORMAL; 
+    TCA0.SINGLE.CTRLA = 0x0;
     TCA0.SINGLE.CTRLB = 0x0;
-    
-    // CMP0OV disabled; CMP1OV disabled; CMP2OV disabled; 
     TCA0.SINGLE.CTRLC = 0x0;
-    
-    // SPLITM disabled; 
     TCA0.SINGLE.CTRLD = 0x0;
     
-    // CMD NONE; DIR disabled; LUPD disabled; 
-    TCA0.SINGLE.CTRLECLR = 0x0;
-    
-    // CMD NONE; DIR UP; LUPD disabled; 
-    TCA0.SINGLE.CTRLESET = 0x0;
-    
-    // CMP0BV disabled; CMP1BV disabled; CMP2BV disabled; PERBV disabled; 
-    TCA0.SINGLE.CTRLFCLR = 0x0;
-    
-    // CMP0BV disabled; CMP1BV disabled; CMP2BV disabled; PERBV disabled; 
-    TCA0.SINGLE.CTRLFSET = 0x0;
-    
-    // DBGRUN disabled; 
-    TCA0.SINGLE.DBGCTRL = 0x0;
-    
-    // CNTAEI disabled; CNTBEI disabled; EVACTA CNT_POSEDGE; EVACTB NONE; 
+    TCA0.SINGLE.CNT = 0x0;
+    TCA0.SINGLE.PER = 0xFFFFU;
+    TCA0.SINGLE.CMP0 = 0x0;
+    TCA0.SINGLE.CMP1 = 0x0;
+    TCA0.SINGLE.CMP2 = 0x0;
     TCA0.SINGLE.EVCTRL = 0x0;
-    
-    // CMP0 enabled; CMP1 disabled; CMP2 disabled; OVF disabled; 
-    TCA0.SINGLE.INTCTRL = 0x10;
-    
-    // CMP0 disabled; CMP1 disabled; CMP2 disabled; OVF disabled; 
-    TCA0.SINGLE.INTFLAGS = 0x0;
-    
-    // Period
-    TCA0.SINGLE.PER = 0xE9;
-    
-    // Temporary data for 16-bit Access
-    TCA0.SINGLE.TEMP = 0x0;
-    
-    // CLKSEL DIV1024; ENABLE enabled; RUNSTDBY disabled; 
-    TCA0.SINGLE.CTRLA = 0xF;
-    
+    TCA0.SINGLE.CTRLESET = 0x0;
+    TCA0.SINGLE.CTRLECLR = 0x0;
+    TCA0.SINGLE.CTRLFSET = 0x0;
+    TCA0.SINGLE.CTRLFCLR = 0x0;
+
+    TCA0.SINGLE.INTCTRL = 0x0;
+    TCA0.SINGLE.INTFLAGS = ~0x0;
 }
 
 void TCA0_Start(void)
 {
-    TCA0.SINGLE.CTRLA|= TCA_SINGLE_ENABLE_bm;
+    TCA0.SINGLE.CTRLA |= TCA_SINGLE_ENABLE_bm;
 }
 
 void TCA0_Stop(void)
 {
-    TCA0.SINGLE.CTRLA&= ~TCA_SINGLE_ENABLE_bm;
+    TCA0.SINGLE.CTRLA &= ~TCA_SINGLE_ENABLE_bm;
 }
 
-void TCA0_Write(uint16_t timerVal)
+void TCA0_CounterSet(uint16_t count)
 {
-    TCA0.SINGLE.PER=timerVal;
+    TCA0.SINGLE.CNT = count;
 }
 
-uint16_t TCA0_Read(void)
+uint16_t TCA0_CounterGet(void)
 {
-    uint16_t readVal;
-
-    readVal = TCA0.SINGLE.CNT;
-
-    return readVal;
-}
-
-void TCA0_EnableInterrupt(void)
-{
-        TCA0.SINGLE.INTCTRL = 1 << TCA_SINGLE_CMP0_bp /* Compare 0 Interrupt: enabled */
-	 				| 1 << TCA_SINGLE_CMP1_bp /* Compare 1 Interrupt: enabled */
-	 				| 1 << TCA_SINGLE_CMP2_bp /* Compare 2 Interrupt: enabled */
-	 				| 1 << TCA_SINGLE_OVF_bp; /* Overflow Interrupt: enabled */
-}
-void TCA0_DisableInterrupt(void)
-{
-    TCA0.SINGLE.INTCTRL = 0 << TCA_SINGLE_CMP0_bp /* Compare 0 Interrupt: disabled */
-	 				| 0 << TCA_SINGLE_CMP1_bp /* Compare 1 Interrupt: disabled */
-	 				| 0 << TCA_SINGLE_CMP2_bp /* Compare 2 Interrupt: disabled */
-	 				| 0 << TCA_SINGLE_OVF_bp; /* Overflow Interrupt: disabled */
-}
-void TCA0_ClearOverflowInterruptFlag(void)
-{
-    TCA0.SINGLE.INTFLAGS = TCA_SINGLE_OVF_bm; /* Clear Overflow Interrupt Flag */
-}
-bool TCA0_IsOverflowInterruptFlagSet(void)
-{
-    return ((TCA0.SINGLE.INTFLAGS & TCA_SINGLE_OVF_bm) > 0);
-}
-
-void TCA0_ClearCMP0InterruptFlag(void)
-{
-    TCA0.SINGLE.INTFLAGS = TCA_SINGLE_CMP0_bm; /* Clear Compare Channel-0 Interrupt Flag */
-}
-
-bool TCA0_IsCMP0InterruptFlagSet(void)
-{
-    return ((TCA0.SINGLE.INTFLAGS & TCA_SINGLE_CMP0_bm) > 0);
-}
-
-void TCA0_ClearCMP1InterruptFlag(void)
-{
-    TCA0.SINGLE.INTFLAGS = TCA_SINGLE_CMP1_bm; /* Clear Compare Channel-1 Interrupt Flag */
-}
-
-bool TCA0_IsCMP1InterruptFlagSet(void)
-{
-    return ((TCA0.SINGLE.INTFLAGS & TCA_SINGLE_CMP1_bm) > 0);
-}
-
-void TCA0_ClearCMP2InterruptFlag(void)
-{
-    TCA0.SINGLE.INTFLAGS = TCA_SINGLE_CMP2_bm; /* Clear Compare Channel-2 Interrupt Flag */
-}
-
-bool TCA0_IsCMP2InterruptFlagSet(void)
-{
-    return ((TCA0.SINGLE.INTFLAGS & TCA_SINGLE_CMP2_bm) > 0);
-}
-
-void TCA0_WaveformFreqRegCountSet(cmpx_register_value_t count)
-{
-    //Write value to CMP0 register
-    TCA0.SINGLE.CMP0=count;
-}
-
-uint16_t TCA0_WaveformFreqRegCountGet(void)
-{
-    //Returns CMP0 register value
-    return TCA0.SINGLE.CMP0;
-}
-
-void TCA0_WO1OffsetRegCountSet(cmpx_register_value_t count)
-{
-    //Write value to CMP1 register
-    TCA0.SINGLE.CMP1=count;
-}
-
-uint16_t TCA0_WO1OffsetRegCountGet(void)
-{
-    //Returns CMP1 register value
-    return TCA0.SINGLE.CMP1;
-}
-
-void TCA0_WO2OffsetRegCountSet(cmpx_register_value_t count)
-{
-    //Write value to CMP2 register
-    TCA0.SINGLE.CMP2=count;
-}
-
-uint16_t TCA0_WO2OffsetRegCountGet(void)
-{
-    //Returns CMP2 register value
-    return TCA0.SINGLE.CMP2;;
-}
-
-
-
-void TCA0CounterSet(uint16_t value)
-{
-    //Write value to CNT register
-    TCA0.SINGLE.CNT=value;
-}
-
-uint16_t TCA0CounterGet(void)
-{
-    //Returns CNT register value
     return TCA0.SINGLE.CNT;
+}
+
+void TCA0_PeriodSet(uint16_t periodVal)
+{
+    TCA0.SINGLE.PER = periodVal;
+}
+
+uint16_t TCA0_PeriodGet(void)
+{
+    return TCA0.SINGLE.PER;
 }
 
 void TCA0_Compare0Set(uint16_t value)
 {
-    //Write value to CMP0 register
-    TCA0.SINGLE.CMP0=value;
+    TCA0.SINGLE.CMP0 = value;
 }
 
 void TCA0_Compare1Set(uint16_t value)
 {
-    //Write value to CMP1 register
-    TCA0.SINGLE.CMP1=value;
+    TCA0.SINGLE.CMP1 = value;
 }
 
 void TCA0_Compare2Set(uint16_t value)
 {
-    //Write value to CMP2 register
-    TCA0.SINGLE.CMP2=value;
+    TCA0.SINGLE.CMP2 = value;
+}
+
+uint16_t TCA0_MaxCountGet(void)
+{
+    return TCA0_MAX_COUNT;
 }
 
 void TCA0_ModeSet(TCA_SINGLE_WGMODE_t mode)
 {
-  uint8_t temp;
   if((mode == TCA_SINGLE_WGMODE_NORMAL_gc) ||
      (mode == TCA_SINGLE_WGMODE_FRQ_gc) ||
      (mode == TCA_SINGLE_WGMODE_SINGLESLOPE_gc) ||
@@ -314,10 +188,56 @@ void TCA0_ModeSet(TCA_SINGLE_WGMODE_t mode)
      (mode == TCA_SINGLE_WGMODE_DSBOTH_gc) ||
      (mode == TCA_SINGLE_WGMODE_DSBOTTOM_gc))
   {
-      temp = (TCA0.SINGLE.CTRLB & ~TCA_SINGLE_WGMODE_gm) |
-             (  mode     &  TCA_SINGLE_WGMODE_gm);
+      uint8_t temp = (TCA0.SINGLE.CTRLB & ~TCA_SINGLE_WGMODE_gm) |
+             (mode & TCA_SINGLE_WGMODE_gm);
       TCA0.SINGLE.CTRLB = temp;
   }
 }
 
+void TCA0_InterruptEnable(void)
+{
+    TCA0.SINGLE.INTCTRL = (1 << TCA_SINGLE_CMP0_bp) /* Compare 0 Interrupt: enabled */
+	 				| (1 << TCA_SINGLE_CMP1_bp)     /* Compare 1 Interrupt: enabled */
+	 				| (1 << TCA_SINGLE_CMP2_bp)     /* Compare 2 Interrupt: enabled */
+	 				| (1 << TCA_SINGLE_OVF_bp);     /* Overflow Interrupt: enabled */
+}
 
+void TCA0_InterruptDisable(void)
+{
+    TCA0.SINGLE.INTCTRL = (0 << TCA_SINGLE_CMP0_bp) /* Compare 0 Interrupt: disabled */
+	 				| (0 << TCA_SINGLE_CMP1_bp)     /* Compare 1 Interrupt: disabled */
+	 				| (0 << TCA_SINGLE_CMP2_bp)     /* Compare 2 Interrupt: disabled */
+	 				| (0 << TCA_SINGLE_OVF_bp);     /* Overflow Interrupt: disabled */
+}
+
+/* cppcheck-suppress misra-c2012-2.7 */
+/* cppcheck-suppress misra-c2012-8.2 */
+/* cppcheck-suppress misra-c2012-8.4 */
+ISR(TCA0_CMP0_vect)
+{
+     if(NULL != TCA0_CMP0Callback)
+    {
+        (*TCA0_CMP0Callback)();
+    }
+    TCA0.SINGLE.INTFLAGS = TCA_SINGLE_CMP0_bm;
+}
+
+void TCA0_OverflowCallbackRegister(TCA0_cb_t CallbackHandler)
+{
+    TCA0_OVFCallback = CallbackHandler;
+}
+
+void TCA0_Compare0CallbackRegister(TCA0_cb_t CallbackHandler)
+{
+    TCA0_CMP0Callback = CallbackHandler;
+}
+
+void TCA0_Compare1CallbackRegister(TCA0_cb_t CallbackHandler)
+{
+     TCA0_CMP1Callback = CallbackHandler;
+}
+
+void TCA0_Compare2CallbackRegister(TCA0_cb_t CallbackHandler)
+{
+     TCA0_CMP2Callback = CallbackHandler;
+}

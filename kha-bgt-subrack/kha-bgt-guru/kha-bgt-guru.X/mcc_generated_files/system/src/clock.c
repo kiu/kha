@@ -1,3 +1,5 @@
+
+
 /**
   * CLKCTRL Generated Driver File
   *
@@ -7,10 +9,12 @@
   *
   * @brief This file contains the driver code for CLKCTRL module.
   *
-  * version CLKCTRL Driver Version 1.1.3
+  * version CLKCTRL Driver Version 1.1.4
+  *
+  * @version Package Version 2.0.10
 */
 /*
-© [2024] Microchip Technology Inc. and its subsidiaries.
+© [2025] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -35,50 +39,51 @@
 
 void CLOCK_Initialize(void)
 {
-    // Set the CLKCTRL module to the options selected in the user interface.
-    
-    //CLKOUT disabled; CLKSEL Internal high-frequency oscillator; 
-    ccp_write_io((void*)&(CLKCTRL.MCLKCTRLA),0x0);
-
-    //PDIV 2X; PEN disabled; 
-    ccp_write_io((void*)&(CLKCTRL.MCLKCTRLB),0x0);
-
-    //EXTS disabled; OSC32KS disabled; OSCHFS disabled; PLLS disabled; SOSC disabled; XOSC32KS disabled; 
-    ccp_write_io((void*)&(CLKCTRL.MCLKSTATUS),0x0);
-
-    //RUNSTDBY disabled; 
-    ccp_write_io((void*)&(CLKCTRL.OSC32KCTRLA),0x0);
-
-    //AUTOTUNE disabled; FRQSEL 24 MHz system clock; RUNSTDBY disabled; 
-    ccp_write_io((void*)&(CLKCTRL.OSCHFCTRLA),0x24);
-
-    //TUNE 0x0; 
-    ccp_write_io((void*)&(CLKCTRL.OSCHFTUNE),0x0);
-
-    //MULFAC PLL is disabled; RUNSTDBY disabled; SOURCE OSCHF; 
-    ccp_write_io((void*)&(CLKCTRL.PLLCTRLA),0x0);
-
-    //CSUT 1k cycles; ENABLE disabled; LPMODE disabled; RUNSTDBY disabled; SEL disabled; 
-    ccp_write_io((void*)&(CLKCTRL.XOSC32KCTRLA),0x0);
-
-    //CFDEN disabled; CFDSRC CLKMAIN; CFDTST disabled; 
-    ccp_write_io((void*)&(CLKCTRL.MCLKCTRLC),0x0);
-
-    //CFD disabled; INTTYPE INT; 
-    ccp_write_io((void*)&(CLKCTRL.MCLKINTCTRL),0x0);
-
-    //CFD disabled; 
-    ccp_write_io((void*)&(CLKCTRL.MCLKINTFLAGS),0x0);
-
-    //CSUTHF 256; ENABLE disabled; FRQRANGE 8M; RUNSTBY disabled; SELHF XTAL; 
-    ccp_write_io((void*)&(CLKCTRL.XOSCHFCTRLA),0x0);
-
+    ccp_write_io((void*)&(CLKCTRL.MCLKCTRLA),(0 << CLKCTRL_CLKOUT_bp)   // CLKOUT disabled
+            | CLKCTRL_CLKSEL_OSCHF_gc   // CLKSEL Internal high-frequency oscillator
+            );
+    ccp_write_io((void*)&(CLKCTRL.MCLKCTRLB),CLKCTRL_PDIV_2X_gc   // PDIV 2X
+            | (0 << CLKCTRL_PEN_bp)   // PEN disabled
+            );
+    ccp_write_io((void*)&(CLKCTRL.OSC32KCTRLA),(0 << CLKCTRL_RUNSTDBY_bp)   // RUNSTDBY disabled
+            );
+    ccp_write_io((void*)&(CLKCTRL.OSCHFCTRLA),(0 << CLKCTRL_AUTOTUNE_bp)   // AUTOTUNE disabled
+            | CLKCTRL_FRQSEL_24M_gc   // FRQSEL 24 MHz system clock
+            | (0 << CLKCTRL_RUNSTDBY_bp)   // RUNSTDBY disabled
+            );
+    ccp_write_io((void*)&(CLKCTRL.OSCHFTUNE),0x0   // TUNE 0x0
+            );
+    ccp_write_io((void*)&(CLKCTRL.PLLCTRLA),CLKCTRL_MULFAC_DISABLE_gc   // MULFAC PLL is disabled
+            | (0 << CLKCTRL_RUNSTDBY_bp)   // RUNSTDBY disabled
+            | CLKCTRL_SOURCE_OSCHF_gc   // SOURCE OSCHF
+            );
+    ccp_write_io((void*)&(CLKCTRL.XOSC32KCTRLA),CLKCTRL_CSUT_1K_gc   // CSUT 1k cycles
+            | (0 << CLKCTRL_ENABLE_bp)   // ENABLE disabled
+            | (0 << CLKCTRL_LPMODE_bp)   // LPMODE disabled
+            | (0 << CLKCTRL_RUNSTDBY_bp)   // RUNSTDBY disabled
+            | (0 << CLKCTRL_SEL_bp)   // SEL disabled
+            );
+    ccp_write_io((void*)&(CLKCTRL.MCLKCTRLC),(0 << CLKCTRL_CFDEN_bp)   // CFDEN disabled
+            | CLKCTRL_CFDSRC_CLKMAIN_gc   // CFDSRC CLKMAIN
+            | (0 << CLKCTRL_CFDTST_bp)   // CFDTST disabled
+            );
+    ccp_write_io((void*)&(CLKCTRL.MCLKINTCTRL),(0 << CLKCTRL_CFD_bp)   // CFD disabled
+            | CLKCTRL_INTTYPE_INT_gc   // INTTYPE INT
+            );
+    ccp_write_io((void*)&(CLKCTRL.MCLKINTFLAGS),(0 << CLKCTRL_CFD_bp)   // CFD disabled
+            );
+    ccp_write_io((void*)&(CLKCTRL.XOSCHFCTRLA),CLKCTRL_CSUTHF_256_gc   // CSUTHF 256
+            | (0 << CLKCTRL_ENABLE_bp)   // ENABLE disabled
+            | CLKCTRL_FRQRANGE_8M_gc   // FRQRANGE 8M
+            | (0 << CLKCTRL_RUNSTBY_bp)   // RUNSTBY disabled
+            | CLKCTRL_SELHF_XTAL_gc   // SELHF XTAL
+            );
 
     // System clock stability check by polling the status register.
-    while(!(CLKCTRL.MCLKSTATUS & CLKCTRL_OSCHFS_bm));
+    while(!(CLKCTRL.MCLKSTATUS & CLKCTRL_OSCHFS_bm))
+    {
+    }
 
-
-    // System clock stability check by polling the PLL status.
 }
 
 void CFD_Enable(CLKCTRL_CFDSRC_t cfd_source)
@@ -87,7 +92,7 @@ void CFD_Enable(CLKCTRL_CFDSRC_t cfd_source)
     ccp_write_io((uint8_t *) & CLKCTRL.MCLKCTRLC, cfd_source | CLKCTRL_CFDEN_bm);
 }
 
-void CFD_Disable()
+void CFD_Disable(void)
 {
     /* Disable Clock Failure Detection on main clock */
     ccp_write_io((uint8_t *) & CLKCTRL.MCLKCTRLC, CLKCTRL.MCLKCTRLC & ~CLKCTRL_CFDEN_bm);

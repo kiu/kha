@@ -7,10 +7,10 @@
  * 
  * @brief This file contains API prototypes and other datatypes for USART0 module.
  *
- * @version USART0 Driver Version 2.1.0
+ * @version USART0 Driver Version 2.1.1
 */
 /*
-© [2024] Microchip Technology Inc. and its subsidiaries.
+© [2025] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -39,7 +39,6 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include <stdio.h>
 #include "../system/system.h"
 #include "uart_drv_interface.h"
 
@@ -50,7 +49,7 @@
 #endif
 
 /* Normal Mode, Baud register value */
-#define USART0_BAUD_RATE(BAUD_RATE) (((float)24000000 * 64 / (16 * (float)BAUD_RATE)) + 0.5)
+#define USART0_BAUD_RATE(BAUD_RATE) ((24000000UL * 64UL / (16UL * (BAUD_RATE))) + 0.5)
 
 #define UART0_interface UART0
 
@@ -90,6 +89,11 @@
  @struct usart0_status_t
  @breif This is an instance of USART0_STATUS for USART0 module
  */
+ /**
+ * @misradeviation{@advisory,19.2}
+ * The UART error status necessitates checking the bitfield and accessing the status within the group byte therefore the use of a union is essential.
+ */
+ /* cppcheck-suppress misra-c2012-19.2 */
 typedef union {
     struct {
         uint8_t perr : 1;     /**<This is a bit field for Parity Error status*/
@@ -167,8 +171,8 @@ void USART0_TransmitDisable(void);
 
 /**
  * @ingroup usart0
- * @brief This API enables the USART0 Receiver.
- *        USART0 should also be enable to receive bytes over RX pin.
+ * @brief This API enables the USART0 receiver.
+ *        The USART0 must be enabled to receive the bytes sent by the RX pin.
  * @param None.
  * @return None.
  */
@@ -322,11 +326,22 @@ void USART0_ReceiveISR(void);
 
 /**
  * @ingroup usart0
+ * @brief This indicates the function called when the receiver interrupt occurs.
+ * @pre Initialize the USART0 module with the receive interrupt enabled.
+ * @param None.
+ * @return None.
+ */
+extern void (*USART0_RxInterruptHandler)(void);
+
+/**
+ * @ingroup usart0
  * @brief This API registers the function to be called upon Receiver interrupt.
  * @param callbackHandler - a function pointer which will be called upon Receiver interrupt condition.
  * @return None.
  */
 void USART0_RxCompleteCallbackRegister(void (* callbackHandler)(void));
+
+
 #ifdef __cplusplus  // Provide C++ Compatibility
 
     }

@@ -12,7 +12,7 @@
 */
 
 /*
-© [2024] Microchip Technology Inc. and its subsidiaries.
+© [2025] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -37,25 +37,25 @@
 static void (*IO_PA1_InterruptHandler)(void);
 static void (*IO_PA0_InterruptHandler)(void);
 static void (*IO_PA3_InterruptHandler)(void);
-static void (*IO_PA5_InterruptHandler)(void);
-static void (*IO_PA4_InterruptHandler)(void);
-static void (*IO_PA6_InterruptHandler)(void);
 static void (*IO_BTN_CLEAR_InterruptHandler)(void);
+static void (*IO_DAT_InterruptHandler)(void);
+static void (*IO_CLK_InterruptHandler)(void);
 static void (*IO_CS_InterruptHandler)(void);
 
 void PIN_MANAGER_Initialize()
 {
+
+  /* OUT Registers Initialization */
+    PORTA.OUT = 0xC1;
+    PORTC.OUT = 0x0;
+    PORTD.OUT = 0x0;
+    PORTF.OUT = 0x0;
+
   /* DIR Registers Initialization */
     PORTA.DIR = 0xD9;
     PORTC.DIR = 0x0;
     PORTD.DIR = 0x0;
     PORTF.DIR = 0x0;
-
-  /* OUT Registers Initialization */
-    PORTA.OUT = 0x1;
-    PORTC.OUT = 0x0;
-    PORTD.OUT = 0x0;
-    PORTF.OUT = 0x0;
 
   /* PINxCTRL registers Initialization */
     PORTA.PIN0CTRL = 0x0;
@@ -91,8 +91,6 @@ void PIN_MANAGER_Initialize()
     PORTF.PIN6CTRL = 0x0;
     PORTF.PIN7CTRL = 0x0;
 
-  /* EVGENCTRL registers Initialization */
-
   /* PORTMUX Initialization */
     PORTMUX.CCLROUTEA = 0x0;
     PORTMUX.EVSYSROUTEA = 0x0;
@@ -107,10 +105,9 @@ void PIN_MANAGER_Initialize()
     IO_PA1_SetInterruptHandler(IO_PA1_DefaultInterruptHandler);
     IO_PA0_SetInterruptHandler(IO_PA0_DefaultInterruptHandler);
     IO_PA3_SetInterruptHandler(IO_PA3_DefaultInterruptHandler);
-    IO_PA5_SetInterruptHandler(IO_PA5_DefaultInterruptHandler);
-    IO_PA4_SetInterruptHandler(IO_PA4_DefaultInterruptHandler);
-    IO_PA6_SetInterruptHandler(IO_PA6_DefaultInterruptHandler);
     IO_BTN_CLEAR_SetInterruptHandler(IO_BTN_CLEAR_DefaultInterruptHandler);
+    IO_DAT_SetInterruptHandler(IO_DAT_DefaultInterruptHandler);
+    IO_CLK_SetInterruptHandler(IO_CLK_DefaultInterruptHandler);
     IO_CS_SetInterruptHandler(IO_CS_DefaultInterruptHandler);
 }
 
@@ -154,45 +151,6 @@ void IO_PA3_DefaultInterruptHandler(void)
     // or set custom function using IO_PA3_SetInterruptHandler()
 }
 /**
-  Allows selecting an interrupt handler for IO_PA5 at application runtime
-*/
-void IO_PA5_SetInterruptHandler(void (* interruptHandler)(void)) 
-{
-    IO_PA5_InterruptHandler = interruptHandler;
-}
-
-void IO_PA5_DefaultInterruptHandler(void)
-{
-    // add your IO_PA5 interrupt custom code
-    // or set custom function using IO_PA5_SetInterruptHandler()
-}
-/**
-  Allows selecting an interrupt handler for IO_PA4 at application runtime
-*/
-void IO_PA4_SetInterruptHandler(void (* interruptHandler)(void)) 
-{
-    IO_PA4_InterruptHandler = interruptHandler;
-}
-
-void IO_PA4_DefaultInterruptHandler(void)
-{
-    // add your IO_PA4 interrupt custom code
-    // or set custom function using IO_PA4_SetInterruptHandler()
-}
-/**
-  Allows selecting an interrupt handler for IO_PA6 at application runtime
-*/
-void IO_PA6_SetInterruptHandler(void (* interruptHandler)(void)) 
-{
-    IO_PA6_InterruptHandler = interruptHandler;
-}
-
-void IO_PA6_DefaultInterruptHandler(void)
-{
-    // add your IO_PA6 interrupt custom code
-    // or set custom function using IO_PA6_SetInterruptHandler()
-}
-/**
   Allows selecting an interrupt handler for IO_BTN_CLEAR at application runtime
 */
 void IO_BTN_CLEAR_SetInterruptHandler(void (* interruptHandler)(void)) 
@@ -204,6 +162,32 @@ void IO_BTN_CLEAR_DefaultInterruptHandler(void)
 {
     // add your IO_BTN_CLEAR interrupt custom code
     // or set custom function using IO_BTN_CLEAR_SetInterruptHandler()
+}
+/**
+  Allows selecting an interrupt handler for IO_DAT at application runtime
+*/
+void IO_DAT_SetInterruptHandler(void (* interruptHandler)(void)) 
+{
+    IO_DAT_InterruptHandler = interruptHandler;
+}
+
+void IO_DAT_DefaultInterruptHandler(void)
+{
+    // add your IO_DAT interrupt custom code
+    // or set custom function using IO_DAT_SetInterruptHandler()
+}
+/**
+  Allows selecting an interrupt handler for IO_CLK at application runtime
+*/
+void IO_CLK_SetInterruptHandler(void (* interruptHandler)(void)) 
+{
+    IO_CLK_InterruptHandler = interruptHandler;
+}
+
+void IO_CLK_DefaultInterruptHandler(void)
+{
+    // add your IO_CLK interrupt custom code
+    // or set custom function using IO_CLK_SetInterruptHandler()
 }
 /**
   Allows selecting an interrupt handler for IO_CS at application runtime
@@ -233,17 +217,13 @@ ISR(PORTA_PORT_vect)
     {
        IO_PA3_InterruptHandler(); 
     }
-    if(VPORTA.INTFLAGS & PORT_INT5_bm)
-    {
-       IO_PA5_InterruptHandler(); 
-    }
     if(VPORTA.INTFLAGS & PORT_INT4_bm)
     {
-       IO_PA4_InterruptHandler(); 
+       IO_DAT_InterruptHandler(); 
     }
     if(VPORTA.INTFLAGS & PORT_INT6_bm)
     {
-       IO_PA6_InterruptHandler(); 
+       IO_CLK_InterruptHandler(); 
     }
     if(VPORTA.INTFLAGS & PORT_INT7_bm)
     {

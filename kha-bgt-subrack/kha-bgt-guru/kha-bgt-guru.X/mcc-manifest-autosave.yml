@@ -2,35 +2,33 @@
 
 manifest_file_version: 1.0.0
 project: kha-bgt-guru
-creation_date: 2024-03-23T16:37:40.651+01:00[Europe/Berlin]
+creation_date: 2025-02-02T02:14:20.604+01:00[Europe/Berlin]
 operating_system: Windows 10
 mcc_mode: IDE
 mcc_mode_version: v6.20
 device_name: AVR64DD32
 compiler: AVR 7.3.0
-mcc_version: 5.5.0
-mcc_core_version: 5.7.0
-content_manager_version: 5.0.0
+mcc_version: 5.5.1
+mcc_core_version: 5.7.1
+content_manager_version: 5.0.1
 is_mcc_offline: false
 is_using_prerelease_versions: false
 mcc_content_registries: https://registry.npmjs.org/
-device_library: {library_class: com.microchip.mcc.melody.Library, name: Melody, version: 2.7.0}
-packs: {name: AVR-Dx_DFP, version: 2.4.286}
+device_library: {library_class: com.microchip.mcc.melody.Library, name: Melody, version: 2.8.0}
+packs: {name: AVR-Dx_DFP, version: 2.6.303}
 modules:
-- {name: '@mchp-mcc/avr-8bit', type: MELODY, version: 4.9.0}
-- {name: '@mchp-mcc/avr8-configuration-bits-v1', type: MELODY, version: 4.2.13}
-- {name: '@mchp-mcc/avr8-pin-manager', type: MELODY, version: 4.5.1}
-- {name: '@mchp-mcc/delay-blocking-driver', type: MELODY, version: 3.1.0}
-- {name: '@mchp-mcc/main-manager', type: MELODY, version: 3.1.1}
-- {name: '@mchp-mcc/pin-content-processor', type: MELODY, version: 3.8.0}
-- {name: '@mchp-mcc/scf-avr8-clkctrl-v3', type: MELODY, version: 2.0.8}
+- {name: '@mchp-mcc/avr-8bit', type: MELODY, version: 4.12.0}
+- {name: '@mchp-mcc/avr8-configuration-bits-v1', type: MELODY, version: 4.2.14}
+- {name: '@mchp-mcc/avr8-pin-manager', type: MELODY, version: 4.6.1}
+- {name: '@mchp-mcc/delay-blocking-driver', type: MELODY, version: 3.2.0}
+- {name: '@mchp-mcc/main-manager', type: MELODY, version: 3.1.2}
+- {name: '@mchp-mcc/pin-content-processor', type: MELODY, version: 3.9.0}
+- {name: '@mchp-mcc/scf-avr8-clkctrl-v3', type: MELODY, version: 2.0.10}
 - {name: '@mchp-mcc/scf-avr8-interrupt-v1', type: MELODY, version: 5.0.12}
-- {name: '@mchp-mcc/scf-avr8-memory-v1', type: MELODY, version: 7.0.1}
+- {name: '@mchp-mcc/scf-avr8-memory-v1', type: MELODY, version: 7.0.2}
 - {name: '@mchp-mcc/scf-avr8-rstctrl-v1', type: MELODY, version: 4.0.7}
 - {name: '@mchp-mcc/scf-avr8-rtc-v1', type: MELODY, version: 4.2.5}
-- {name: '@mchp-mcc/scf-avr8-spi-v1', type: MELODY, version: 5.0.2}
-- {name: '@mchp-mcc/scf-avr8-tca-v1', type: MELODY, version: 6.0.11}
-- {name: '@mchp-mcc/scf-avr8-usart-v1', type: MELODY, version: 10.2.0}
+- {name: '@mchp-mcc/scf-avr8-tca-v1', type: MELODY, version: 7.0.0}
+- {name: '@mchp-mcc/scf-avr8-usart-v1', type: MELODY, version: 10.2.1}
 - {name: '@mchp-mcc/scf-avr8-wwdt-v1', type: MELODY, version: 4.2.5}
-- {name: '@mchp-mcc/spi-host-driver', type: MELODY, version: 1.2.0}
-- {name: '@mchp-mcc/uart-driver', type: MELODY, version: 1.10.0}
+- {name: '@mchp-mcc/uart-driver', type: MELODY, version: 1.10.2}

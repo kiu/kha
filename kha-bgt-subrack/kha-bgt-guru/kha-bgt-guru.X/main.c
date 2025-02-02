@@ -1,7 +1,5 @@
 #include "mcc_generated_files/system/system.h"
 #include "mcc_generated_files/timer/delay.h"
-#include "mcc_generated_files/timer/tca0.h"
-#include "mcc_generated_files/spi/spi0.h"
 #include "../../../kha-common.X/kha-constants.h"
 #include "../../../kha-common.X/kha-stack.h"
 #include "kha-version.h"
@@ -65,33 +63,42 @@ void key_tick() {
 
 // ---
 
-unsigned char reverse(unsigned char b) {
-    b = (b & 0xF0) >> 4 | (b & 0x0F) << 4;
-    b = (b & 0xCC) >> 2 | (b & 0x33) << 2;
-    b = (b & 0xAA) >> 1 | (b & 0x55) << 1;
-    return b;
+void sendRaw(uint8_t buf) {
+    for (uint8_t i = 0; i < 8; i++) {
+        IO_CLK_SetLow();
+        if (buf & (1 << i)) {
+            IO_DAT_SetHigh();
+        } else {
+            IO_DAT_SetLow();
+        }
+        asm("nop"); // 41.6ns
+        asm("nop"); // 41.6ns
+        asm("nop"); // 41.6ns
+        asm("nop"); // 41.6ns
+
+        IO_CLK_SetHigh();
+        asm("nop"); // 41.6ns
+        asm("nop"); // 41.6ns
+        asm("nop"); // 41.6ns
+        asm("nop"); // 41.6ns
+    }
 }
 
 void sendTM1620Cmd(uint8_t cmd) {
-    cmd = reverse(cmd);
     IO_CS_SetLow();
-    DELAY_microseconds(4);
-    SPI0_ByteWrite(cmd);
-    DELAY_microseconds(50);
+    sendRaw(cmd);
+    asm("nop"); // 41.6ns
     IO_CS_SetHigh();
-    DELAY_microseconds(4);
+    asm("nop"); // 41.6ns
 }
 
 void sendTM1620CmdData(uint8_t cmd, uint8_t data) {
-    cmd = reverse(cmd);
-    data = reverse(data);
     IO_CS_SetLow();
-    DELAY_microseconds(4);
-    SPI0_ByteWrite(cmd);
-    SPI0_ByteWrite(data);
-    DELAY_microseconds(90);
+    sendRaw(cmd);
+    sendRaw(data);
+    asm("nop"); // 41.6ns
     IO_CS_SetHigh();
-    DELAY_microseconds(4);
+    asm("nop"); // 41.6ns
 }
 
 // ---
@@ -192,8 +199,10 @@ int main(void) {
     kha_stack_rx_cbr_msg_all_post(rx_all);
     kha_stack_init(false, REGISTER_SIZE, REGISTER_PRESET_WIDTH, KHA_VERSION);
 
-    SPI0_Open(0);
     IO_CS_SetHigh();
+    IO_CLK_SetHigh();
+
+    DELAY_milliseconds(300);
 
     sendTM1620Cmd(0b00000010); // 6 digits, 8 segments
     sendTM1620Cmd(0b01000100); // Fixed Address
@@ -204,7 +213,7 @@ int main(void) {
     sendTM1620CmdData(0b11000000 | 0x08, DIGITS[0x10]);
     sendTM1620CmdData(0b11000000 | 0x04, DIGITS[0x10]);
     sendTM1620CmdData(0b11000000 | 0x06, DIGITS[0x10]);
-    sendTM1620Cmd(0b10001100); // On
+    sendTM1620Cmd(0b10001100); // On    
 
     update_ui();
 

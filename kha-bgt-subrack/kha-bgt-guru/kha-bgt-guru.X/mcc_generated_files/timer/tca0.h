@@ -7,10 +7,12 @@
  *
  * @brief This file contains the API prototypes for the TCA0 driver in Normal (16-bit) mode.
  *
- * @version TCA0 Driver Version 2.1.2
-*/
+ * @version TCA0 Driver Version 3.0.0
+ *
+ * @version Package Version 7.0.0
+ */
 /*
-© [2024] Microchip Technology Inc. and its subsidiaries.
+© [2025] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -30,297 +32,205 @@
     THIS SOFTWARE.
 */
 
-
 #ifndef TCA0_H_INCLUDED
 #define TCA0_H_INCLUDED
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "../system/system.h"
-#include "timer_interface.h"
 #include "../system/utils/compiler.h"
+#include "./tca0_deprecated.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+/**
+ * @misradeviation{@advisory,2.5}
+ * MCC Melody drivers provide macros that can be added to an application. 
+ * It depends on the application whether a macro is used or not. 
+ */
 
 /**
  * @ingroup tca0_normal
- * @typedef void TCA0_cb_t
- * @brief Function pointer to the callback function called by TCA when operating in Normal mode. The default value is set to NULL which means that no callback function will be used.
- */  
+ * @brief Defines the maximum count of the timer.
+ */
+#define TCA0_MAX_COUNT (65535U)
+/**
+ * @ingroup tca0_normal
+ * @brief Defines the timer prescaled clock frequency in hertz.
+ */
+ /* cppcheck-suppress misra-c2012-2.5 */  
+#define TCA0_CLOCK_FREQ (23437UL)
+
+/**
+ * @ingroup tca0_normal
+ * @typedef TCA0_cb_t
+ * @brief Function pointer to the callback function called by TCA while operating in Normal mode.
+ *        The default value is set to NULL, which means that no callback function will be used.
+ */
 typedef void (*TCA0_cb_t)(void);
 
 /**
  * @ingroup tca0_normal
- * @brief Data type for the CMPx register.
- */
-typedef uint16_t cmpx_register_value_t;
-
-extern const struct TMR_INTERFACE TCA0_Interface;
-
-/**
- * @ingroup tca0_normal
- * @brief Initializes the TCA.
+ * @brief Initializes the TCA0 module.
  * @param None.
  * @return None.
  */ 
 void TCA0_Initialize(void);
+
 /**
  * @ingroup tca0_normal
- * @brief Starts the 16-bit timer/counter for the TCA.
+ * @brief Deinitializes the TCA0 module.
+ * @param None.
+ * @return None.
+ */
+void TCA0_Deinitialize(void);
+
+/**
+ * @ingroup tca0_normal
+ * @brief Starts the TCA0.
  * @param None.
  * @return None.
  */
 void TCA0_Start(void);
+
 /**
  * @ingroup tca0_normal
- * @brief Stops the 16-bit timer/counter for the TCA.
+ * @brief Stops the TCA0.
  * @param None.
  * @return None.
  */
 void TCA0_Stop(void);
-/**
- * @ingroup tca0_normal
- * @brief Interrupt Service Routine (ISR) callback function register to be called if the Overflow Interrupt flag is set.
- * @param TCA0_cb_t cb - Callback function for Overflow event.
- * @return None.
- */ 
-void TCA0_OverflowCallbackRegister(TCA0_cb_t cb);
-/**
- * @ingroup tca0_normal
- * @brief ISR callback function to be called if the Compare 0 Match Interrupt flag is set.
- * @param TCA0_cb_t cb - Callback function for Compare 0 match event.
- * @return None.
- */ 
-void TCA0_Compare0CallbackRegister(TCA0_cb_t cb);
-/**
- * @ingroup tca0_normal
- * @brief ISR callback function to be called if the Compare 1 Match Interrupt flag is set.
- * @param TCA0_cb_t cb - Callback function for Compare 1 match event.
- * @return None.
- */ 
-void TCA0_Compare1CallbackRegister(TCA0_cb_t cb);
-/**
- * @ingroup tca0_normal
- * @brief ISR callback function to be called if the Compare 2 Match Interrupt flag is set.
- * @param TCA0_cb_t cb - Callback function for Compare 2 match event.
- * @return None.
- */ 
-void TCA0_Compare2CallbackRegister(TCA0_cb_t cb);
-/**
- * @ingroup tca0_normal
- * @brief Enables the 16-bit timer/counter interrupt for the TCA.
- * @param None.
- * @return None.
- */
-void TCA0_EnableInterrupt(void);
-/**
- * @ingroup tca0_normal
- * @brief Disables the 16-bit timer/counter interrupt for the TCA.
- * @param None.
- * @return None.
- */
-void TCA0_DisableInterrupt(void);
-/**
- * @ingroup tca0_normal
- * @brief Reads the 16-bit timer/counter value for the TCA.
- * @param None.
- * @return uint16_t - timer/counter value returns from the TCA0.
- */
-uint16_t TCA0_Read(void);
-/**
- * @ingroup tca0_normal
- * @brief Writes the timer value to load to the TCA.
- * @param uint16_t timerVal - Loading the timer value for the TCA.
- * @return None.
- */
-void TCA0_Write(uint16_t timerVal);
-/**
- * @ingroup tca0_normal
- * @brief Clears the Overflow Interrupt flag after the Overflow flag set.
- * @param None.
- * @return None.
- */
-void TCA0_ClearOverflowInterruptFlag(void);
-/**
- * @ingroup tca0_normal
- * @brief Checks the Overflow Interrupt flag status for the TCA.
- * @param None.
- * @retval True  - Overflow Interrupt flag is set.
- * @retval False - Overflow Interrupt flag is not set.
- */
-bool TCA0_IsOverflowInterruptFlagSet(void);
-/**
- * @ingroup tca0_normal
- * @brief Clears the Compare 0 Interrupt flag after the Compare 0 flag is set.
- * @param None.
- * @return None.
- */
-void TCA0_ClearCMP0InterruptFlag(void);
-/**
- * @ingroup tca0_normal
- * @brief Checks the Compare 0 Interrupt flag status for the TCA.
- * @param None.
- * @retval True  - Compare 0 Interrupt flag is set.
- * @retval False - Compare 0 Interrupt flag is not set.
- */
-bool TCA0_IsCMP0InterruptFlagSet(void);
-/**
- * @ingroup tca0_normal
- * @brief Clears the Compare 1 Interrupt flag after the Compare 1 flag is set.
- * @param None.
- * @return None.
- */
-void TCA0_ClearCMP1InterruptFlag(void);
-/**
- * @ingroup tca0_normal
- * @brief Checks the Compare 1 Interrupt flag status for the TCA.
- * @param None.
- * @retval True  - Compare 1 Interrupt flag is set.
- * @retval False - Compare 1 Interrupt flag is not set.
- */
-bool TCA0_IsCMP1InterruptFlagSet(void);
-/**
- * @ingroup tca0_normal
- * @brief Clears the Compare 2 Interrupt flag after the Compare 2 flag is set.
- * @param None.
- * @return None.
- */
-void TCA0_ClearCMP2InterruptFlag(void);
 
 /**
  * @ingroup tca0_normal
- * @brief Checks the Compare 2 Interrupt flag status for the TCA.
+ * @brief Returns the current counter value.
  * @param None.
- * @retval True  - Compare 2 Interrupt flag is set.
- * @retval False - Compare 2 Interrupt flag is not set.
+ * @return Current count value from the CNT register
  */
-bool TCA0_IsCMP2InterruptFlagSet(void);
+uint16_t TCA0_CounterGet(void);
 
 /**
  * @ingroup tca0_normal
- * @brief Writes the value to load to the CMP0.
- * @param count - 16-bit value to be loaded to the CMP0 register.
+ * @brief Sets the counter value.
+ * @param count - Counter value to be written to the CNT register
  * @return None.
  */
-void TCA0_WaveformFreqRegCountSet(cmpx_register_value_t count);
+void TCA0_CounterSet(uint16_t count);
 
 /**
  * @ingroup tca0_normal
- * @brief Reads the 16-bit CMP0 value for the TCA.
+ * @brief Returns the current period value.
+ * @pre Initialize the TCA0 with TCA0__Initialize() before calling this API.
  * @param None.
- * @return cmpx_register_value_t - 16-bit CMP0 value returns from the CMP0 register of TCA.
+ * @return Period value from the PER register
  */
-uint16_t TCA0_WaveformFreqRegCountGet(void);
+uint16_t TCA0_PeriodGet(void);
 
 /**
  * @ingroup tca0_normal
- * @brief Writes the value to load to the CMP1.
- * @param count - 16-bit value to be loaded to the CMP1 register.
+ * @brief Sets the period value.
+ * @pre Initialize the TCA0 with TCA0__Initialize() before calling this API.
+ * @param periodVal - Period count value written to the PER register
  * @return None.
  */
-void TCA0_WO1OffsetRegCountSet(cmpx_register_value_t count);
+void TCA0_PeriodSet(uint16_t periodVal);
 
 /**
  * @ingroup tca0_normal
- * @brief Reads the 16-bit CMP1 value for the TCA.
- * @param None.
- * @return cmpx_register_value_t - 16-bit CMP1 value returns from the CMP0 register of TCA.
- */
-uint16_t TCA0_WO1OffsetRegCountGet(void);
-/**
- * @ingroup tca0_normal
- * @brief Writes the value to load to the CMP2.
- * @param count - 16-bit value to be loaded to the CMP2 register.
- * @return None.
- */
-void TCA0_WO2OffsetRegCountSet(cmpx_register_value_t count);
-
-/**
- * @ingroup tca0_normal
- * @brief Reads the 16-bit CMP2 value for the TCA.
- * @param None.
- * @return cmpx_register_value_t - 16-bit CMP2 value returns from the CMP0 register of TCA.
- */
-uint16_t TCA0_WO2OffsetRegCountGet(void);
-
-
-
-
-/**
- * @ingroup tca0_normal
- * @brief Returns the Count (CNT) register value for the TCA.
- * @pre Initialize the TCA before calling this API.
- * @param None.
- * @return uint16_t - CNT register value for the TCA.
- *
- */
-uint16_t TCA0CounterGet(void);
-
-/**
- * @ingroup tca0_normal
- * @brief Sets the Count (CNT) register value for the TCA.
- * @pre Initialize the TCA before calling this API.
- * @param uint16_t - value to be written to the CNT register.
- * @return uint16_t - None.
- *
- */
-void TCA0CounterSet(uint16_t value);
-
-/**
- * @ingroup tca0_normal
- * @brief Sets the Compare 0 (CMP0) register value for the TCA.
- * @pre Initialize the TCA before calling this API.
- * @param uint16_t -value to be written to the CMP0 register.
+ * @brief Sets the Compare 0 (CMP0) count value.
+ * @pre Initialize the TCA0 with TCA0__Initialize() before calling this API.
+ * @param value - Count value written to the CMP0 register
  * @return None.
  */
 void TCA0_Compare0Set(uint16_t value);
 
 /**
  * @ingroup tca0_normal
- * @brief Sets the Compare 1 (CMP1) register value for the TCA.
- * @pre Initialize the TCA before calling this API.
- * @param uint16_t -value to be written to the CMP1 register.
+ * @brief Sets the Compare 1 (CMP1) count value.
+ * @pre Initialize the TCA0 with TCA0__Initialize() before calling this API.
+ * @param value - Count value written to the CMP1 register
  * @return None.
  */
 void TCA0_Compare1Set(uint16_t value);
 
 /**
  * @ingroup tca0_normal
- * @brief Sets the Compare 2 (CMP2) register value for the TCA.
- * @pre Initialize the TCA before calling this API.
- * @param uint16_t -value to be written to the CMP2 register.
+ * @brief Sets the Compare 2 (CMP2) count value.
+ * @pre Initialize the TCA0 with TCA0__Initialize() before calling this API.
+ * @param value - Count value written to the CMP2 register
  * @return None.
  */
 void TCA0_Compare2Set(uint16_t value);
 
 /**
  * @ingroup tca0_normal
- * @brief Sets the Wave mode for the TCA.
- * @pre Initialize the TCA before calling this API.
- * @param TCA_SINGLE_WGMODE_t mode:
- * - @c TCA_SINGLE_WGMODE_NORMAL_gc      @c  -     Normal Mode
- * - @c TCA_SINGLE_WGMODE_FRQ_gc         @c  -     Frequency Generation Mode
- * - @c TCA_SINGLE_WGMODE_SINGLESLOPE_gc @c  -     Single Slope PWM
- * - @c TCA_SINGLE_WGMODE_DSTOP_gc       @c  -     Dual Slope PWM, overflow on TOP
- * - @c TCA_SINGLE_WGMODE_DSBOTH_gc      @c  -     Dual Slope PWM, overflow on TOP and BOTTOM
- * - @c TCA_SINGLE_WGMODE_DSBOTTOM_gc    @c  -     Dual Slope PWM, overflow on BOTTOM
- * @return None.
- *
+ * @brief Returns the maximum count value.
+ * @param None.
+ * @return Maximum count value
  */
-void TCA0_ModeSet(TCA_SINGLE_WGMODE_t mode);
+uint16_t TCA0_MaxCountGet(void);
 
 /**
  * @ingroup tca0_normal
- * @brief Performs the tasks to be executed on timer events.
+ * @brief Sets the Waveform Generation mode.
+ * @pre Initialize the TCA0 with TCA0__Initialize() before calling this API.
+ * @param TCA_SINGLE_WGMODE_t mode:
+ * - @c TCA_SINGLE_WGMODE_NORMAL_gc      @c  -     Normal mode
+ * - @c TCA_SINGLE_WGMODE_FRQ_gc         @c  -     Frequency Generation mode
+ * - @c TCA_SINGLE_WGMODE_SINGLESLOPE_gc @c  -     Single-Slope PWM
+ * - @c TCA_SINGLE_WGMODE_DSTOP_gc       @c  -     Dual-Slope PWM, overflow on TOP
+ * - @c TCA_SINGLE_WGMODE_DSBOTH_gc      @c  -     Dual-Slope PWM, overflow on TOP and BOTTOM
+ * - @c TCA_SINGLE_WGMODE_DSBOTTOM_gc    @c  -     Dual-Slope PWM, overflow on BOTTOM
+ * @return None.
+ *
+ */
+void TCA0_ModeSet(TCA_SINGLE_WGMODE_t mode) __attribute__((deprecated("This function is deprecated.")));;
+
+/**
+ * @ingroup tca0_normal
+ * @brief Enables the TCA0 interrupts.
  * @param None.
  * @return None.
  */
-void TCA0_Tasks(void);
+void TCA0_InterruptEnable(void);
 
-#ifdef __cplusplus
-}
-#endif
+/**
+ * @ingroup tca0_normal
+ * @brief Disables the TCA0 interrupts.
+ * @param None.
+ * @return None.
+ */
+void TCA0_InterruptDisable(void);
+
+/**
+ * @ingroup tca0_normal
+ * @brief Registers a callback function for the TCA0 overflow or underflow event.
+ * @param CallbackHandler - Address to the custom callback function
+ * @return None.
+ */ 
+
+void TCA0_OverflowCallbackRegister(TCA0_cb_t CallbackHandler);
+
+/**
+ * @ingroup tca0_normal
+ * @brief Registers a callback function for the TCA0 Compare 0 match event.
+ * @param CallbackHandler - Address to the custom callback function
+ * @return None.
+ */ 
+void TCA0_Compare0CallbackRegister(TCA0_cb_t CallbackHandler);
+
+/**
+ * @ingroup tca0_normal
+ * @brief Registers a callback function for the TCA0 Compare 1 match event.
+ * @param CallbackHandler - Address to the custom callback function
+ * @return None.
+ */ 
+void TCA0_Compare1CallbackRegister(TCA0_cb_t CallbackHandler);
+
+/**
+ * @ingroup tca0_normal
+ * @brief Registers a callback function for the TCA0 Compare 2 match event.
+ * @param CallbackHandler - Address to the custom callback function
+ * @return None.
+ */ 
+void TCA0_Compare2CallbackRegister(TCA0_cb_t CallbackHandler);
+
 
 #endif /* TCA0_H_INCLUDED */

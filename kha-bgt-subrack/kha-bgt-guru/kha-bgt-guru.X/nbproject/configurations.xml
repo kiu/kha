@@ -13,11 +13,6 @@
         <logicalFolder name="reset" displayName="reset" projectFiles="true">
           <itemPath>mcc_generated_files/reset/rstctrl.h</itemPath>
         </logicalFolder>
-        <logicalFolder name="spi" displayName="spi" projectFiles="true">
-          <itemPath>mcc_generated_files/spi/spi_interface.h</itemPath>
-          <itemPath>mcc_generated_files/spi/spi0.h</itemPath>
-          <itemPath>mcc_generated_files/spi/spi_interrupt_types.h</itemPath>
-        </logicalFolder>
         <logicalFolder name="system" displayName="system" projectFiles="true">
           <logicalFolder name="utils" displayName="utils" projectFiles="true">
             <logicalFolder name="assembler" displayName="assembler" projectFiles="true">
@@ -44,7 +39,7 @@
           <itemPath>mcc_generated_files/timer/rtc.h</itemPath>
           <itemPath>mcc_generated_files/timer/delay.h</itemPath>
           <itemPath>mcc_generated_files/timer/tca0.h</itemPath>
-          <itemPath>mcc_generated_files/timer/timer_interface.h</itemPath>
+          <itemPath>mcc_generated_files/timer/tca0_deprecated.h</itemPath>
         </logicalFolder>
         <logicalFolder name="uart" displayName="uart" projectFiles="true">
           <itemPath>mcc_generated_files/uart/uart_types.h</itemPath>
@@ -75,11 +70,6 @@
         <logicalFolder name="nvm" displayName="nvm" projectFiles="true">
           <logicalFolder name="src" displayName="src" projectFiles="true">
             <itemPath>mcc_generated_files/nvm/src/nvm.c</itemPath>
-          </logicalFolder>
-        </logicalFolder>
-        <logicalFolder name="spi" displayName="spi" projectFiles="true">
-          <logicalFolder name="src" displayName="src" projectFiles="true">
-            <itemPath>mcc_generated_files/spi/src/spi0.c</itemPath>
           </logicalFolder>
         </logicalFolder>
         <logicalFolder name="system" displayName="system" projectFiles="true">
@@ -167,33 +157,6 @@
         <property key="preprocessor-macros-undefined" value=""/>
         <property key="suppress-warnings" value="false"/>
       </AVR-AS-PRE>
-      <AVR-CPP>
-        <property key="additional-warnings" value="true"/>
-        <property key="call-prologues" value="false"/>
-        <property key="default-bitfield-type" value="true"/>
-        <property key="default-char-type" value="true"/>
-        <property key="extra-include-directories" value=""/>
-        <property key="garbage-collect-data" value="true"/>
-        <property key="garbage-collect-functions" value="true"/>
-        <property key="inhibit-all" value="false"/>
-        <property key="make-warnings-into-errors" value="false"/>
-        <property key="no-interrupts" value="false"/>
-        <property key="no-system-directories" value="false"/>
-        <property key="optimization-level" value="-O1"/>
-        <property key="pack-struct" value="true"/>
-        <property key="preprocess-only" value="false"/>
-        <property key="preprocessor-macros" value=""/>
-        <property key="preprocessor-macros-undefined" value=""/>
-        <property key="save-temps" value="false"/>
-        <property key="short-calls" value="false"/>
-        <property key="short-enums" value="true"/>
-        <property key="strict-ansi" value="false"/>
-        <property key="strict-ansi-errors" value="false"/>
-        <property key="support-ansi" value="false"/>
-        <property key="syntax-only" value="false"/>
-        <property key="undefined-identifier" value="false"/>
-        <property key="verbose" value="false"/>
-      </AVR-CPP>
       <AVR-GCC>
         <property key="additional-warnings" value="true"/>
         <property key="call-prologues" value="false"/>
@@ -207,7 +170,7 @@
         <property key="make-warnings-into-errors" value="false"/>
         <property key="no-interrupts" value="false"/>
         <property key="no-system-directories" value="false"/>
-        <property key="optimization-level" value="-Os"/>
+        <property key="optimization-level" value="-O1"/>
         <property key="pack-struct" value="true"/>
         <property key="preprocessor-macros" value=""/>
         <property key="preprocessor-macros-undefined" value=""/>

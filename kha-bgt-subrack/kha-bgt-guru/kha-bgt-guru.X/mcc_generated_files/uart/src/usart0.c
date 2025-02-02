@@ -5,13 +5,13 @@
  * 
  * @ingroup usart0
  * 
- * @brief This is the generated driver implementation file for the USART0 driver using 
+ * @brief This is the generated driver implementation file for the USART0 driver using the  Universal Synchronous and Asynchronous serial Receiver and Transmitter (USART) module. 
  *
- * @version USART0 Driver Version 2.1.0
+ * @version USART0 Driver Version 2.1.1
 */
 
 /*
-© [2024] Microchip Technology Inc. and its subsidiaries.
+© [2025] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -41,8 +41,8 @@
   Section: Macro Declarations
 */
 
-#define USART0_RX_BUFFER_SIZE (512) //buffer size should be 2^n
-#define USART0_RX_BUFFER_MASK (USART0_RX_BUFFER_SIZE - 1)
+#define USART0_RX_BUFFER_SIZE (512U) //buffer size should be 2^n
+#define USART0_RX_BUFFER_MASK (USART0_RX_BUFFER_SIZE - 1U)
 
 
 
@@ -82,19 +82,25 @@ const uart_drv_interface_t UART0 = {
 */
 static volatile uint16_t usart0RxHead = 0;
 static volatile uint16_t usart0RxTail = 0;
-volatile uint16_t usart0RxCount;
+static volatile uint16_t usart0RxCount;
 static volatile uint8_t usart0RxBuffer[USART0_RX_BUFFER_SIZE];
+/**
+ * @misradeviation{@advisory,19.2}
+ * The UART error status necessitates checking the bit field and accessing the status within the group byte therefore the use of a union is essential.
+ */
+  /* cppcheck-suppress misra-c2012-19.2 */
 static volatile usart0_status_t usart0RxStatusBuffer[USART0_RX_BUFFER_SIZE];
+ /* cppcheck-suppress misra-c2012-19.2 */
 static volatile usart0_status_t usart0RxLastError;
 
 /**
   Section: USART0 APIs
 */
-void (*USART0_FramingErrorHandler)(void);
-void (*USART0_OverrunErrorHandler)(void);
-void (*USART0_ParityErrorHandler)(void);
+static void (*USART0_FramingErrorHandler)(void);
+static void (*USART0_OverrunErrorHandler)(void);
+static void (*USART0_ParityErrorHandler)(void);
 void (*USART0_RxInterruptHandler)(void);
-static void (*USART0_RxCompleteInterruptHandler)(void);
+static void (*USART0_RxCompleteInterruptHandler)(void) = NULL;
 
 static void USART0_DefaultFramingErrorCallback(void);
 static void USART0_DefaultOverrunErrorCallback(void);
@@ -113,7 +119,7 @@ void USART0_Initialize(void)
     // Set the USART0 module to the options selected in the user interface.
 
     //BAUD 192; 
-    USART0.BAUD = (uint16_t)USART0_BAUD_RATE(500000);
+    USART0.BAUD = (uint16_t)USART0_BAUD_RATE(500000UL);
 	
     // ABEIE disabled; DREIE disabled; LBME disabled; RS485 ENABLE; RXCIE enabled; RXSIE enabled; TXCIE disabled; 
     USART0.CTRLA = 0x91;
@@ -253,7 +259,7 @@ bool USART0_IsTxDone(void)
 
 size_t USART0_ErrorGet(void)
 {
-    usart0RxLastError.status = usart0RxStatusBuffer[(usart0RxTail + 1) & USART0_RX_BUFFER_MASK].status;
+    usart0RxLastError.status = usart0RxStatusBuffer[usart0RxTail & USART0_RX_BUFFER_MASK].status;
     return usart0RxLastError.status;
 }
 
@@ -263,10 +269,10 @@ uint8_t USART0_Read(void)
     uint16_t tempRxTail;
     
     readValue = usart0RxBuffer[usart0RxTail];
-    tempRxTail = (usart0RxTail + 1) & USART0_RX_BUFFER_MASK; // Buffer size of RX should be in the 2^n  
+    tempRxTail = (usart0RxTail + 1U) & USART0_RX_BUFFER_MASK; // Buffer size of RX should be in the 2^n  
     usart0RxTail = tempRxTail;
     USART0.CTRLA &= ~(USART_RXCIE_bm); 
-    if(usart0RxCount != 0)
+    if(0U != usart0RxCount)
     {
         usart0RxCount--;
     }
@@ -277,7 +283,10 @@ uint8_t USART0_Read(void)
 }
 
 /* Interrupt service routine for RX complete */
+/* cppcheck-suppress misra-c2012-2.7 */
+/* cppcheck-suppress misra-c2012-8.4 */
 ISR(USART0_RXC_vect)
+/* cppcheck-suppress misra-c2012-5.5 */
 {
     USART0_ReceiveISR();
 }
@@ -289,7 +298,7 @@ void USART0_ReceiveISR(void)
     
     usart0RxStatusBuffer[usart0RxHead].status = 0;
 
-    if(USART0.RXDATAH & USART_FERR_bm)
+    if(USART_FERR_bm == (USART0.RXDATAH & USART_FERR_bm))
     {
         usart0RxStatusBuffer[usart0RxHead].ferr = 1;
         if(NULL != USART0_FramingErrorHandler)
@@ -297,7 +306,7 @@ void USART0_ReceiveISR(void)
             USART0_FramingErrorHandler();
         } 
     }
-    if(USART0.RXDATAH & USART_PERR_bm)
+    if(USART_PERR_bm == (USART0.RXDATAH & USART_PERR_bm))
     {
         usart0RxLastError.perr = 1;
         if(NULL != USART0_ParityErrorHandler)
@@ -305,7 +314,7 @@ void USART0_ReceiveISR(void)
             USART0_ParityErrorHandler();
         }  
     }
-    if(USART0.RXDATAH & USART_BUFOVF_bm)
+    if(USART_BUFOVF_bm == (USART0.RXDATAH & USART_BUFOVF_bm))
     {
         usart0RxStatusBuffer[usart0RxHead].oerr = 1;
         if(NULL != USART0_OverrunErrorHandler)
@@ -316,7 +325,7 @@ void USART0_ReceiveISR(void)
     
     regValue = USART0.RXDATAL;
     
-    tempRxHead = (usart0RxHead + 1) & USART0_RX_BUFFER_MASK;// Buffer size of RX should be in the 2^n
+    tempRxHead = (usart0RxHead + 1U) & USART0_RX_BUFFER_MASK;// Buffer size of RX should be in the 2^n
     if (tempRxHead == usart0RxTail) {
 		// ERROR! Receive buffer overflow 
 	} 
@@ -328,11 +337,14 @@ void USART0_ReceiveISR(void)
 
 		usart0RxCount++;
 	}
-    if (USART0_RxCompleteInterruptHandler != NULL)
+    if (NULL != USART0_RxCompleteInterruptHandler)
     {
         (*USART0_RxCompleteInterruptHandler)();
     }
     
+    else {
+        // Do Nothing. Added for MISRA C Compliant.
+    }
 }
 
 void USART0_Write(uint8_t txData)

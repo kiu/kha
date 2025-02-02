@@ -9,10 +9,10 @@
  *
  * @version Driver Version 1.0.2
  *
- * @version Package Version 4.2.13
+ * @version Package Version 4.2.14
 */
 /*
-© [2024] Microchip Technology Inc. and its subsidiaries.
+© [2025] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -40,10 +40,9 @@ void SYSTEM_Initialize(void)
 {
     CLOCK_Initialize();
     PIN_MANAGER_Initialize();
+    TCA0_Initialize();
     NVM_Initialize();
     RTC_Initialize();
-    SPI0_Host_Initialize();
-    TCA0_Initialize();
     USART0_Initialize();
     WDT_Initialize();
     CPUINT_Initialize();
