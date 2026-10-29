@@ -354,12 +354,26 @@ bool tx_all(uint8_t buf[]) {
 }
 
 bool tx_send_hex(uint8_t buf[], uint8_t buf_len) {
+    if (buf_len == 0) {
+        return false;
+    }
+
     if (buf_len % 2 != 0) {
         if (print_human) {
             printf("GW 00 Uneven hex characters: %02X\n", buf_len);
         }
         if (print_proto) {
             printf("GW 10 %02X\n", buf_len);
+        }
+        return false;
+    }
+
+    if (buf_len < 4) {
+        if (print_human) {
+            printf("GW 00 Message too short, expected at least <to><cmd>: %02X\n", buf_len);
+        }
+        if (print_proto) {
+            printf("GW 13 %02X\n", buf_len);
         }
         return false;
     }
