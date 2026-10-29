@@ -906,12 +906,13 @@ void kha_stack_tick() {
 }
 
 void kha_stack_rx_detect() {
+//    TCB0_Write(0x0000);
     kha_stack_tx_block_index = 0;
 }
 
 bool kha_stack_tx_add(uint8_t buf[]) {
     uint16_t i = 0;
-    while (kha_stack_tx_queue[i] != 0xFF && i < KHA_STACK_QUEUE_TX_LEN) {
+    while (i < KHA_STACK_QUEUE_TX_LEN && kha_stack_tx_queue[i] != 0xFF) {
         i = i + kha_stack_tx_queue[i];
     }
 
@@ -977,13 +978,13 @@ bool kha_stack_process_tx() {
 
     if (kha_stack_tx_cbh_msg_all != NULL) {
         if ((*kha_stack_tx_cbh_msg_all)(buf)) {
-            kha_stack_tx_remove(len);
             return true;
         }
     }
 
     if (!(buf[3] >= KHA_CMD_MANAGEMENT_BOOT_FW_WRITE && buf[3] <= KHA_CMD_MANAGEMENT_BOOT_WIPE_FLASH)) {
         while (kha_stack_tx_block_index != (2 * kha_stack_dev_addr)) {
+        //while (TCB0_Read() != (2 * kha_stack_dev_addr)) {
             asm("wdr");
         }
     }
