@@ -47,3 +47,10 @@ fp-info-cache
 **/notreleased/
 
 *-backups/
+
+# kha_serial_log.py output
+tools/kha-scripts/logs/
+
+# Unfinished projects, kept local
+kha-nodes/todo/
+kha-nodes/kha-remote/kha-remote-node.X/
