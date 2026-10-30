@@ -922,6 +922,7 @@ void kha_stack_tx_slot_wait() {
         if (index >= slot) {
             return;
         }
+        kha_stack_process_rx(); // keep the UART buffer from overflowing while others talk
         asm("wdr");
     }
 }
@@ -977,7 +978,7 @@ bool kha_stack_tx_create(uint8_t to, uint8_t cmd, uint8_t optlen, uint8_t opt[])
 }
 
 void kha_stack_tx_remove(uint8_t len) {
-    memcpy(kha_stack_tx_queue, kha_stack_tx_queue + len, KHA_STACK_QUEUE_TX_LEN - len);
+    memmove(kha_stack_tx_queue, kha_stack_tx_queue + len, KHA_STACK_QUEUE_TX_LEN - len);
     memset(kha_stack_tx_queue + KHA_STACK_QUEUE_TX_LEN - len, 0xFF, len);
 }
 
@@ -1032,7 +1033,10 @@ bool kha_stack_process_tx() {
         }
     }
 
-    kha_stack_tx_block_index = 0;
+    uint8_t sreg = SREG;
+    cli();
+    kha_stack_tx_block_index = 0; // 16 bit, TCB2 ISR increments it
+    SREG = sreg;
     kha_stack_tx_sent = true;
 
     return true;
@@ -1049,7 +1053,7 @@ void kha_stack_process_rx_tx() {
 // INIT ------------------------------------------------------------------------
 
 void kha_stack_init_register(uint8_t register_len, uint8_t preset_len) {
-    uint8_t register_combined_len = 0;
+    uint16_t register_combined_len = 0;
 
     if (preset_len > KHA_STACK_EEPROM_REGISTER_PRESET_WIDTH_MAX) {
         preset_len = 0;
@@ -1059,7 +1063,7 @@ void kha_stack_init_register(uint8_t register_len, uint8_t preset_len) {
         kha_stack_register_preset_bytes = preset_len;
     }
 
-    register_combined_len = register_len + ((preset_len + 1) * KHA_PRESET_MAX);
+    register_combined_len = register_len + ((preset_len + 1) * (KHA_PRESET_MAX + 1)); // presets 0..KHA_PRESET_MAX
 
     if (register_combined_len > KHA_STACK_EEPROM_REGISTER_LEN) {
         kha_stack_register_len = 0;
@@ -1089,7 +1093,7 @@ void kha_stack_init_userrow() {
     // BOARD TYPE --------------------------------------------------------------
 
     tmp = kha_stack_userrow[KHA_STACK_USERROW_BOARD_TYPE_OFFSET];
-    if (tmp == KHA_BOARD_TYPE_NONE || tmp == KHA_BOARD_TYPE_ALL || (tmp < KHA_BOARD_TYPE_MIN && tmp > KHA_BOARD_TYPE_MAX)) {
+    if (tmp == KHA_BOARD_TYPE_NONE || tmp == KHA_BOARD_TYPE_ALL || tmp < KHA_BOARD_TYPE_MIN || tmp > KHA_BOARD_TYPE_MAX) {
         kha_stack_board_type = KHA_BOARD_TYPE_FALLBACK;
         kha_stack_log(KHA_STACK_LOG_IDENT_BOARD_TYPE_ERROR, tmp, 0x00, 0x00);
     } else {
@@ -1111,7 +1115,7 @@ void kha_stack_init_userrow() {
     // ADDR DEVICE -------------------------------------------------------------
 
     tmp = kha_stack_userrow[KHA_STACK_USERROW_ADDR_DEVICE_OFFSET];
-    if (tmp == KHA_ADDR_NONE || tmp == KHA_ADDR_BROADCAST || (tmp >= KHA_ADDR_BROADCAST_GROUP_MIN && tmp <= KHA_ADDR_BROADCAST_GROUP_MAX)) {
+    if (tmp == KHA_ADDR_NONE || tmp == KHA_ADDR_BROADCAST || tmp == KHA_ADDR_BROADCAST_GROUP_FALLBACK || (tmp >= KHA_ADDR_BROADCAST_GROUP_MIN && tmp <= KHA_ADDR_BROADCAST_GROUP_MAX)) {
         kha_stack_dev_addr = KHA_ADDR_UNICAST_FALLBACK;
         kha_stack_log(KHA_STACK_LOG_IDENT_DEVICE_ADDRESS_ERROR, tmp, 0x00, 0x00);
     } else {
