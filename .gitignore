@@ -54,3 +54,7 @@ tools/kha-scripts/logs/
 # Unfinished projects, kept local
 kha-nodes/todo/
 kha-nodes/kha-remote/kha-remote-node.X/
+
+# Local findings and todos
+/TODO.md
+/CLAUDE.local.md
