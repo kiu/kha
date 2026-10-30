@@ -220,7 +220,7 @@ def go():
     booted = {a: n for a, n in bus.messages(CMD_UP, since).items() if not n.app}
   for a in nodes:
     if a not in booted:
-      print("  {:02X}: no bootloader UP, didn't reboot?".format(a))
+      print("  {:02X}: no bootloader UP (lost, or didn't reboot)".format(a))
 
   print("TX: FC KHA_CMD_MANAGEMENT_BOOT_WIPE_FLASH")
   bus.send("{}FC{}{}".format(device_addr, board_type, board_rev))
@@ -279,9 +279,12 @@ def go():
         break
       node = bus.ident("%0.2X" % a, 1.5).get(a)
       source = "ident"
-    good = a in booted and node is not None and node.app and node.app_crc == crc
+    # without a bootloader UP (it can collide when a group reboots together) only a CRC change proves the
+    # flash; with the same firmware as before it could also mean the node never rebooted
+    changed = a in found and found[a].app_crc != crc
+    good = (a in booted or changed) and node is not None and node.app and node.app_crc == crc
     ok = ok and good
-    note = "" if a in booted else ", no bootloader UP"
+    note = "" if a in booted else ", bootloader UP lost" if changed else ", no bootloader UP"
     print("  {} {} ({}{})".format(show(a, node), "OK" if good else "FAILED", source, note))
   if not ok:
     print("\nFAILED: flash again, with --slow if it happens again")
