@@ -83,6 +83,7 @@ static bool(*kha_stack_rx_cbh_msg_unprocessed)(uint8_t buf[]);
 static uint8_t kha_stack_tx_queue[KHA_STACK_QUEUE_TX_LEN];
 static bool kha_stack_tx_enable = true;
 static volatile uint16_t kha_stack_tx_block_index = 0;
+static bool kha_stack_tx_sent = false;
 static bool(*kha_stack_tx_cbh_msg_all)(uint8_t buf[]);
 
 // LOG -------------------------------------------------------------------------
@@ -898,16 +899,39 @@ void kha_stack_tx_cbr_msg_all(bool(* cb)(uint8_t buf[])) {
     kha_stack_tx_cbh_msg_all = cb;
 }
 
-void kha_stack_tick() {
-    kha_stack_tx_block_index++;
-    if (kha_stack_tx_block_index >= (KHA_ADDR_BROADCAST_GROUP_FALLBACK * 2)) {
-        kha_stack_tx_block_index = 0;
+ISR(TCB2_INT_vect) {
+    TCB2.INTFLAGS = TCB_CAPT_bm;
+    if (kha_stack_tx_block_index != 0xFFFF) {
+        kha_stack_tx_block_index++;
     }
 }
 
 void kha_stack_rx_detect() {
-//    TCB0_Write(0x0000);
+    TCB2.CNT = 0;
     kha_stack_tx_block_index = 0;
+    kha_stack_tx_sent = false; // someone else had a turn, back to the normal slot
+}
+
+void kha_stack_tx_slot_wait() {
+    uint16_t slot = kha_stack_tx_sent ? KHA_STACK_SLOT_MAX : KHA_STACK_SLOT_BASE + kha_stack_dev_addr;
+    while (true) {
+        uint8_t sreg = SREG;
+        cli();
+        uint16_t index = kha_stack_tx_block_index;
+        SREG = sreg;
+        if (index >= slot) {
+            return;
+        }
+        asm("wdr");
+    }
+}
+
+void kha_stack_tx_slot_init() {
+    TCB2.CCMP = (F_CPU / 2 / 1000000UL) * KHA_STACK_SLOT_TICK_US - 1;
+    TCB2.CNT = 0;
+    TCB2.CTRLB = TCB_CNTMODE_INT_gc;
+    TCB2.INTCTRL = TCB_CAPT_bm;
+    TCB2.CTRLA = TCB_CLKSEL_DIV2_gc | TCB_ENABLE_bm;
 }
 
 bool kha_stack_tx_add(uint8_t buf[]) {
@@ -983,10 +1007,7 @@ bool kha_stack_process_tx() {
     }
 
     if (!(buf[3] >= KHA_CMD_MANAGEMENT_BOOT_FW_WRITE && buf[3] <= KHA_CMD_MANAGEMENT_BOOT_WIPE_FLASH)) {
-        while (kha_stack_tx_block_index != (2 * kha_stack_dev_addr)) {
-        //while (TCB0_Read() != (2 * kha_stack_dev_addr)) {
-            asm("wdr");
-        }
+        kha_stack_tx_slot_wait();
     }
 
     // TODO Should we rx process all tx messages?
@@ -1012,6 +1033,7 @@ bool kha_stack_process_tx() {
     }
 
     kha_stack_tx_block_index = 0;
+    kha_stack_tx_sent = true;
 
     return true;
 }
@@ -1142,7 +1164,7 @@ void kha_stack_init(bool bootloader, uint8_t register_size, uint8_t preset_size,
     kha_stack_init_register(register_size, preset_size);
     kha_stack_init_version_and_crc(version);
 
-    RTC_SetPITIsrCallback(kha_stack_tick);
+    kha_stack_tx_slot_init();
     IO_PA1_SetInterruptHandler(kha_stack_rx_detect);
     IO_PA1_EnableInterruptForFallingEdge();
 

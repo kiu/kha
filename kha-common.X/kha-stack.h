@@ -10,6 +10,12 @@ extern "C" {
 
 #define KHA_STACK_QUEUE_TX_LEN (KHA_MSG_LEN_MAX + 1) * 10
 
+// TX slots: TCB2 is reserved by the stack and ticks every 100us, the bus counts as free after
+// SLOT_BASE + device address ticks without a falling edge on RX
+#define KHA_STACK_SLOT_TICK_US 100
+#define KHA_STACK_SLOT_BASE 10 // 1ms, longer than any pause inside a frame
+#define KHA_STACK_SLOT_MAX (KHA_STACK_SLOT_BASE + KHA_ADDR_BROADCAST_GROUP_FALLBACK) // after sending, wait this once
+
 #define KHA_STACK_EEPROM_ADDR_START 0x1400
 #define KHA_STACK_EEPROM_REGISTER_LEN (0xFF - 17) // 4:boot_version 4:boot_cec 4:app_version 4:app_crc 1:OK
 #define KHA_STACK_EEPROM_REGISTER_PRESET_WIDTH_MAX 8
