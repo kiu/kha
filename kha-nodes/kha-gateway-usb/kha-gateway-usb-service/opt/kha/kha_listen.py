@@ -13,12 +13,15 @@ import socket
 PORT = '/dev/ttyUSB0'
 UDP_IP = "0.0.0.0"
 UDP_PORT = 5005
+REPLY_TIMEOUT = 60 # seconds the last UDP sender gets the serial lines back (kha_fw.py ident check)
 EXEC_SHUTDOWN_TIMER="ssh kiu@machariel.qnet c:\\\Windows\\\PSTools\\\psshutdown64.exe -h -c -t 30"
 EXEC_ABORT="ssh kiu@machariel.qnet c:\\\Windows\\\PSTools\\\psshutdown64.exe -a"
 
 ser = 0
 sock = 0
 last_shutdown = datetime.now() - relativedelta(years=10)
+reply_addr = None
+reply_until = datetime.now()
 
 def run_cmd(cmd):
   subprocess.Popen(cmd, shell=True, stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -57,11 +60,21 @@ def init_serial():
     print("Exception init_serial()")
     time.sleep(1)
 
+def reply(line):
+  if reply_addr is None or datetime.now() > reply_until or not line:
+    return
+  try:
+    sock.sendto(line.encode("utf-8"), reply_addr)
+  except:
+    pass
+
 def run_serial():
   global ser
   while True:
     try:
-      kha_decode(ser.readline().decode("utf-8"))
+      line = ser.readline().decode("utf-8")
+      reply(line)
+      kha_decode(line)
     except:
       print("Exception run_serial()")
       time.sleep(1)
@@ -79,6 +92,8 @@ def init_network():
 def run_network():
   global ser
   global sock
+  global reply_addr
+  global reply_until
   while True:
     try:
       data, addr = sock.recvfrom(1024)
@@ -87,6 +102,9 @@ def run_network():
       time.sleep(1)
       init_network()
       continue
+
+    reply_addr = addr
+    reply_until = datetime.now() + timedelta(seconds = REPLY_TIMEOUT)
 
     try:
       ser.write(data)

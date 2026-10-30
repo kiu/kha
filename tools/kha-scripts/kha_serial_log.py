@@ -12,6 +12,7 @@ Lines to send to the gateway (hex: <to><cmd><opt...>, e.g. "FFE5") come from:
   - lines appended to tools/kha-scripts/logs/commands.txt
   - UDP datagrams on 127.0.0.1:5005, like kha_listen.py, so kha_fw.py works locally:
       KHA_GATEWAY=127.0.0.1 python tools/kha-scripts/kha_fw.py ...
+    the last UDP sender gets the gateway's lines back for 60 s (kha_fw.py ident check)
 
 Survives gateway resets and unplugging: it reconnects as soon as the port comes back.
 """
@@ -31,6 +32,7 @@ VID, PID = 0x1A86, 0x7523  # CH340 on kha-gateway-usb
 BAUD = 115200
 UDP_IP = "127.0.0.1"
 UDP_PORT = 5005
+REPLY_TIMEOUT = 60  # seconds the last UDP sender gets the gateway's lines back
 HERE = os.path.dirname(os.path.abspath(__file__))
 LOG_DIR = os.path.join(HERE, "logs")
 
@@ -53,6 +55,9 @@ class Bridge:
     self.ser = None
     self.commands = queue.Queue()
     self.lock = threading.Lock()
+    self.udp = None
+    self.reply_addr = None
+    self.reply_until = 0
 
   def emit(self, text):
     line = "{} {}".format(stamp(), text)
@@ -83,12 +88,21 @@ class Bridge:
       time.sleep(0.2)
 
   def watch_udp(self):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sock.bind((UDP_IP, UDP_PORT))
+    self.udp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    self.udp.bind((UDP_IP, UDP_PORT))
     while True:
-      data, _ = sock.recvfrom(1024)
+      data, addr = self.udp.recvfrom(1024)
+      self.reply_addr, self.reply_until = addr, time.time() + REPLY_TIMEOUT
       for line in data.decode("ascii", "replace").splitlines() or [""]:
         self.commands.put(line.strip())
+
+  def reply(self, text):
+    if self.reply_addr is None or time.time() > self.reply_until:
+      return
+    try:
+      self.udp.sendto((text + "\n").encode("utf-8"), self.reply_addr)
+    except OSError:
+      pass
 
   def send(self, line):
     if self.ser is None:
@@ -142,6 +156,7 @@ class Bridge:
             text = raw.rstrip(b"\r").decode("utf-8", "replace")
             if text:
               self.emit(text)
+              self.reply(text)
       except (serial.SerialException, OSError):
         self.emit("--- disconnected from {}".format(port))
       finally:
