@@ -202,6 +202,14 @@ uint8_t kha_stack_crc8(uint8_t* data, size_t len) {
 #endif
 }
 
+void kha_stack_eeprom_update(uint16_t addr, uint8_t val) {
+    while (EEPROM_IsBusy()) {
+    }
+    if (EEPROM_Read(addr) != val) { // spare the EEPROM, most writes (boot version / CRCs, store) don't change anything
+        EEPROM_Write(addr, val);
+    }
+}
+
 uint32_t kha_stack_crc32(uint32_t crc, uint8_t byte) {
     // https://www.mikrocontroller.net/topic/225796
     int8_t i;
@@ -219,9 +227,7 @@ void kha_stack_crc32_flash_and_store(uint16_t from, uint16_t to, uint8_t offset)
     }
 
     for (uint8_t i = 0; i < 4; i++) {
-        while (EEPROM_IsBusy()) {
-        }
-        EEPROM_Write(KHA_STACK_EEPROM_ADDR_START + offset + i, (reg >> ((3 - i) * 8) & 0xFF));
+        kha_stack_eeprom_update(KHA_STACK_EEPROM_ADDR_START + offset + i, (reg >> ((3 - i) * 8) & 0xFF));
     }
 }
 
@@ -361,14 +367,9 @@ void kha_stack_register_wipe() {
 
 void kha_stack_register_store() {
     for (uint8_t i = 0; i < kha_stack_register_len; i++) {
-        while (EEPROM_IsBusy()) {
-        }
-        EEPROM_Write(KHA_STACK_EEPROM_ADDR_START + i, kha_stack_register_buf[i]);
+        kha_stack_eeprom_update(KHA_STACK_EEPROM_ADDR_START + i, kha_stack_register_buf[i]);
     }
-    while (EEPROM_IsBusy()) {
-    }
-
-    EEPROM_Write(KHA_STACK_EEPROM_ADDR_START + KHA_STACK_EEPROM_MAGIC_OFFSET, KHA_STACK_EEPROM_MAGIC_OK);
+    kha_stack_eeprom_update(KHA_STACK_EEPROM_ADDR_START + KHA_STACK_EEPROM_MAGIC_OFFSET, KHA_STACK_EEPROM_MAGIC_OK);
     kha_stack_log(KHA_STACK_LOG_REGISTER_STORE, kha_stack_register_len, 0x00, 0x00);
 }
 
@@ -1139,9 +1140,7 @@ void kha_stack_init_version_and_crc(uint32_t version) {
     uint8_t offset = kha_stack_bootloader ? KHA_STACK_EEPROM_VERSION_BOOT_OFFSET : KHA_STACK_EEPROM_VERSION_APP_OFFSET;
 
     for (uint8_t i = 0; i < 4; i++) {
-        while (EEPROM_IsBusy()) {
-        }
-        EEPROM_Write(KHA_STACK_EEPROM_ADDR_START + offset + i, (version >> ((3 - i) * 8) & 0xFF));
+        kha_stack_eeprom_update(KHA_STACK_EEPROM_ADDR_START + offset + i, (version >> ((3 - i) * 8) & 0xFF));
     }
 
     kha_stack_crc32_flash_and_store(KHA_STACK_FLASH_BOOT_START, KHA_STACK_FLASH_BOOT_END, KHA_STACK_EEPROM_CRC_BOOT_OFFSET);
