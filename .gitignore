@@ -55,6 +55,6 @@ tools/kha-scripts/logs/
 kha-nodes/todo/
 kha-nodes/kha-remote/kha-remote-node.X/
 
-# Local findings and todos
-/TODO.md
-/CLAUDE.local.md
+# Local findings, todos and inventory
+*.local.md
+/inventory/
