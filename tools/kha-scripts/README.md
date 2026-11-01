@@ -33,3 +33,23 @@ node into `inventory/` and an overview into `INVENTORY.local.md` (both gitignore
 restores comes from the REGISTER SETUP sheet in `kha-protocol.ods` (wipe + setup commands per node); the
 RAM values read over the bus are kept as `registers_ram` and differences are listed (switch states like
 power buttons that are on right now). Location and UPDI data already in a JSON file are kept.
+
+## kha_updi.py
+
+`kha_updi.py [--firmware <dir>] [--force] [--probe] [--no-bus] [--expect <address>]`: flashes bootloader +
+app onto one node via UPDI (Atmel-ICE, `pip install pymcuprog intelhex`) and restores its registers from
+`inventory/<address>.json`. Use it for a new chip, a node without a working bootloader, or a node that
+can't be flashed over the bus.
+
+- Probe session first: lock state and USERROW if readable. The node reboots after every UPDI session, so
+  its UP on the bus identifies it even when it's locked (`--probe` stops here).
+- Chip erase (also unlocks a locked chip), then USERROW (type, rev, address, group) and the chip serial
+  decide which app it gets. It only asks when something doesn't fit: unknown node, mismatch between
+  probe and USERROW, inventory type differs, already flashed.
+- Writes the merged flash image (bootloader + app, flash addresses only), the fuses that differ from the
+  bootloader's, and the EEPROM image (registers, 0x42 marker at 0xFF), each verified.
+- Lets the node boot and reads back the boot / app version and CRC it wrote into its EEPROM; the app CRC
+  must match the image.
+- Records serial and date in the node's JSON file and in `INVENTORY.local.md`.
+- The hex files come from the `dist/` builds in the repo (board type -> project in `APPS`), or with
+  `--firmware <dir>` from a directory with files of the same names (e.g. a saved set for a rollback).
