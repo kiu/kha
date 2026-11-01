@@ -31,8 +31,12 @@ enum STRIP_MODE {
 };
 
 enum STRIP_COMM {
-    STRIP_COMM_APA102, STRIP_COMM_WS2814
+    STRIP_COMM_APA102, STRIP_COMM_WS2814, STRIP_COMM_APA102_SWAPPED // swapped: bit-banged, clock on LED_DAT, data on LED_CLK
 } strip_cfg_comm = STRIP_COMM_APA102;
+
+static inline bool strip_is_apa102() {
+    return strip_cfg_comm == STRIP_COMM_APA102 || strip_cfg_comm == STRIP_COMM_APA102_SWAPPED;
+}
 
 static uint8_t strip_cfg_intensity_max = HSI_I_MAX;
 
@@ -196,6 +200,22 @@ void led_send_byte(uint8_t v) {
     led_send_bit(v & (1 << 0));
 }
 
+// APA102 takes a bit on every rising clock edge, no timing limits, so interrupts may stretch it
+void led_send_byte_apa102_swapped(uint8_t v) {
+    for (uint8_t b = 0x80; b; b >>= 1) {
+        if (v & b) {
+            LED_CLK_SetHigh(); // data
+        } else {
+            LED_CLK_SetLow();
+        }
+        LED_DAT_SetHigh(); // clock
+        asm("nop");
+        asm("nop");
+        asm("nop");
+        LED_DAT_SetLow();
+    }
+}
+
 void led_send_reset() {
     LED_DAT_SetLow();
     DELAY_microseconds(300);
@@ -207,6 +227,11 @@ void led_send(uint16_t len) {
             while (!SPI0_IsTxReady()) {
             }
             SPI0_ByteWrite(led_buffer[i]);
+        }
+    }
+    if (strip_cfg_comm == STRIP_COMM_APA102_SWAPPED) {
+        for (uint16_t i = 0; i < len; i++) {
+            led_send_byte_apa102_swapped(led_buffer[i]);
         }
     }
     if (strip_cfg_comm == STRIP_COMM_WS2814) {
@@ -255,7 +280,7 @@ void update_led() {
     uint8_t apa102_post = (strip_cfg_leds / 2 / 8) + 1;
 
     if (!anim_e) {
-        if (strip_cfg_comm == STRIP_COMM_APA102) {
+        if (strip_is_apa102()) {
             for (i = 0; i < 4; i++) {
                 led_buffer[i] = 0x00;
             }
@@ -297,7 +322,7 @@ void update_led() {
         float step = (float) anim_w / (float) strip_cfg_leds;
         float hf = hsi[0];
 
-        if (strip_cfg_comm == STRIP_COMM_APA102) {
+        if (strip_is_apa102()) {
             for (i = 0; i < 4; i++) {
                 led_buffer[i] = 0x00;
             }
@@ -434,15 +459,15 @@ uint8_t register_change(uint8_t addr, uint8_t value) {
             hsi_changed = true;
         }
         if (addr == STRIP_ADDR_CFG_COMM) {
-            if (value > STRIP_COMM_WS2814) {
-                value = STRIP_COMM_WS2814;
+            if (value > STRIP_COMM_APA102_SWAPPED) {
+                value = STRIP_COMM_APA102_SWAPPED;
             }
             strip_cfg_comm = value;
             hsi_changed = true;
             if (value == STRIP_COMM_APA102) {
-                SPI0_Open(0x00);
+                SPI0_Open(0x01); // config 1: SPI mode 0 (APA102 samples on the rising edge), clock /32
             }
-            if (value == STRIP_COMM_WS2814) {
+            if (value == STRIP_COMM_WS2814 || value == STRIP_COMM_APA102_SWAPPED) {
                 SPI0_Close();
             }
         }
