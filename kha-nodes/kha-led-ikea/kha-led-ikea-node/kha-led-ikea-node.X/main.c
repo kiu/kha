@@ -62,7 +62,7 @@ void send_rx4(uint8_t addr, uint8_t cmd, uint8_t optlen, uint8_t* opt) {
     tx[1] = addr;
     tx[2] = cmd;
     memcpy(tx + 3, opt, optlen);
-    tx[3 + optlen] = kha_stack_crc8(tx, txlen - 2);
+    tx[3 + optlen] = kha_stack_crc8(tx, txlen - 2); // without the last option byte, the lighting boards check it the same way
 
     while (!USART1_IsTxDone()) {
     }

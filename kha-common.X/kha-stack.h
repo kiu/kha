@@ -14,6 +14,7 @@ extern "C" {
 // SLOT_BASE + device address ticks without a falling edge on RX
 #define KHA_STACK_SLOT_TICK_US 100
 #define KHA_STACK_SLOT_BASE 10 // 1ms, longer than any pause inside a frame
+#define KHA_STACK_UART_RX_BUFFER_SIZE 512 // must match USART0_RX_BUFFER_SIZE in the MCC driver
 #define KHA_STACK_SLOT_MAX (KHA_STACK_SLOT_BASE + KHA_ADDR_BROADCAST_GROUP_FALLBACK) // after sending, wait this once
 
 #define KHA_STACK_EEPROM_ADDR_START 0x1400
@@ -37,9 +38,9 @@ extern "C" {
 #define KHA_STACK_USERROW_DATA_OFFSET 4
 
 #define KHA_STACK_FLASH_BOOT_START 0x0000
-#define KHA_STACK_FLASH_BOOT_END 0x4000
+#define KHA_STACK_FLASH_BOOT_END 0x4000 // exclusive
 #define KHA_STACK_FLASH_APP_START 0x4000
-#define KHA_STACK_FLASH_APP_END 0xFFFF
+#define KHA_STACK_FLASH_APP_END 0x10000UL // exclusive, up to and including 0xFFFF
 
 #define KHA_STACK_PRESET_PC 0x05
 #define KHA_STACK_PRESET_TINKER 0x04

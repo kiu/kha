@@ -58,6 +58,20 @@ extern "C" {
 #define KHA_CMD_DEVICE_STATS_CLEAR 0xE7    
 #define KHA_CMD_DEVICE_STATS_RESPONSE 0xE6
 #define KHA_CMD_DEVICE_STATS_REQUEST 0xE5
+
+// stats response payload, one counter per byte (stops at FF), RX errors from the UART up to the frame
+#define KHA_STATS_RX 0 // frames received OK
+#define KHA_STATS_RX_ERROR_FRAMING 1 // UART: wrong stop bit (noise, collision)
+#define KHA_STATS_RX_ERROR_OVERRUN 2 // UART: hardware receive buffer overrun, byte lost (interrupt too late)
+#define KHA_STATS_RX_ERROR_BUFFER_FULL 3 // RX buffer full, byte dropped (main loop too slow)
+#define KHA_STATS_RX_ERROR_START_UNESCAPED 4
+#define KHA_STATS_RX_ERROR_START_MISSING 5
+#define KHA_STATS_RX_ERROR_LEN 6
+#define KHA_STATS_RX_ERROR_CRC 7
+#define KHA_STATS_TX 8
+#define KHA_STATS_TX_ERROR_LEN 9
+#define KHA_STATS_TX_ERROR_FULL 10
+#define KHA_STATS_LEN 11
 #define KHA_CMD_DEVICE_PONG 0xE4
 #define KHA_CMD_DEVICE_PING 0xE3
 #define KHA_CMD_DEVICE_UP 0xE2

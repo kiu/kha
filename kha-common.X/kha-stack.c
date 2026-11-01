@@ -14,6 +14,9 @@ static bool kha_stack_bootloader = false;
 
 typedef struct {
     uint8_t rx;
+    uint8_t rx_error_framing;
+    uint8_t rx_error_overrun;
+    uint8_t rx_error_buffer_full;
     uint8_t rx_error_start_unescaped;
     uint8_t rx_error_start_missing;
     uint8_t rx_error_len;
@@ -23,7 +26,7 @@ typedef struct {
     uint8_t tx_error_full;
 } kha_stack_stats_t;
 
-static kha_stack_stats_t kha_stack_stats;
+static volatile kha_stack_stats_t kha_stack_stats; // the UART counters are incremented in its interrupt
 
 // ----
 
@@ -142,6 +145,9 @@ void kha_stack_ui_disable() {
 
 void kha_stack_stats_clear() {
     kha_stack_stats.rx = 0;
+    kha_stack_stats.rx_error_framing = 0;
+    kha_stack_stats.rx_error_overrun = 0;
+    kha_stack_stats.rx_error_buffer_full = 0;
     kha_stack_stats.rx_error_start_unescaped = 0;
     kha_stack_stats.rx_error_start_missing = 0;
     kha_stack_stats.rx_error_len = 0;
@@ -220,9 +226,9 @@ uint32_t kha_stack_crc32(uint32_t crc, uint8_t byte) {
     return crc;
 }
 
-void kha_stack_crc32_flash_and_store(uint16_t from, uint16_t to, uint8_t offset) {
+void kha_stack_crc32_flash_and_store(uint32_t from, uint32_t to, uint8_t offset) {
     uint32_t reg = 0xffffffff;
-    for (uint16_t i = from; i < to; i++) {
+    for (uint32_t i = from; i < to; i++) { // 32 bit, the app range ends at 0x10000
         reg = kha_stack_crc32(reg, (uint8_t) FLASH_Read(i));
     }
 
@@ -561,16 +567,19 @@ bool kha_stack_process_cmd(uint8_t msg[KHA_MSG_LEN_MAX]) {
     }
 
     if (cmd == KHA_CMD_DEVICE_STATS_REQUEST) {
-        uint8_t buf[8];
-        buf[0] = kha_stack_stats.rx;
-        buf[1] = kha_stack_stats.rx_error_start_unescaped;
-        buf[2] = kha_stack_stats.rx_error_start_missing;
-        buf[3] = kha_stack_stats.rx_error_len;
-        buf[4] = kha_stack_stats.rx_error_crc;
-        buf[5] = kha_stack_stats.tx;
-        buf[6] = kha_stack_stats.tx_error_len;
-        buf[7] = kha_stack_stats.tx_error_full;
-        kha_stack_tx_create(from, KHA_CMD_DEVICE_STATS_RESPONSE, 8, buf);
+        uint8_t buf[KHA_STATS_LEN];
+        buf[KHA_STATS_RX] = kha_stack_stats.rx;
+        buf[KHA_STATS_RX_ERROR_FRAMING] = kha_stack_stats.rx_error_framing;
+        buf[KHA_STATS_RX_ERROR_OVERRUN] = kha_stack_stats.rx_error_overrun;
+        buf[KHA_STATS_RX_ERROR_BUFFER_FULL] = kha_stack_stats.rx_error_buffer_full;
+        buf[KHA_STATS_RX_ERROR_START_UNESCAPED] = kha_stack_stats.rx_error_start_unescaped;
+        buf[KHA_STATS_RX_ERROR_START_MISSING] = kha_stack_stats.rx_error_start_missing;
+        buf[KHA_STATS_RX_ERROR_LEN] = kha_stack_stats.rx_error_len;
+        buf[KHA_STATS_RX_ERROR_CRC] = kha_stack_stats.rx_error_crc;
+        buf[KHA_STATS_TX] = kha_stack_stats.tx;
+        buf[KHA_STATS_TX_ERROR_LEN] = kha_stack_stats.tx_error_len;
+        buf[KHA_STATS_TX_ERROR_FULL] = kha_stack_stats.tx_error_full;
+        kha_stack_tx_create(from, KHA_CMD_DEVICE_STATS_RESPONSE, KHA_STATS_LEN, buf);
         return true;
     }
 
@@ -807,6 +816,57 @@ void kha_process_rx() {
     }
 }
 
+// The MCC driver records UART errors per byte but nobody reads them, and drops bytes silently when its RX
+// buffer is full. The callbacks count both; the fill level is mirrored here because the driver's own
+// count isn't public in every driver version.
+static volatile uint16_t kha_stack_uart_rx_fill = 0;
+
+void kha_stack_uart_framing_error() {
+    if (kha_stack_stats.rx_error_framing != 0xFF) {
+        kha_stack_stats.rx_error_framing++;
+    }
+}
+
+void kha_stack_uart_overrun_error() {
+    if (kha_stack_stats.rx_error_overrun != 0xFF) {
+        kha_stack_stats.rx_error_overrun++;
+    }
+}
+
+void kha_stack_uart_rx_complete() { // interrupt, after every received byte, stored or dropped
+    if (kha_stack_uart_rx_fill >= KHA_STACK_UART_RX_BUFFER_SIZE - 1) { // the driver keeps one slot free
+        if (kha_stack_stats.rx_error_buffer_full != 0xFF) {
+            kha_stack_stats.rx_error_buffer_full++;
+        }
+    } else {
+        kha_stack_uart_rx_fill++;
+    }
+}
+
+uint8_t kha_stack_uart_read() {
+    uint8_t in = USART0_Read();
+    uint8_t sreg = SREG;
+    cli();
+    if (kha_stack_uart_rx_fill > 0) {
+        kha_stack_uart_rx_fill--;
+    }
+    SREG = sreg;
+    return in;
+}
+
+void kha_stack_uart_init() {
+    uint8_t sreg = SREG;
+    cli();
+    while (USART0_IsRxReady()) { // whatever arrived during init is stale, and the fill level starts at 0
+        USART0_Read();
+    }
+    kha_stack_uart_rx_fill = 0;
+    USART0_FramingErrorCallbackRegister(kha_stack_uart_framing_error);
+    USART0_OverrunErrorCallbackRegister(kha_stack_uart_overrun_error);
+    USART0_RxCompleteCallbackRegister(kha_stack_uart_rx_complete);
+    SREG = sreg;
+}
+
 void kha_stack_process_rx() {
 
     // Raw:      0x42 0x23 <-----------     data     ------------>
@@ -814,7 +874,7 @@ void kha_stack_process_rx() {
     // Buffer:             <len> <from> <to> <cmd> <payload> <crc>
 
     while (USART0_IsRxReady()) {
-        uint8_t in = USART0_Read();
+        uint8_t in = kha_stack_uart_read();
 
         // Has the magic byte been received?
         if (in == KHA_MSG_START) {
@@ -875,7 +935,7 @@ void kha_stack_process_rx() {
                 kha_stack_rx_buf_state = KHA_STATE_MSG_DECODE_IDLE;
 
                 uint8_t crc_rx = kha_stack_rx_buf[kha_stack_rx_buf_idx - 1];
-                uint8_t crc_calc = kha_stack_crc8(kha_stack_rx_buf, kha_stack_rx_buf_idx - 2);
+                uint8_t crc_calc = kha_stack_crc8(kha_stack_rx_buf, kha_stack_rx_buf_idx - 1); // everything before the CRC
                 if (crc_rx != crc_calc) {
                     kha_stack_log(KHA_STACK_LOG_RX_DECODE_CRC_ERROR, crc_rx, crc_calc, 0x00);
                     if (kha_stack_stats.rx_error_crc != 0xFF) {
@@ -973,7 +1033,7 @@ bool kha_stack_tx_create(uint8_t to, uint8_t cmd, uint8_t optlen, uint8_t opt[])
     for (uint8_t i = 0; i < optlen; i++) {
         buffer[4 + i] = opt[i];
     }
-    buffer[4 + optlen] = kha_stack_crc8(buffer, size - 2);
+    buffer[4 + optlen] = kha_stack_crc8(buffer, size - 1); // everything before the CRC
 
     return kha_stack_tx_add(buffer);
 }
@@ -1167,6 +1227,7 @@ void kha_stack_init(bool bootloader, uint8_t register_size, uint8_t preset_size,
     kha_stack_init_register(register_size, preset_size);
     kha_stack_init_version_and_crc(version);
 
+    kha_stack_uart_init();
     kha_stack_tx_slot_init();
     IO_PA1_SetInterruptHandler(kha_stack_rx_detect);
     IO_PA1_EnableInterruptForFallingEdge();

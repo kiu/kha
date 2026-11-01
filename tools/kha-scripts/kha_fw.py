@@ -20,9 +20,9 @@ PAGE_END = 128
 PART_SIZE = 64
 
 # app CRC as the node computes it at every boot (kha_stack_crc32_flash_and_store): CRC-32 over
-# 0x4000..0xFFFE, without the final XOR
+# 0x4000..0xFFFF, without the final XOR (stacks before 2026-10-30 stopped at 0xFFFE)
 APP_START = 0x4000
-APP_END = 0xFFFF
+APP_END = 0x10000
 
 UDP_IP = os.environ.get("KHA_GATEWAY", "192.168.1.1")
 UDP_PORT = 5005

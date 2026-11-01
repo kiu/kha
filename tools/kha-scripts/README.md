@@ -17,8 +17,9 @@ Uses [kha-gateway-usb](../../kha-nodes/kha-gateway-usb) and [kha-gateway-usb-ser
 - It waits for each node's bootloader UP after the reboot, then sends BOOT STAY. A matching node that missed
   the ident but sends an UP is added; a listed node without bootloader UP is reported (didn't reboot).
 - After the final reboot it waits for each node's app UP and checks that it runs the app with the CRC of the
-  hex file (CRC-32 over 0x4000..0xFFFE without the final XOR, as the node computes it at every boot).
-  Nodes whose UP got lost are asked by ident. Exit code 1 if one fails.
+  hex file (CRC-32 over 0x4000..0xFFFF without the final XOR, as the node computes it at every boot;
+  stacks before the full-CRC change stopped at 0xFFFE). Nodes whose UP got lost are asked by ident. A
+  lost bootloader UP is accepted when the app CRC changed to the new one. Exit code 1 if one fails.
 - The replies come back over UDP: the bridge sends the gateway's lines to the last UDP sender for 60 s.
 - Short pauses by default (~35 s for a 16-page app). `--slow` uses the original fixed pauses; they are
   also used when no node answers the ident, because the result can't be checked then.
