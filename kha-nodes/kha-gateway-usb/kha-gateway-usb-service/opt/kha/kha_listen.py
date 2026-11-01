@@ -17,12 +17,15 @@ UDP_PORT = 5005
 REPLY_TIMEOUT = 60 # seconds the last UDP sender gets the serial lines back (kha_fw.py ident check)
 EXEC_SHUTDOWN_TIMER="ssh kiu@machariel.qnet c:\\\\Windows\\\\PSTools\\\\psshutdown64.exe -h -c -t 30"
 EXEC_ABORT="ssh kiu@machariel.qnet c:\\\\Windows\\\\PSTools\\\\psshutdown64.exe -a"
+BUS_LOG = "/var/log/kha/bus.log" # every gateway line with its time, for the kha-web collector
 
 ser = 0
 sock = 0
 last_shutdown = datetime.now() - relativedelta(years=10)
 reply_addr = None
 reply_until = datetime.now()
+tap_partial = ""
+
 signal.signal(signal.SIGCHLD, signal.SIG_IGN)   # kernel reaps finished ssh children
 
 def run_cmd(cmd):
@@ -62,6 +65,23 @@ def init_serial():
     print("Exception init_serial()")
     time.sleep(1)
 
+def tap(line):
+  # complete, non-empty lines only (readline returns partial lines on timeout); opened per line, so
+  # logrotate's new file is picked up; a failing write (full disk) must not reach run_serial's except
+  global tap_partial
+  tap_partial += line
+  if not tap_partial.endswith("\n"):
+    tap_partial = tap_partial[-1000:]
+    return
+  text, tap_partial = tap_partial.strip(), ""
+  if not text:
+    return
+  try:
+    with open(BUS_LOG, "a") as f:
+      f.write(datetime.now().astimezone().isoformat(timespec="milliseconds") + " " + text + "\n")
+  except Exception:
+    pass
+
 def reply(line):
   if reply_addr is None or datetime.now() > reply_until or not line:
     return
@@ -77,6 +97,7 @@ def run_serial():
       line = ser.readline().decode("utf-8")
       reply(line)
       kha_decode(line)
+      tap(line)
     except:
       print("Exception run_serial()")
       time.sleep(1)
