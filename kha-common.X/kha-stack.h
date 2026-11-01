@@ -120,6 +120,7 @@ extern "C" {
     uint8_t kha_stack_crc8(uint8_t* data, size_t len);
 
     void kha_stack_stats_clear();
+    void kha_stack_stats_get(uint8_t buf[]); // KHA_STATS_LEN bytes
 
     KHA_STACK_MSG_ADDR_TYPE_t kha_stack_msg_addr_type(uint8_t to);
     bool kha_stack_msg_match(uint8_t to);

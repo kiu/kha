@@ -160,6 +160,21 @@ void kha_stack_stats_clear() {
     kha_stack_log(KHA_STACK_LOG_DEVICE_STATS_CLEAR, 0x00, 0x00, 0x00);
 }
 
+// The counters in the order of the stats response (KHA_STATS_*)
+void kha_stack_stats_get(uint8_t buf[KHA_STATS_LEN]) {
+    buf[KHA_STATS_RX] = kha_stack_stats.rx;
+    buf[KHA_STATS_RX_ERROR_FRAMING] = kha_stack_stats.rx_error_framing;
+    buf[KHA_STATS_RX_ERROR_OVERRUN] = kha_stack_stats.rx_error_overrun;
+    buf[KHA_STATS_RX_ERROR_BUFFER_FULL] = kha_stack_stats.rx_error_buffer_full;
+    buf[KHA_STATS_RX_ERROR_START_UNESCAPED] = kha_stack_stats.rx_error_start_unescaped;
+    buf[KHA_STATS_RX_ERROR_START_MISSING] = kha_stack_stats.rx_error_start_missing;
+    buf[KHA_STATS_RX_ERROR_LEN] = kha_stack_stats.rx_error_len;
+    buf[KHA_STATS_RX_ERROR_CRC] = kha_stack_stats.rx_error_crc;
+    buf[KHA_STATS_TX] = kha_stack_stats.tx;
+    buf[KHA_STATS_TX_ERROR_LEN] = kha_stack_stats.tx_error_len;
+    buf[KHA_STATS_TX_ERROR_FULL] = kha_stack_stats.tx_error_full;
+}
+
 // CRC -------------------------------------------------------------------------
 
 //based on https://stackoverflow.com/questions/51752284/how-to-calculate-crc8-in-c
@@ -568,17 +583,7 @@ bool kha_stack_process_cmd(uint8_t msg[KHA_MSG_LEN_MAX]) {
 
     if (cmd == KHA_CMD_DEVICE_STATS_REQUEST) {
         uint8_t buf[KHA_STATS_LEN];
-        buf[KHA_STATS_RX] = kha_stack_stats.rx;
-        buf[KHA_STATS_RX_ERROR_FRAMING] = kha_stack_stats.rx_error_framing;
-        buf[KHA_STATS_RX_ERROR_OVERRUN] = kha_stack_stats.rx_error_overrun;
-        buf[KHA_STATS_RX_ERROR_BUFFER_FULL] = kha_stack_stats.rx_error_buffer_full;
-        buf[KHA_STATS_RX_ERROR_START_UNESCAPED] = kha_stack_stats.rx_error_start_unescaped;
-        buf[KHA_STATS_RX_ERROR_START_MISSING] = kha_stack_stats.rx_error_start_missing;
-        buf[KHA_STATS_RX_ERROR_LEN] = kha_stack_stats.rx_error_len;
-        buf[KHA_STATS_RX_ERROR_CRC] = kha_stack_stats.rx_error_crc;
-        buf[KHA_STATS_TX] = kha_stack_stats.tx;
-        buf[KHA_STATS_TX_ERROR_LEN] = kha_stack_stats.tx_error_len;
-        buf[KHA_STATS_TX_ERROR_FULL] = kha_stack_stats.tx_error_full;
+        kha_stack_stats_get(buf);
         kha_stack_tx_create(from, KHA_CMD_DEVICE_STATS_RESPONSE, KHA_STATS_LEN, buf);
         return true;
     }

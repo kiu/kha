@@ -249,6 +249,30 @@ void poll_known() {
     poll_begin(POLL_MODE_KNOWN, 0);
 }
 
+// Highest error counter on the display: from a stats response, or the guru's own
+void stats_take(uint8_t from, uint8_t stats[]) {
+    for (uint8_t i = 0; i < KHA_STATS_LEN; i++) {
+        if (i == KHA_STATS_RX || i == KHA_STATS_TX) {
+            continue;
+        }
+        if (stats[i] > error) {
+            error = stats[i];
+            error_addr = from;
+        }
+    }
+    dataAvailable = true;
+    update_ui();
+}
+
+// Nobody asks the guru: after each round it shows its own counters and reports them to nobody in
+// particular (to 00), so listeners on the bus (kha-web) see them too
+void stats_report_own() {
+    uint8_t buf[KHA_STATS_LEN];
+    kha_stack_stats_get(buf);
+    kha_stack_tx_create(KHA_ADDR_NONE, KHA_CMD_DEVICE_STATS_RESPONSE, KHA_STATS_LEN, buf);
+    stats_take(kha_stack_device_address_get(), buf);
+}
+
 void poll_advance() {
     poll_retry = false;
     if (poll_mode == POLL_MODE_DIRECT) {
@@ -257,6 +281,9 @@ void poll_advance() {
     }
     poll_addr = poll_next(poll_addr);
     poll_state = poll_addr ? POLL_SEND : POLL_IDLE;
+    if (!poll_addr) {
+        stats_report_own();
+    }
 }
 
 void poll_process() {
@@ -369,19 +396,7 @@ bool rx_all(uint8_t msg[KHA_MSG_LEN_MAX]) {
             poll_answered = true;
         }
 
-        for (uint8_t i = 0; i < KHA_STATS_LEN; i++) {
-            if (i == KHA_STATS_RX || i == KHA_STATS_TX) {
-                continue;
-            }
-            if (opt[i] > error) {
-                error = opt[i];
-                error_addr = from;
-            }
-        }
-
-        dataAvailable = true;
-        update_ui();
-
+        stats_take(from, opt);
         return true;
     }
 
