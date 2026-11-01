@@ -3,6 +3,7 @@
 #include "../../../kha-common.X/kha-constants.h"
 #include "../../../kha-common.X/kha-stack.h"
 #include "kha-version.h"
+#include <util/atomic.h>
 
 // ---
 
@@ -11,11 +12,78 @@
 
 // ---
 
-static volatile uint8_t rxbuf[256];
-static volatile uint8_t rxbuf_idx = 0;
+// Host (USB UART) input: the RX interrupt only copies bytes into this ring, the main loop parses lines.
+#define HOST_RX_RING_SIZE 512 // 2^n
+static volatile uint8_t host_rx_ring[HOST_RX_RING_SIZE];
+static volatile uint16_t host_rx_head = 0; // written by the interrupt
+static volatile uint16_t host_rx_tail = 0; // written by the main loop
+
+// Host output: printf fills this ring, the DRE interrupt sends it, so printing doesn't stall the main loop.
+#define HOST_TX_RING_SIZE 1024 // 2^n
+static volatile uint8_t host_tx_ring[HOST_TX_RING_SIZE];
+static volatile uint16_t host_tx_head = 0; // written by the main loop
+static volatile uint16_t host_tx_tail = 0; // written by the interrupt
+
+static uint8_t rxbuf[256];
+static uint8_t rxbuf_idx = 0;
 
 static bool print_human = true;
 static bool print_proto = false;
+
+// HOST UART -------------------------------------------------------------------
+
+// 16-bit index shared with an interrupt: the AVR reads and writes it in two steps
+static uint16_t atomic_get(volatile uint16_t *v) {
+    uint16_t r;
+    ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
+        r = *v;
+    }
+    return r;
+}
+
+static void atomic_set(volatile uint16_t *v, uint16_t val) {
+    ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
+        *v = val;
+    }
+}
+
+static int host_putchar(char c, FILE *stream) {
+    uint16_t next = (host_tx_head + 1) & (HOST_TX_RING_SIZE - 1);
+    while (next == atomic_get(&host_tx_tail)) {
+        if (!(SREG & CPU_I_bm)) { // called with interrupts off: the DRE interrupt can't drain, send one byte directly
+            while (!(USART1.STATUS & USART_DREIF_bm)) {
+            }
+            USART1.TXDATAL = host_tx_ring[host_tx_tail];
+            host_tx_tail = (host_tx_tail + 1) & (HOST_TX_RING_SIZE - 1);
+        }
+    }
+    host_tx_ring[host_tx_head] = c;
+    atomic_set(&host_tx_head, next);
+    USART1.CTRLA |= USART_DREIE_bm;
+    return 0;
+}
+
+static FILE host_stream = FDEV_SETUP_STREAM(host_putchar, NULL, _FDEV_SETUP_WRITE);
+
+ISR(USART1_DRE_vect) {
+    if (host_tx_tail == host_tx_head) {
+        USART1.CTRLA &= ~USART_DREIE_bm;
+        return;
+    }
+    USART1.TXDATAL = host_tx_ring[host_tx_tail];
+    host_tx_tail = (host_tx_tail + 1) & (HOST_TX_RING_SIZE - 1);
+}
+
+void host_rx_isr(void) { // USART1 RX complete callback, interrupt context: keep it short
+    while (USART1_IsRxReady()) {
+        uint8_t c = USART1_Read();
+        uint16_t next = (host_rx_head + 1) & (HOST_RX_RING_SIZE - 1);
+        if (next != host_rx_tail) { // full: drop
+            host_rx_ring[host_rx_head] = c;
+            host_rx_head = next;
+        }
+    }
+}
 
 // HELPER ----------------------------------------------------------------------
 
@@ -443,10 +511,10 @@ bool rx_msg_all(uint8_t buf[]) {
     return false;
 }
 
-void rx(void) {
-    uint8_t c = '\0';
-    while (USART1_IsRxReady()) {
-        c = USART1_Read();
+void rx(void) { // main loop
+    while (host_rx_tail != atomic_get(&host_rx_head)) {
+        uint8_t c = host_rx_ring[host_rx_tail];
+        atomic_set(&host_rx_tail, (host_rx_tail + 1) & (HOST_RX_RING_SIZE - 1));
         if (c == '\r') {
             continue;
         }
@@ -499,6 +567,7 @@ uint8_t register_change(uint8_t addr, uint8_t value) {
 
 int main(void) {
     SYSTEM_Initialize();
+    stdout = &host_stream;
 
     sei();
 
@@ -511,9 +580,10 @@ int main(void) {
     kha_stack_cbr_log(dump_log);
     kha_stack_init(false, REGISTER_SIZE, REGISTER_PRESET_WIDTH, KHA_VERSION);
     
-    USART1_RxCompleteCallbackRegister(rx);
+    USART1_RxCompleteCallbackRegister(host_rx_isr);
 
     while (1) {
+        rx();
         kha_stack_process_rx_tx();
         asm("wdr");
     }
