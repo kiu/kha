@@ -38,6 +38,8 @@ c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/a
                               build/default/production/mcc_generated_files/system/src/pins.o (__do_clear_bss)
 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memcpy.o)
                               build/default/production/main.o (memcpy)
+c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memmove.o)
+                              build/default/production/_ext/460238498/kha-stack.o (memmove)
 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memset.o)
                               build/default/production/_ext/460238498/kha-stack.o (memset)
 
@@ -137,6 +139,8 @@ Discarded input sections
  .text.RTC_SetOVFIsrCallback
                 0x0000000000000000        0xa build/default/production/mcc_generated_files/timer/src/rtc.o
  .text.RTC_SetCMPIsrCallback
+                0x0000000000000000        0xa build/default/production/mcc_generated_files/timer/src/rtc.o
+ .text.RTC_SetPITIsrCallback
                 0x0000000000000000        0xa build/default/production/mcc_generated_files/timer/src/rtc.o
  .text.RTC_WriteCounter
                 0x0000000000000000       0x12 build/default/production/mcc_generated_files/timer/src/rtc.o
@@ -302,13 +306,7 @@ Discarded input sections
                 0x0000000000000000        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
  .text.USART0_ErrorGet
                 0x0000000000000000       0x2a build/default/production/mcc_generated_files/uart/src/usart0.o
- .text.USART0_FramingErrorCallbackRegister
-                0x0000000000000000        0xe build/default/production/mcc_generated_files/uart/src/usart0.o
- .text.USART0_OverrunErrorCallbackRegister
-                0x0000000000000000        0xe build/default/production/mcc_generated_files/uart/src/usart0.o
  .text.USART0_ParityErrorCallbackRegister
-                0x0000000000000000        0xe build/default/production/mcc_generated_files/uart/src/usart0.o
- .text.USART0_RxCompleteCallbackRegister
                 0x0000000000000000        0xe build/default/production/mcc_generated_files/uart/src/usart0.o
  .text.USART0_AutoBaudSet.part.0
                 0x0000000000000000       0x12 build/default/production/mcc_generated_files/uart/src/usart0.o
@@ -471,6 +469,9 @@ Discarded input sections
  .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memcpy.o)
  .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memcpy.o)
  .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memcpy.o)
+ .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memmove.o)
+ .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memmove.o)
+ .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memmove.o)
  .text          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memset.o)
  .data          0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memset.o)
  .bss           0x0000000000000000        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memset.o)
@@ -617,7 +618,7 @@ Address of section .text set to 0x4000
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000004000     0x25a0
+.text           0x0000000000004000     0x2794
  *(.vectors)
  .vectors       0x0000000000004000       0x90 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/AVR-Dx_DFP/2.4.286/gcc/dev/avr64dd32/avrxmega2/crtavr64dd32.o
                 0x0000000000004000                __vector_default
@@ -685,7 +686,6 @@ Address of section .text set to 0x4000
                 0x00000000000040ca                __vector_35
                 0x00000000000040ca                __vector_3
                 0x00000000000040ca                __vector_23
-                0x00000000000040ca                __vector_30
                 0x00000000000040ca                __vector_25
                 0x00000000000040ca                __vector_13
                 0x00000000000040ca                __vector_17
@@ -784,269 +784,302 @@ Address of section .text set to 0x4000
  .text.RTC_Initialize
                 0x0000000000004464       0x50 build/default/production/mcc_generated_files/timer/src/rtc.o
                 0x0000000000004464                RTC_Initialize
- .text.RTC_SetPITIsrCallback
-                0x00000000000044b4        0xa build/default/production/mcc_generated_files/timer/src/rtc.o
-                0x00000000000044b4                RTC_SetPITIsrCallback
  .text.__vector_5
-                0x00000000000044be       0x86 build/default/production/mcc_generated_files/timer/src/rtc.o
-                0x00000000000044be                __vector_5
+                0x00000000000044b4       0x86 build/default/production/mcc_generated_files/timer/src/rtc.o
+                0x00000000000044b4                __vector_5
  .text.__vector_6
-                0x0000000000004544       0x58 build/default/production/mcc_generated_files/timer/src/rtc.o
-                0x0000000000004544                __vector_6
+                0x000000000000453a       0x58 build/default/production/mcc_generated_files/timer/src/rtc.o
+                0x000000000000453a                __vector_6
  .text.TCA0_DefaultCompare0CallbackRegister
-                0x000000000000459c        0x2 build/default/production/mcc_generated_files/timer/src/tca0.o
-                0x000000000000459c                TCA0_DefaultCompare0CallbackRegister
+                0x0000000000004592        0x2 build/default/production/mcc_generated_files/timer/src/tca0.o
+                0x0000000000004592                TCA0_DefaultCompare0CallbackRegister
  .text.TCA0_Initialize
-                0x000000000000459e       0x3c build/default/production/mcc_generated_files/timer/src/tca0.o
-                0x000000000000459e                TCA0_Initialize
+                0x0000000000004594       0x3c build/default/production/mcc_generated_files/timer/src/tca0.o
+                0x0000000000004594                TCA0_Initialize
  .text.TCA0_Compare0CallbackRegister
-                0x00000000000045da        0xa build/default/production/mcc_generated_files/timer/src/tca0.o
-                0x00000000000045da                TCA0_Compare0CallbackRegister
+                0x00000000000045d0        0xa build/default/production/mcc_generated_files/timer/src/tca0.o
+                0x00000000000045d0                TCA0_Compare0CallbackRegister
  .text.__vector_11
-                0x00000000000045e4       0x58 build/default/production/mcc_generated_files/timer/src/tca0.o
-                0x00000000000045e4                __vector_11
+                0x00000000000045da       0x58 build/default/production/mcc_generated_files/timer/src/tca0.o
+                0x00000000000045da                __vector_11
  .text.USART1_Initialize
-                0x000000000000463c       0x6c build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x000000000000463c                USART1_Initialize
+                0x0000000000004632       0x6c build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x0000000000004632                USART1_Initialize
  .text.USART1_IsTxReady
-                0x00000000000046a8        0xc build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x00000000000046a8                USART1_IsTxReady
+                0x000000000000469e        0xc build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x000000000000469e                USART1_IsTxReady
  .text.USART1_IsTxDone
-                0x00000000000046b4        0xc build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x00000000000046b4                USART1_IsTxDone
+                0x00000000000046aa        0xc build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x00000000000046aa                USART1_IsTxDone
  .text.USART1_ReceiveISR
-                0x00000000000046c0       0xc4 build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x00000000000046c0                USART1_ReceiveISR
+                0x00000000000046b6       0xc4 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x00000000000046b6                USART1_ReceiveISR
  .text.USART1_Write
-                0x0000000000004784        0x6 build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x0000000000004784                USART1_Write
+                0x000000000000477a        0x6 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x000000000000477a                USART1_Write
  .text.USART1_DefaultFramingErrorCallback
-                0x000000000000478a        0x2 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x0000000000004780        0x2 build/default/production/mcc_generated_files/uart/src/usart1.o
  .text.USART1_DefaultParityErrorCallback
-                0x000000000000478c        0x2 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x0000000000004782        0x2 build/default/production/mcc_generated_files/uart/src/usart1.o
  .text.USART1_DefaultOverrunErrorCallback
-                0x000000000000478e        0x2 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x0000000000004784        0x2 build/default/production/mcc_generated_files/uart/src/usart1.o
  .text.__vector_31
-                0x0000000000004790       0x48 build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x0000000000004790                __vector_31
+                0x0000000000004786       0x48 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x0000000000004786                __vector_31
  .text.USART0_Initialize
-                0x00000000000047d8       0x78 build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x00000000000047d8                USART0_Initialize
+                0x00000000000047ce       0x78 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x00000000000047ce                USART0_Initialize
  .text.USART0_IsRxReady
-                0x0000000000004850       0x12 build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x0000000000004850                USART0_IsRxReady
+                0x0000000000004846       0x12 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000004846                USART0_IsRxReady
  .text.USART0_IsTxReady
-                0x0000000000004862        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x0000000000004862                USART0_IsTxReady
+                0x0000000000004858        0xc build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000004858                USART0_IsTxReady
  .text.USART0_Read
-                0x000000000000486e       0x5a build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x000000000000486e                USART0_Read
+                0x0000000000004864       0x5a build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000004864                USART0_Read
  .text.USART0_ReceiveISR
-                0x00000000000048c8       0xe2 build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x00000000000048c8                USART0_ReceiveISR
+                0x00000000000048be       0xe2 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x00000000000048be                USART0_ReceiveISR
  .text.USART0_Write
-                0x00000000000049aa        0x6 build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x00000000000049aa                USART0_Write
+                0x00000000000049a0        0x6 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x00000000000049a0                USART0_Write
  .text.USART0_DefaultFramingErrorCallback
-                0x00000000000049b0        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x00000000000049a6        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
+ .text.USART0_FramingErrorCallbackRegister
+                0x00000000000049a8        0xe build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x00000000000049a8                USART0_FramingErrorCallbackRegister
+ .text.USART0_OverrunErrorCallbackRegister
+                0x00000000000049b6        0xe build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x00000000000049b6                USART0_OverrunErrorCallbackRegister
+ .text.USART0_RxCompleteCallbackRegister
+                0x00000000000049c4        0xe build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x00000000000049c4                USART0_RxCompleteCallbackRegister
  .text.USART0_DefaultParityErrorCallback
-                0x00000000000049b2        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x00000000000049d2        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
  .text.USART0_DefaultOverrunErrorCallback
-                0x00000000000049b4        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x00000000000049d4        0x2 build/default/production/mcc_generated_files/uart/src/usart0.o
  .text.__vector_21
-                0x00000000000049b6       0x48 build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x00000000000049b6                __vector_21
- .text.hsi_set  0x00000000000049fe       0x1c build/default/production/main.o
-                0x00000000000049fe                hsi_set
+                0x00000000000049d6       0x48 build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x00000000000049d6                __vector_21
+ .text.hsi_set  0x0000000000004a1e       0x1c build/default/production/main.o
+                0x0000000000004a1e                hsi_set
  .text.anim_set
-                0x0000000000004a1a       0x3c build/default/production/main.o
-                0x0000000000004a1a                anim_set
+                0x0000000000004a3a       0x3c build/default/production/main.o
+                0x0000000000004a3a                anim_set
  .text.anim_tick
-                0x0000000000004a56       0x44 build/default/production/main.o
-                0x0000000000004a56                anim_tick
+                0x0000000000004a76       0x44 build/default/production/main.o
+                0x0000000000004a76                anim_tick
  .text.send_rx4_raw
-                0x0000000000004a9a       0x14 build/default/production/main.o
-                0x0000000000004a9a                send_rx4_raw
+                0x0000000000004aba       0x14 build/default/production/main.o
+                0x0000000000004aba                send_rx4_raw
  .text.send_rx4
-                0x0000000000004aae       0xc2 build/default/production/main.o
-                0x0000000000004aae                send_rx4
+                0x0000000000004ace       0xc2 build/default/production/main.o
+                0x0000000000004ace                send_rx4
  .text.send_rx4_hsi
-                0x0000000000004b70       0x2c build/default/production/main.o
-                0x0000000000004b70                send_rx4_hsi
+                0x0000000000004b90       0x2c build/default/production/main.o
+                0x0000000000004b90                send_rx4_hsi
  .text.send_rx4_ident
-                0x0000000000004b9c        0xe build/default/production/main.o
-                0x0000000000004b9c                send_rx4_ident
+                0x0000000000004bbc        0xe build/default/production/main.o
+                0x0000000000004bbc                send_rx4_ident
  .text.update_led
-                0x0000000000004baa      0x488 build/default/production/main.o
-                0x0000000000004baa                update_led
- .text.led_on   0x0000000000005032       0x14 build/default/production/main.o
-                0x0000000000005032                led_on
+                0x0000000000004bca      0x488 build/default/production/main.o
+                0x0000000000004bca                update_led
+ .text.led_on   0x0000000000005052       0x14 build/default/production/main.o
+                0x0000000000005052                led_on
  .text.register_change
-                0x0000000000005046       0x62 build/default/production/main.o
-                0x0000000000005046                register_change
- .text.led_off  0x00000000000050a8       0x20 build/default/production/main.o
-                0x00000000000050a8                led_off
+                0x0000000000005066       0x62 build/default/production/main.o
+                0x0000000000005066                register_change
+ .text.led_off  0x00000000000050c8       0x20 build/default/production/main.o
+                0x00000000000050c8                led_off
  .text.mode_changed
-                0x00000000000050c8       0x1e build/default/production/main.o
-                0x00000000000050c8                mode_changed
+                0x00000000000050e8       0x1e build/default/production/main.o
+                0x00000000000050e8                mode_changed
  .text.startup.main
-                0x00000000000050e6       0x64 build/default/production/main.o
-                0x00000000000050e6                main
- .text.kha_stack_tick
-                0x000000000000514a       0x2a build/default/production/_ext/460238498/kha-stack.o
-                0x000000000000514a                kha_stack_tick
+                0x0000000000005106       0x64 build/default/production/main.o
+                0x0000000000005106                main
  .text.kha_stack_rx_detect
-                0x0000000000005174        0xa build/default/production/_ext/460238498/kha-stack.o
-                0x0000000000005174                kha_stack_rx_detect
+                0x000000000000516a       0x16 build/default/production/_ext/460238498/kha-stack.o
+                0x000000000000516a                kha_stack_rx_detect
+ .text.kha_stack_uart_framing_error
+                0x0000000000005180       0x14 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000005180                kha_stack_uart_framing_error
+ .text.kha_stack_uart_overrun_error
+                0x0000000000005194       0x14 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000005194                kha_stack_uart_overrun_error
+ .text.kha_stack_uart_rx_complete
+                0x00000000000051a8       0x36 build/default/production/_ext/460238498/kha-stack.o
+                0x00000000000051a8                kha_stack_uart_rx_complete
  .text.kha_stack_crc8
-                0x000000000000517e       0x2e build/default/production/_ext/460238498/kha-stack.o
-                0x000000000000517e                kha_stack_crc8
+                0x00000000000051de       0x2e build/default/production/_ext/460238498/kha-stack.o
+                0x00000000000051de                kha_stack_crc8
+ .text.kha_stack_eeprom_update
+                0x000000000000520c       0x32 build/default/production/_ext/460238498/kha-stack.o
+                0x000000000000520c                kha_stack_eeprom_update
  .text.kha_stack_crc32
-                0x00000000000051ac       0x4c build/default/production/_ext/460238498/kha-stack.o
-                0x00000000000051ac                kha_stack_crc32
+                0x000000000000523e       0x4c build/default/production/_ext/460238498/kha-stack.o
+                0x000000000000523e                kha_stack_crc32
  .text.kha_stack_crc32_flash_and_store
-                0x00000000000051f8       0xa4 build/default/production/_ext/460238498/kha-stack.o
-                0x00000000000051f8                kha_stack_crc32_flash_and_store
+                0x000000000000528a       0xae build/default/production/_ext/460238498/kha-stack.o
+                0x000000000000528a                kha_stack_crc32_flash_and_store
  .text.kha_stack_msg_match
-                0x000000000000529c       0x24 build/default/production/_ext/460238498/kha-stack.o
-                0x000000000000529c                kha_stack_msg_match
+                0x0000000000005338       0x24 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000005338                kha_stack_msg_match
  .text.kha_stack_msg_addr_type
-                0x00000000000052c0       0x30 build/default/production/_ext/460238498/kha-stack.o
-                0x00000000000052c0                kha_stack_msg_addr_type
+                0x000000000000535c       0x30 build/default/production/_ext/460238498/kha-stack.o
+                0x000000000000535c                kha_stack_msg_addr_type
  .text.kha_stack_app_led_hsi_cbr
-                0x00000000000052f0        0xa build/default/production/_ext/460238498/kha-stack.o
-                0x00000000000052f0                kha_stack_app_led_hsi_cbr
+                0x000000000000538c        0xa build/default/production/_ext/460238498/kha-stack.o
+                0x000000000000538c                kha_stack_app_led_hsi_cbr
  .text.kha_stack_app_led_animation_cbr
-                0x00000000000052fa        0xa build/default/production/_ext/460238498/kha-stack.o
-                0x00000000000052fa                kha_stack_app_led_animation_cbr
+                0x0000000000005396        0xa build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000005396                kha_stack_app_led_animation_cbr
  .text.kha_stack_register_cbr_change
-                0x0000000000005304        0xa build/default/production/_ext/460238498/kha-stack.o
-                0x0000000000005304                kha_stack_register_cbr_change
+                0x00000000000053a0        0xa build/default/production/_ext/460238498/kha-stack.o
+                0x00000000000053a0                kha_stack_register_cbr_change
+ .text.kha_stack_uart_read
+                0x00000000000053aa       0x2c build/default/production/_ext/460238498/kha-stack.o
+                0x00000000000053aa                kha_stack_uart_read
+ .text.kha_stack_uart_init
+                0x00000000000053d6       0x3a build/default/production/_ext/460238498/kha-stack.o
+                0x00000000000053d6                kha_stack_uart_init
+ .text.__vector_30
+                0x0000000000005410       0x44 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000005410                __vector_30
+ .text.kha_stack_tx_slot_init
+                0x0000000000005454       0x1c build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000005454                kha_stack_tx_slot_init
  .text.kha_stack_tx_create
-                0x000000000000530e       0xaa build/default/production/_ext/460238498/kha-stack.o
-                0x000000000000530e                kha_stack_tx_create
+                0x0000000000005470       0xbc build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000005470                kha_stack_tx_create
  .text.kha_stack_log
-                0x00000000000053b8       0x62 build/default/production/_ext/460238498/kha-stack.o
-                0x00000000000053b8                kha_stack_log
+                0x000000000000552c       0x62 build/default/production/_ext/460238498/kha-stack.o
+                0x000000000000552c                kha_stack_log
  .text.kha_stack_stats_clear
-                0x000000000000541a       0x20 build/default/production/_ext/460238498/kha-stack.o
-                0x000000000000541a                kha_stack_stats_clear
+                0x000000000000558e       0x26 build/default/production/_ext/460238498/kha-stack.o
+                0x000000000000558e                kha_stack_stats_clear
  .text.kha_stack_register_get
-                0x000000000000543a       0x32 build/default/production/_ext/460238498/kha-stack.o
-                0x000000000000543a                kha_stack_register_get
+                0x00000000000055b4       0x32 build/default/production/_ext/460238498/kha-stack.o
+                0x00000000000055b4                kha_stack_register_get
  .text.kha_stack_register_set
-                0x000000000000546c       0x82 build/default/production/_ext/460238498/kha-stack.o
-                0x000000000000546c                kha_stack_register_set
+                0x00000000000055e6       0x82 build/default/production/_ext/460238498/kha-stack.o
+                0x00000000000055e6                kha_stack_register_set
  .text.kha_stack_register_wipe
-                0x00000000000054ee       0x2c build/default/production/_ext/460238498/kha-stack.o
-                0x00000000000054ee                kha_stack_register_wipe
+                0x0000000000005668       0x2c build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000005668                kha_stack_register_wipe
  .text.kha_stack_register_store
-                0x000000000000551a       0x4c build/default/production/_ext/460238498/kha-stack.o
-                0x000000000000551a                kha_stack_register_store
+                0x0000000000005694       0x3c build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000005694                kha_stack_register_store
  .text.kha_stack_register_load
-                0x0000000000005566       0x5e build/default/production/_ext/460238498/kha-stack.o
-                0x0000000000005566                kha_stack_register_load
+                0x00000000000056d0       0x5e build/default/production/_ext/460238498/kha-stack.o
+                0x00000000000056d0                kha_stack_register_load
  .text.kha_stack_tx_add
-                0x00000000000055c4       0x58 build/default/production/_ext/460238498/kha-stack.o
-                0x00000000000055c4                kha_stack_tx_add
+                0x000000000000572e       0x60 build/default/production/_ext/460238498/kha-stack.o
+                0x000000000000572e                kha_stack_tx_add
  .text.kha_stack_preset_set
-                0x000000000000561c       0x8e build/default/production/_ext/460238498/kha-stack.o
-                0x000000000000561c                kha_stack_preset_set
+                0x000000000000578e       0x8e build/default/production/_ext/460238498/kha-stack.o
+                0x000000000000578e                kha_stack_preset_set
  .text.kha_stack_send_ident_or_up
-                0x00000000000056aa       0xf2 build/default/production/_ext/460238498/kha-stack.o
-                0x00000000000056aa                kha_stack_send_ident_or_up
+                0x000000000000581c       0xf2 build/default/production/_ext/460238498/kha-stack.o
+                0x000000000000581c                kha_stack_send_ident_or_up
  .text.kha_stack_process_cmd
-                0x000000000000579c      0x460 build/default/production/_ext/460238498/kha-stack.o
-                0x000000000000579c                kha_stack_process_cmd
+                0x000000000000590e      0x472 build/default/production/_ext/460238498/kha-stack.o
+                0x000000000000590e                kha_stack_process_cmd
  .text.kha_process_rx
-                0x0000000000005bfc       0x70 build/default/production/_ext/460238498/kha-stack.o
-                0x0000000000005bfc                kha_process_rx
+                0x0000000000005d80       0x70 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000005d80                kha_process_rx
  .text.kha_stack_process_rx
-                0x0000000000005c6c      0x142 build/default/production/_ext/460238498/kha-stack.o
-                0x0000000000005c6c                kha_stack_process_rx
+                0x0000000000005df0      0x154 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000005df0                kha_stack_process_rx
+ .text.kha_stack_tx_slot_wait
+                0x0000000000005f44       0x3a build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000005f44                kha_stack_tx_slot_wait
  .text.kha_stack_tx_remove
-                0x0000000000005dae       0x3c build/default/production/_ext/460238498/kha-stack.o
-                0x0000000000005dae                kha_stack_tx_remove
+                0x0000000000005f7e       0x3c build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000005f7e                kha_stack_tx_remove
  .text.kha_stack_process_tx
-                0x0000000000005dea      0x112 build/default/production/_ext/460238498/kha-stack.o
-                0x0000000000005dea                kha_stack_process_tx
+                0x0000000000005fba      0x104 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000005fba                kha_stack_process_tx
  .text.kha_stack_process_rx_tx
-                0x0000000000005efc        0xe build/default/production/_ext/460238498/kha-stack.o
-                0x0000000000005efc                kha_stack_process_rx_tx
+                0x00000000000060be        0xe build/default/production/_ext/460238498/kha-stack.o
+                0x00000000000060be                kha_stack_process_rx_tx
  .text.kha_stack_init_register
-                0x0000000000005f0a       0x54 build/default/production/_ext/460238498/kha-stack.o
-                0x0000000000005f0a                kha_stack_init_register
+                0x00000000000060cc       0x5c build/default/production/_ext/460238498/kha-stack.o
+                0x00000000000060cc                kha_stack_init_register
  .text.kha_stack_init_userrow
-                0x0000000000005f5e       0xec build/default/production/_ext/460238498/kha-stack.o
-                0x0000000000005f5e                kha_stack_init_userrow
+                0x0000000000006128       0xea build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000006128                kha_stack_init_userrow
  .text.kha_stack_init_version_and_crc
-                0x000000000000604a       0x82 build/default/production/_ext/460238498/kha-stack.o
-                0x000000000000604a                kha_stack_init_version_and_crc
+                0x0000000000006212       0x8a build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000006212                kha_stack_init_version_and_crc
  .text.kha_stack_init
-                0x00000000000060cc       0x9e build/default/production/_ext/460238498/kha-stack.o
-                0x00000000000060cc                kha_stack_init
+                0x000000000000629c       0x9e build/default/production/_ext/460238498/kha-stack.o
+                0x000000000000629c                kha_stack_init
  .text.avr-libc.fplib
-                0x000000000000616a        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(addsf3.o)
-                0x000000000000616a                __subsf3
-                0x000000000000616c                __addsf3
+                0x000000000000633a        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(addsf3.o)
+                0x000000000000633a                __subsf3
+                0x000000000000633c                __addsf3
  .text.avr-libc.fplib
-                0x0000000000006178       0xcc c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(addsf3x.o)
-                0x000000000000619a                __addsf3x
+                0x0000000000006348       0xcc c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(addsf3x.o)
+                0x000000000000636a                __addsf3x
  .text.avr-libc.fplib
-                0x0000000000006244        0x8 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(divsf3.o)
-                0x0000000000006244                __divsf3
+                0x0000000000006414        0x8 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(divsf3.o)
+                0x0000000000006414                __divsf3
  .text.avr-libc.fplib
-                0x000000000000624c       0xdc c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(divsf3x.o)
-                0x000000000000626c                __divsf3x
-                0x0000000000006272                __divsf3_pse
+                0x000000000000641c       0xdc c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(divsf3x.o)
+                0x000000000000643c                __divsf3x
+                0x0000000000006442                __divsf3_pse
  .text.avr-libc.fplib
-                0x0000000000006328       0x5e c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fixunssfsi.o)
-                0x0000000000006328                __fixunssfsi
+                0x00000000000064f8       0x5e c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fixunssfsi.o)
+                0x00000000000064f8                __fixunssfsi
  .text.avr-libc.fplib
-                0x0000000000006386       0x7a c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(floatsisf.o)
-                0x0000000000006386                __floatunsisf
-                0x000000000000638a                __floatsisf
+                0x0000000000006556       0x7a c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(floatsisf.o)
+                0x0000000000006556                __floatunsisf
+                0x000000000000655a                __floatsisf
  .text.avr-libc.fplib
-                0x0000000000006400        0xc c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fp_inf.o)
-                0x0000000000006400                __fp_inf
+                0x00000000000065d0        0xc c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fp_inf.o)
+                0x00000000000065d0                __fp_inf
  .text.avr-libc.fplib
-                0x000000000000640c        0x6 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fp_nan.o)
-                0x000000000000640c                __fp_nan
+                0x00000000000065dc        0x6 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fp_nan.o)
+                0x00000000000065dc                __fp_nan
  .text.avr-libc.fplib
-                0x0000000000006412        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fp_pscA.o)
-                0x0000000000006412                __fp_pscA
+                0x00000000000065e2        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fp_pscA.o)
+                0x00000000000065e2                __fp_pscA
  .text.avr-libc.fplib
-                0x0000000000006420        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fp_pscB.o)
-                0x0000000000006420                __fp_pscB
+                0x00000000000065f0        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fp_pscB.o)
+                0x00000000000065f0                __fp_pscB
  .text.avr-libc.fplib
-                0x000000000000642e       0x22 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fp_round.o)
-                0x000000000000642e                __fp_round
+                0x00000000000065fe       0x22 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fp_round.o)
+                0x00000000000065fe                __fp_round
  .text.avr-libc.fplib
-                0x0000000000006450       0x44 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fp_split3.o)
-                0x0000000000006450                __fp_split3
-                0x0000000000006460                __fp_splitA
+                0x0000000000006620       0x44 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fp_split3.o)
+                0x0000000000006620                __fp_split3
+                0x0000000000006630                __fp_splitA
  .text.avr-libc.fplib
-                0x0000000000006494        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fp_zero.o)
-                0x0000000000006494                __fp_zero
-                0x0000000000006496                __fp_szero
+                0x0000000000006664        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(fp_zero.o)
+                0x0000000000006664                __fp_zero
+                0x0000000000006666                __fp_szero
  .text.avr-libc.fplib
-                0x00000000000064a2        0x8 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(mulsf3.o)
-                0x00000000000064a2                __mulsf3
+                0x0000000000006672        0x8 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(mulsf3.o)
+                0x0000000000006672                __mulsf3
  .text.avr-libc.fplib
-                0x00000000000064aa       0xd2 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(mulsf3x.o)
-                0x00000000000064c8                __mulsf3x
-                0x00000000000064ce                __mulsf3_pse
+                0x000000000000667a       0xd2 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libm.a(mulsf3x.o)
+                0x0000000000006698                __mulsf3x
+                0x000000000000669e                __mulsf3_pse
  .text.avr-libc
-                0x000000000000657c       0x12 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memcpy.o)
-                0x000000000000657c                memcpy
+                0x000000000000674c       0x12 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memcpy.o)
+                0x000000000000674c                memcpy
  .text.avr-libc
-                0x000000000000658e        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memset.o)
-                0x000000000000658e                memset
-                0x000000000000659c                . = ALIGN (0x2)
+                0x000000000000675e       0x24 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memmove.o)
+                0x000000000000675e                memmove
+ .text.avr-libc
+                0x0000000000006782        0xe c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avrxmega2\libc.a(memset.o)
+                0x0000000000006782                memset
+                0x0000000000006790                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000000000000659c        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
-                0x000000000000659c                _exit
-                0x000000000000659c                exit
+ .fini9         0x0000000000006790        0x0 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
+                0x0000000000006790                _exit
+                0x0000000000006790                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -1065,11 +1098,11 @@ Address of section .text set to 0x4000
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000000000000659c        0x4 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
+ .fini0         0x0000000000006790        0x4 c:/users/kiu/documents/projects/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avrxmega2\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000000000065a0                _etext = .
+                0x0000000000006794                _etext = .
 
-.data           0x0000000000806000        0xe load address 0x00000000000065a0
+.data           0x0000000000806000        0xe load address 0x0000000000006794
                 0x0000000000806000                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -1105,7 +1138,7 @@ Address of section .text set to 0x4000
                 0x000000000080600e                _edata = .
                 0x000000000080600e                PROVIDE (__data_end, .)
 
-.bss            0x000000000080600e      0xaab
+.bss            0x000000000080600e      0xab1
                 0x000000000080600e                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -1172,76 +1205,80 @@ Address of section .text set to 0x4000
                 0x000000000080664d        0x1 build/default/production/main.o
  .bss.layout_orientation
                 0x000000000080664e        0x1 build/default/production/main.o
- .bss.kha_stack_tx_cbh_msg_all
+ .bss.kha_stack_uart_rx_fill
                 0x000000000080664f        0x2 build/default/production/_ext/460238498/kha-stack.o
- .bss.kha_stack_tx_block_index
+ .bss.kha_stack_tx_cbh_msg_all
                 0x0000000000806651        0x2 build/default/production/_ext/460238498/kha-stack.o
+ .bss.kha_stack_tx_sent
+                0x0000000000806653        0x1 build/default/production/_ext/460238498/kha-stack.o
+ .bss.kha_stack_tx_block_index
+                0x0000000000806654        0x2 build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_tx_queue
-                0x0000000000806653      0x2da build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000806656      0x2da build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_rx_cbh_msg_unprocessed
-                0x000000000080692d        0x2 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000806930        0x2 build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_rx_cbh_msg_matched
-                0x000000000080692f        0x2 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000806932        0x2 build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_rx_cbh_msg_all_post
-                0x0000000000806931        0x2 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000806934        0x2 build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_rx_cbh_msg_all
-                0x0000000000806933        0x2 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000806936        0x2 build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_rx_buf_escape_detected
-                0x0000000000806935        0x1 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000806938        0x1 build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_rx_buf_idx
-                0x0000000000806936        0x1 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000806939        0x1 build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_rx_buf
-                0x0000000000806937       0x48 build/default/production/_ext/460238498/kha-stack.o
+                0x000000000080693a       0x48 build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_rx_buf_state
-                0x000000000080697f        0x1 build/default/production/_ext/460238498/kha-stack.o
- .bss.kha_stack_preset_cbh_change
-                0x0000000000806980        0x2 build/default/production/_ext/460238498/kha-stack.o
- .bss.kha_stack_register_preset_bytes
                 0x0000000000806982        0x1 build/default/production/_ext/460238498/kha-stack.o
+ .bss.kha_stack_preset_cbh_change
+                0x0000000000806983        0x2 build/default/production/_ext/460238498/kha-stack.o
+ .bss.kha_stack_register_preset_bytes
+                0x0000000000806985        0x1 build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_register_preset_start
-                0x0000000000806983        0x1 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000806986        0x1 build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_register_buf
-                0x0000000000806984       0xee build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000806987       0xee build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_register_cbh_change
-                0x0000000000806a72        0x2 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000806a75        0x2 build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_app_led_hsi_cbh
-                0x0000000000806a74        0x2 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000806a77        0x2 build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_app_led_animation_cbh
-                0x0000000000806a76        0x2 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000806a79        0x2 build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_userrow
-                0x0000000000806a78       0x20 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000806a7b       0x20 build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_ui_cbh_change
-                0x0000000000806a98        0x2 build/default/production/_ext/460238498/kha-stack.o
- .bss.kha_stack_debug
-                0x0000000000806a9a        0x1 build/default/production/_ext/460238498/kha-stack.o
- .bss.kha_stack_cbh_log
                 0x0000000000806a9b        0x2 build/default/production/_ext/460238498/kha-stack.o
+ .bss.kha_stack_debug
+                0x0000000000806a9d        0x1 build/default/production/_ext/460238498/kha-stack.o
+ .bss.kha_stack_cbh_log
+                0x0000000000806a9e        0x2 build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_stats
-                0x0000000000806a9d        0x8 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000806aa0        0xb build/default/production/_ext/460238498/kha-stack.o
  .bss.kha_stack_bootloader
-                0x0000000000806aa5        0x1 build/default/production/_ext/460238498/kha-stack.o
+                0x0000000000806aab        0x1 build/default/production/_ext/460238498/kha-stack.o
  *(COMMON)
- COMMON         0x0000000000806aa6        0x9 build/default/production/mcc_generated_files/uart/src/usart1.o
-                0x0000000000806aa6                USART1_RxInterruptHandler
-                0x0000000000806aa8                USART1_FramingErrorHandler
-                0x0000000000806aaa                USART1_OverrunErrorHandler
-                0x0000000000806aac                usart1RxCount
-                0x0000000000806aad                USART1_ParityErrorHandler
- COMMON         0x0000000000806aaf        0xa build/default/production/mcc_generated_files/uart/src/usart0.o
-                0x0000000000806aaf                USART0_RxInterruptHandler
-                0x0000000000806ab1                USART0_OverrunErrorHandler
-                0x0000000000806ab3                usart0RxCount
-                0x0000000000806ab5                USART0_FramingErrorHandler
-                0x0000000000806ab7                USART0_ParityErrorHandler
-                0x0000000000806ab9                PROVIDE (__bss_end, .)
-                0x00000000000065a0                __data_load_start = LOADADDR (.data)
-                0x00000000000065ae                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0000000000806aac        0x9 build/default/production/mcc_generated_files/uart/src/usart1.o
+                0x0000000000806aac                USART1_RxInterruptHandler
+                0x0000000000806aae                USART1_FramingErrorHandler
+                0x0000000000806ab0                USART1_OverrunErrorHandler
+                0x0000000000806ab2                usart1RxCount
+                0x0000000000806ab3                USART1_ParityErrorHandler
+ COMMON         0x0000000000806ab5        0xa build/default/production/mcc_generated_files/uart/src/usart0.o
+                0x0000000000806ab5                USART0_RxInterruptHandler
+                0x0000000000806ab7                USART0_OverrunErrorHandler
+                0x0000000000806ab9                usart0RxCount
+                0x0000000000806abb                USART0_FramingErrorHandler
+                0x0000000000806abd                USART0_ParityErrorHandler
+                0x0000000000806abf                PROVIDE (__bss_end, .)
+                0x0000000000006794                __data_load_start = LOADADDR (.data)
+                0x00000000000067a2                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0000000000806ab9        0x0
+.noinit         0x0000000000806abf        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                        PROVIDE (__noinit_end, .)
-                0x0000000000806ab9                _end = .
+                0x0000000000806abf                _end = .
                 [!provide]                        PROVIDE (__heap_start, .)
 
 .eeprom         0x0000000000810000        0x0
