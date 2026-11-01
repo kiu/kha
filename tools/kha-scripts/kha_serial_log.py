@@ -91,7 +91,11 @@ class Bridge:
     self.udp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     self.udp.bind((UDP_IP, UDP_PORT))
     while True:
-      data, addr = self.udp.recvfrom(1024)
+      try:
+        data, addr = self.udp.recvfrom(1024)
+      except ConnectionResetError:
+        # Windows reports a reply to a closed sender socket (ICMP port unreachable) on the next receive
+        continue
       self.reply_addr, self.reply_until = addr, time.time() + REPLY_TIMEOUT
       for line in data.decode("ascii", "replace").splitlines() or [""]:
         self.commands.put(line.strip())
