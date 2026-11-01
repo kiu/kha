@@ -1,0 +1,35 @@
+{
+ "_comment": "Setup-specific part of kha-web: names, places and cable order (as shown, left to right). Optional: nodes not listed here show up under 'Not in config'.",
+ "sections": [
+  {"id": "bedroom", "label": "Bedroom"},
+  {"id": "machines", "label": "Gateways"},
+  {"id": "subrack", "label": "Subrack"},
+  {"id": "house", "label": "Living room"}
+ ],
+ "nodes": [
+  {"addr": "C6", "name": "LED bed", "section": "bedroom"},
+  {"addr": "D0", "name": "Main bed", "section": "bedroom"},
+  {"addr": "E1", "name": "machariel", "section": "machines"},
+  {"addr": "E0", "name": "blacksheep", "section": "machines"},
+  {"addr": "B0", "name": "Main", "section": "subrack"},
+  {"addr": "BB", "name": "Preset", "section": "subrack"},
+  {"addr": "B3", "name": "Pwr 01", "section": "subrack"},
+  {"addr": "B5", "name": "Pwr 02", "section": "subrack"},
+  {"addr": "B4", "name": "Pwr 03", "section": "subrack"},
+  {"addr": "B8", "name": "Kaox", "section": "subrack"},
+  {"addr": "BC", "name": "Strip", "section": "subrack"},
+  {"addr": "B9", "name": "HSI", "section": "subrack"},
+  {"addr": "BA", "name": "Rainbow", "section": "subrack"},
+  {"addr": "B1", "name": "Aux in", "section": "subrack"},
+  {"addr": "B2", "name": "Aux out", "section": "subrack"},
+  {"addr": "B6", "name": "Dark", "section": "subrack"},
+  {"addr": "B7", "name": "Guru", "section": "subrack"},
+  {"addr": "C7", "name": "LED desk", "section": "house"},
+  {"addr": "C5", "name": "Relay south", "section": "house"},
+  {"addr": "C0", "name": "Ikea south", "section": "house"},
+  {"addr": "C1", "name": "Ikea west", "section": "house"},
+  {"addr": "C2", "name": "Ikea north", "section": "house"},
+  {"addr": "C4", "name": "Relay north", "section": "house"},
+  {"addr": "C3", "name": "Ikea east", "section": "house"}
+ ]
+}

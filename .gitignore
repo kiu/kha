@@ -51,6 +51,11 @@ fp-info-cache
 # kha_serial_log.py output
 tools/kha-scripts/logs/
 
+# kha-web: collector database and generated page data
+tools/kha-web/kha.db*
+tools/kha-web/webroot/data/
+__pycache__/
+
 # Unfinished projects, kept local
 kha-nodes/todo/
 kha-nodes/kha-remote/kha-remote-node.X/

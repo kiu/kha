@@ -55,6 +55,15 @@ RS-485 at 500 kbaud (8N1), half duplex, every node may send. Commands, addresses
   Brown-out detection at 2.85 V. No lock bits, so UPDI can read and write a node.
 - Flashing over the bus: [kha_fw.py](tools/kha-scripts/); via UPDI: [kha_updi.py](tools/kha-scripts/).
 
+## Bus health page
+
+[kha-web](tools/kha-web/) shows the state of every node on a static web page: missing nodes, error
+counters, days since the last reboot, and whether nodes of the same board type run the same firmware. A
+collector follows the gateway's log passively, keeps the state in SQLite and exports a JSON file for the page.
+Screenshot with mock data:
+
+<img src="kha-web.png" width="800"/>
+
 ## Videos
 Two hour deep dive lecture style video on youtube: https://youtu.be/BUSnTUGKZzc
 

@@ -1,0 +1,13 @@
+[Unit]
+Description=KHA bus health collector (kha-web)
+After=kha_listen.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/kha/kha-web/kha_collector.py --follow --log /var/log/kha/bus.log --db /opt/kha/kha-web/kha.db --out /www/com.nakamura-labs.home/webroot/kha/data/nodes.json --config /opt/kha/kha-web/config.json --probe 127.0.0.1:5005
+Restart=always
+RestartSec=5
+User=root
+
+[Install]
+WantedBy=multi-user.target
