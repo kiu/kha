@@ -20,7 +20,7 @@
 #define GURU_UNICAST_MIN KHA_ADDR_UNICAST_FALLBACK
 #define GURU_UNICAST_MAX (KHA_ADDR_BROADCAST_GROUP_FALLBACK - 1)
 
-#define POLL_TIMEOUT_MARGIN_10MS 5 // on top of the reply slot of 2 * addr * 244us
+#define POLL_TIMEOUT_MARGIN_10MS 5 // on top of the reply slot, addr / 20 x 10 ms is more than the stack's slot
 #define BLINK_PERIOD_10MS 50
 
 // ---
@@ -58,8 +58,8 @@ static const uint8_t DIGITS[17] = {0b00111111, 0b00011000, 0b01101101, 0b0111110
 static volatile bool sendClear = false;
 static volatile bool sendRequest = false;
 static bool dataAvailable = false;
-static uint8_t rx_error = 0;
-static uint8_t tx_error = 0;
+static uint8_t error = 0; // highest single error counter (RX or TX) of any node
+static uint8_t error_addr = 0; // the node it came from, 0 = none yet
 static volatile uint32_t period_10ms = 0;
 static volatile uint32_t tick = 0;
 
@@ -155,10 +155,11 @@ void update_ui() {
         sendTM1620CmdData(0b11000000 | 0x04, DIGITS[0x10]);
         sendTM1620CmdData(0b11000000 | 0x06, DIGITS[0x10]);
     } else {
-        sendTM1620CmdData(0b11000000 | 0x0A, DIGITS[rx_error >> 4]);
-        sendTM1620CmdData(0b11000000 | 0x08, DIGITS[rx_error & 0x0F]);
-        sendTM1620CmdData(0b11000000 | 0x04, DIGITS[tx_error >> 4]);
-        sendTM1620CmdData(0b11000000 | 0x06, DIGITS[tx_error & 0x0F]);
+        // top: highest error, bottom: the node it came from (-- while no node had an error)
+        sendTM1620CmdData(0b11000000 | 0x0A, DIGITS[error >> 4]);
+        sendTM1620CmdData(0b11000000 | 0x08, DIGITS[error & 0x0F]);
+        sendTM1620CmdData(0b11000000 | 0x04, error_addr ? DIGITS[error_addr >> 4] : DIGITS[0x10]);
+        sendTM1620CmdData(0b11000000 | 0x06, error_addr ? DIGITS[error_addr & 0x0F] : DIGITS[0x10]);
     }
 }
 
@@ -319,8 +320,8 @@ uint8_t register_change(uint8_t addr, uint8_t value) {
             nodes_clear(nodes_known);
             nodes_clear(nodes_missing);
             dataAvailable = false;
-            rx_error = 0;
-            tx_error = 0;
+            error = 0;
+            error_addr = 0;
             update_ui();
         }
         if (addr == GURU_ADDR_INTERVAL_MIN) {
@@ -354,13 +355,13 @@ bool rx_all(uint8_t msg[KHA_MSG_LEN_MAX]) {
 
     if (cmd == KHA_CMD_DEVICE_STATS_CLEAR && to == kha_stack_register_get(GURU_ADDR_DEST)) {
         dataAvailable = false;
-        rx_error = 0;
-        tx_error = 0;
+        error = 0;
+        error_addr = 0;
         update_ui();
     }
 
     if (cmd == KHA_CMD_DEVICE_STATS_RESPONSE && to == kha_stack_device_address_get()) {
-        if (optlen != 8) {
+        if (optlen != KHA_STATS_LEN) {
             return false;
         }
 
@@ -368,13 +369,15 @@ bool rx_all(uint8_t msg[KHA_MSG_LEN_MAX]) {
             poll_answered = true;
         }
 
-        if (opt[1] > rx_error) rx_error = opt[1]; // kha_stack_stats.rx_error_start_unescaped;
-        if (opt[2] > rx_error) rx_error = opt[2]; // kha_stack_stats.rx_error_start_missing;
-        if (opt[3] > rx_error) rx_error = opt[3]; // kha_stack_stats.rx_error_len;
-        if (opt[4] > rx_error) rx_error = opt[4]; // kha_stack_stats.rx_error_crc;
-
-        if (opt[6] > tx_error) tx_error = opt[6]; // kha_stack_stats.tx_error_len;
-        if (opt[7] > tx_error) tx_error = opt[7]; // kha_stack_stats.tx_error_full;
+        for (uint8_t i = 0; i < KHA_STATS_LEN; i++) {
+            if (i == KHA_STATS_RX || i == KHA_STATS_TX) {
+                continue;
+            }
+            if (opt[i] > error) {
+                error = opt[i];
+                error_addr = from;
+            }
+        }
 
         dataAvailable = true;
         update_ui();
@@ -424,8 +427,8 @@ int main(void) {
         if (sendClear) {
             sendClear = false;
             dataAvailable = false;
-            rx_error = 0;
-            tx_error = 0;
+            error = 0;
+            error_addr = 0;
             nodes_clear(nodes_missing);
             update_ui();
             kha_stack_stats_clear();
