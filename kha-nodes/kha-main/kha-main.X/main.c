@@ -19,7 +19,7 @@ static volatile uint8_t preset_next = KHA_PRESET_NONE;
 static bool blink = false;
 static volatile bool blink_exec = false;
 
-static volatile uint32_t tick = 0;
+static volatile uint8_t tick = 0; // 8 bit: a 32-bit "tick % 100" in the ISR took ~30 us and caused RX overruns
 
 enum BTN_STATE {
     BTN_STATE_RD_OG, BTN_STATE_RD_OG_BLINK, BTN_STATE_OFF
@@ -46,8 +46,8 @@ void key_pressed(uint8_t key) {
 }
 
 void key_tick() {
-    tick++;
-    if (tick % 100 == 0) {
+    if (++tick >= 100) {
+        tick = 0;
         blink_exec = true;
     }
 
