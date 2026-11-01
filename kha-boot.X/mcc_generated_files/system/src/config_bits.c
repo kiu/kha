@@ -39,7 +39,7 @@
  */
 FUSES = 
 {
-  .BODCFG = ACTIVE_DISABLE_gc | LVL_BODLEVEL0_gc | SAMPFREQ_128Hz_gc | SLEEP_DISABLE_gc,
+  .BODCFG = ACTIVE_ENABLE_gc | LVL_BODLEVEL3_gc | SAMPFREQ_128Hz_gc | SLEEP_DISABLE_gc, // BOD at 2.85 V (set by hand, not in kha-boot.mc3)
   .BOOTSIZE = 0x20,
   .CODESIZE = 0x0,
   .OSCCFG = CLKSEL_OSCHF_gc,

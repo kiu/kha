@@ -8,7 +8,7 @@
 
 // ---
 
-LOCKBITS = 0xA33A3AA3; // {KEY=RWLOCK}
+LOCKBITS = LOCK_KEY_NOLOCK_gc; // UPDI may read; the CPU can never write the BOOT section anyway
 
 // ---
 
@@ -21,7 +21,7 @@ LOCKBITS = 0xA33A3AA3; // {KEY=RWLOCK}
 
 #define PAGE_PARTS 64
 
-#define BOOTLOADER_EXIT_DELAY_S 6
+#define BOOTLOADER_EXIT_DELAY_S 4
 
 // ---
 
@@ -187,20 +187,20 @@ int main(void) {
     kha_stack_rx_cbr_msg_matched(process_msg);
     kha_stack_init(true, REGISTER_SIZE, REGISTER_PRESET_WIDTH, KHA_VERSION);
 
-    uint16_t countdown = BOOTLOADER_EXIT_DELAY_S * 10;
+    uint16_t countdown = BOOTLOADER_EXIT_DELAY_S * 1000; // 1 ms steps, so RX gets processed right away
     while (countdown > 0) {
         kha_stack_process_rx_tx();
         if (!bootloader_exit) {
             break;
         }
         asm("wdr");
-        DELAY_milliseconds(100);
+        DELAY_milliseconds(1);
         countdown--;
     }
 
     if (bootloader_exit) {
         cli();
-        void (*app)(void) = (PAGE_START * PAGE_SIZE) / 2;
+        void (*app)(void) = (void (*)(void)) ((PAGE_START * PAGE_SIZE) / 2); // word address of 0x4000
         app();
     }
 
